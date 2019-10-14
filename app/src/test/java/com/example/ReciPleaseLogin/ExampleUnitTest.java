@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin;
+package com.example.ReciPleaseLogin;
 
 import org.junit.Test;
 

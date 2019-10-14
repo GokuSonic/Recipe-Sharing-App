@@ -1,11 +1,11 @@
-package com.example.mealplannerlogin.ui.login;
+package com.example.ReciPleaseLogin.ui.login;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.example.mealplannerlogin.data.LoginDataSource;
-import com.example.mealplannerlogin.data.LoginRepository;
+import com.example.ReciPleaseLogin.data.LoginDataSource;
+import com.example.ReciPleaseLogin.data.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin.ui.login;
+package com.example.ReciPleaseLogin.ui.login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.example.mealplannerlogin.data.LoginRepository;
-import com.example.mealplannerlogin.data.Result;
-import com.example.mealplannerlogin.data.model.LoggedInUser;
-import com.example.mealplannerlogin.R;
+import com.example.ReciPleaseLogin.data.LoginRepository;
+import com.example.ReciPleaseLogin.data.Result;
+import com.example.ReciPleaseLogin.data.model.LoggedInUser;
+import com.example.ReciPleaseLogin.R;
 
 public class LoginViewModel extends ViewModel {
 

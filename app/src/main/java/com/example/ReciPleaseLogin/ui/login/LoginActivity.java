@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin.ui.login;
+package com.example.ReciPleaseLogin.ui.login;
 
 import android.app.Activity;
 
@@ -22,9 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.mealplannerlogin.R;
-import com.example.mealplannerlogin.ui.login.LoginViewModel;
-import com.example.mealplannerlogin.ui.login.LoginViewModelFactory;
+import com.example.ReciPleaseLogin.R;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -22,7 +22,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// Patrick's additions
+import android.content.Intent;
+import android.content.Context;
+
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -118,8 +123,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
+        final Context context = this;
+
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
+
+        Intent intent = new Intent(context, MenuActivity.class);
+        startActivity(intent);
+
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 

@@ -1,6 +1,6 @@
-package com.example.mealplannerlogin.data;
+package com.example.ReciPleaseLogin.data;
 
-import com.example.mealplannerlogin.data.model.LoggedInUser;
+import com.example.ReciPleaseLogin.data.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

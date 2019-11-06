@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin.data.model;
+package com.example.ReciPleaseLogin.data.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

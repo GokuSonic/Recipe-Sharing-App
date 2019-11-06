@@ -1,79 +1,34 @@
 {
   "project_info": {
-    "project_number": "433919804518",
-    "firebase_url": "https://recipe-sharing-app-8e4b2.firebaseio.com",
-    "project_id": "recipe-sharing-app-8e4b2",
-    "storage_bucket": "recipe-sharing-app-8e4b2.appspot.com"
+    "project_number": "147936678681",
+    "firebase_url": "https://reciplease-6588e.firebaseio.com",
+    "project_id": "reciplease-6588e",
+    "storage_bucket": "reciplease-6588e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:433919804518:android:55ea13c218edc9df1499a7",
+        "mobilesdk_app_id": "1:147936678681:android:6f6d4b85ba9e55ab562b88",
         "android_client_info": {
-          "package_name": "com.example.mealplannerlogin"
+          "package_name": "com.example.ReciPleaseLogin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "433919804518-etko658t4hddrcpuveliah5hevdd2trg.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.mealplannerlogin",
-            "certificate_hash": "c43ba3e439f81731ada76dd2cc2cd304da18f90c"
-          }
-        },
-        {
-          "client_id": "433919804518-97t3av8goes9sukth6d2pvbk356dbs7n.apps.googleusercontent.com",
+          "client_id": "147936678681-pi1m7b45segohfrth488uf4kdg8d1ci5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA41kFzrOGX_YRxaZvxphDJYAXNEAjNT8c"
+          "current_key": "AIzaSyBi12mRzZzIy6jhHV4hQlgIbINUXTU1Olw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "433919804518-97t3av8goes9sukth6d2pvbk356dbs7n.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:433919804518:android:2350c12599c88d431499a7",
-        "android_client_info": {
-          "package_name": "com.example.mealplannerlogin.ui.login"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "433919804518-67rld682gch9slpkdo5m74qohcubjh9q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.mealplannerlogin.ui.login",
-            "certificate_hash": "c43ba3e439f81731ada76dd2cc2cd304da18f90c"
-          }
-        },
-        {
-          "client_id": "433919804518-97t3av8goes9sukth6d2pvbk356dbs7n.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyA41kFzrOGX_YRxaZvxphDJYAXNEAjNT8c"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "433919804518-97t3av8goes9sukth6d2pvbk356dbs7n.apps.googleusercontent.com",
+              "client_id": "147936678681-pi1m7b45segohfrth488uf4kdg8d1ci5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

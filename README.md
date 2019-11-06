@@ -1,4 +1,7 @@
 
+[![Build Status](https://img.shields.io/badge/Build%20-Passing-brightgreen)](www.csusm.edu)
+
+
 # ReciPlease App
 
   There are many applications out on the market that allow users to share their daily life or

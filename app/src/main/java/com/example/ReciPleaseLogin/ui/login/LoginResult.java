@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin.ui.login;
+package com.example.ReciPleaseLogin.ui.login;
 
 import androidx.annotation.Nullable;
 

@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin.ui.login;
+package com.example.ReciPleaseLogin.ui.login;
 
 /**
  * Class exposing authenticated user details to the UI.

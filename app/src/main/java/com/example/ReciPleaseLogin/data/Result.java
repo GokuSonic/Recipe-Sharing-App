@@ -1,4 +1,4 @@
-package com.example.mealplannerlogin.data;
+package com.example.ReciPleaseLogin.data;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.

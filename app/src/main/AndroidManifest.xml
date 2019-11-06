@@ -23,5 +23,4 @@
             android:name=".ui.Menu.MenuActivity"></activity>
 
     </application>
-
 </manifest>

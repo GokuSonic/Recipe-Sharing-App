@@ -27,7 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText6"
         app:layout_constraintTop_toBottomOf="@+id/button12" />
-
     <EditText
         android:id="@+id/editText6"
         android:layout_width="44dp"

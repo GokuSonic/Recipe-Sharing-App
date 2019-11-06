@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(context, MenuActivity.class);
         startActivity(intent);
 
+
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 

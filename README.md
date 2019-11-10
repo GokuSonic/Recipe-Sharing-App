@@ -58,9 +58,7 @@ We will be deploying on android market place
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Recycler Worms](https://github.com/tommybuonomo/dotsindicator) - Used to generate worm slider
 
 ## Contributing
 
@@ -72,9 +70,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Patrick Caldwell** - *Initial work* - [PurpleBooth](https://github.com/GokuSonic)
-* **Sean Gow** - *Initial work* - [PurpleBooth](https://github.com/Sean8499)
-* **Evan Smith** - *Helps debug* - [PurpleBooth](https://github.com/charmas3r)
+* **Patrick Caldwell** - *Initial work* - [Page](https://github.com/GokuSonic)
+* **Sean Gow** - *Initial work* - [Page](https://github.com/Sean8499)
+* **Evan Smith** - *Helps debug* - [Page](https://github.com/charmas3r)
 
 See also the list of [contributors](https://github.com/GokuSonic/Recipe-Sharing-App/graphs/contributors) who participated in this project.
 

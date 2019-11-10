@@ -41,7 +41,7 @@ Still in development
 Explain what these tests test and why
 
 ```
-Give an example
+Still in development
 ```
 
 ### And coding style tests
@@ -49,7 +49,7 @@ Give an example
 Explain what these tests test and why
 
 ```
-Give an example
+Still in development
 ```
 
 ## Deployment
@@ -72,9 +72,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Patrick Caldwell** - *Initial work* - [PurpleBooth](https://github.com/GokuSonic)
+* **Sean Gow** - *Initial work* - [PurpleBooth](https://github.com/Sean8499)
+* **Evan Smith** - *Helps debug* - [PurpleBooth](https://github.com/charmas3r)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/GokuSonic/Recipe-Sharing-App/graphs/contributors) who participated in this project.
 
 ## License
 

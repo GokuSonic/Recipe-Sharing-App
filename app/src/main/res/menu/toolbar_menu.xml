@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:id="@+id/toolbar_menu"
+
+    <item
+        android:id="@+id/toolbar_messages"
+        android:icon="@drawable/messages_24dp"
+        android:title=""
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/toolbar_post"
+        android:icon="@drawable/post_24dp"
+        android:title=""
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/toolbar_levels"
+        android:icon="@drawable/levels_24dp"
+        android:title=""
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/toolbar_search"
+        android:icon="@drawable/search_24dp"
+        android:title=""
+        app:showAsAction="always" />
+
+    <item android:title="Item1" />
+    <item android:title="Item2" />
+    <item android:title="Item3" />
+</menu>

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.ReciPleaseLogin.ui.login.LoginActivity"
+            android:name=".ui.login.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="@string/app_name"
-            android:name="com.example.ReciPleaseLogin.ui.Menu.MenuActivity"></activity>
-
+            android:name=".ui.Menu.MenuActivity"
+            android:label="@string/app_name" />
     </application>
+
 </manifest>

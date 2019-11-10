@@ -19,14 +19,17 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="642dp"
+        android:clickable="true"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Post"
+        android:text="Search"
+        android:textAlignment="center"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editText6"
-        app:layout_constraintTop_toBottomOf="@+id/button12" />
+        app:layout_constraintTop_toBottomOf="@+id/searchButton" />
+
     <EditText
         android:id="@+id/editText6"
         android:layout_width="44dp"
@@ -35,57 +38,63 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="642dp"
+        android:clickable="false"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Post"
+        android:text="Levels"
+        android:textAlignment="center"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editText7"
         app:layout_constraintStart_toEndOf="@+id/editText5"
-        app:layout_constraintTop_toBottomOf="@+id/button11" />
+        app:layout_constraintTop_toBottomOf="@+id/levelsButton" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/messagesButton"
         android:layout_width="44dp"
         android:layout_height="31dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/editText4"
+        app:layout_constraintEnd_toStartOf="@+id/postButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/levelsButton"
         android:layout_width="44dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/button12"
-        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/editText6"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintStart_toEndOf="@+id/postButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button12"
+        android:id="@+id/searchButton"
         android:layout_width="44dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintStart_toEndOf="@+id/levelsButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/postButton"
         android:layout_width="44dp"
         android:layout_height="31dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/button11"
-        app:layout_constraintStart_toEndOf="@+id/button5"
+        app:layout_constraintBottom_toTopOf="@+id/editText5"
+        app:layout_constraintEnd_toStartOf="@+id/levelsButton"
+        app:layout_constraintStart_toEndOf="@+id/messagesButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
@@ -96,14 +105,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="642dp"
+        android:clickable="false"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Messages"
+        android:textAlignment="center"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editText5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/messagesButton" />
 
     <EditText
         android:id="@+id/editText5"
@@ -113,14 +124,32 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="642dp"
+        android:clickable="false"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Post"
+        android:textAlignment="center"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/editText6"
         app:layout_constraintStart_toEndOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/postButton" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="403dp"
+        android:layout_height="374dp"
+        android:layout_marginTop="262dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText7">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,7 +1,7 @@
 
 [![Build Status](https://img.shields.io/badge/Build%20-Passing-brightgreen)](https://www.csusm.edu/)
 [![Test Status](https://img.shields.io/badge/Tests-None-red)](https://www.csusm.edu/)
-[![Build Number](https://img.shields.io/badge/Build%20-1.0.5-blue)](https://www.csusm.edu/)
+[![Build Number](https://img.shields.io/badge/Build%20-1.0.8-blue)](https://www.csusm.edu/)
 
 # ReciPlease App
 

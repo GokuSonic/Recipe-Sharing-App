@@ -13,15 +13,14 @@ import android.os.Bundle;
 
 import com.example.ReciPleaseLogin.R;
 
-
 public class MenuActivity extends AppCompatActivity {
 
     Button button;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
 
         Toolbar toolbar = findViewById(R.id.menu_toolbar_layout);
         setSupportActionBar(toolbar);

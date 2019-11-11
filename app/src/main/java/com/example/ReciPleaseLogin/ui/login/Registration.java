@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.ReciPleaseLogin.R;
 
+import com.example.ReciPleaseLogin.data.UserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,7 +123,7 @@ private void submit_profile(FirebaseUser user){
     FirebaseFirestore db = FirebaseFirestore.getInstance();
         //get user identification string for database identification
             String uid=user.getUid();
-
+/*
     Map<String, Object> profile = new HashMap<>();
 
     profile.put("uid",uid);
@@ -130,8 +131,20 @@ private void submit_profile(FirebaseUser user){
     profile.put("dispname",dname);
     profile.put("email",email);
     profile.put("experience",exp);
-    profile.put("oldenough",over15);
+    profile.put("oldenough",over15);*/
 
+ //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
+        UserData userdb =new UserData();
+
+     userdb.username=dname;
+     userdb.who_are_you=name;
+     userdb.cooking_experience=exp;
+    // userdb.Something_interesting=null;
+     userdb.picture_link=null;
+     userdb.over15=over15;
+
+
+     userdb.sync_profile(user);
     //name
 
     //displayname
@@ -141,7 +154,7 @@ private void submit_profile(FirebaseUser user){
 
     //experience
 
-
+/*
 // Add a new document with a generated ID
     db.collection("users").add(profile)
             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -159,6 +172,8 @@ private void submit_profile(FirebaseUser user){
                     Toast.makeText(Registration.this, "Upload Failed", Toast.LENGTH_SHORT).show();
                 }
             });
+*/
+
 
 }
 

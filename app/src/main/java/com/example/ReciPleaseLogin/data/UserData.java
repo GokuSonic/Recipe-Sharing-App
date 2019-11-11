@@ -12,7 +12,7 @@ public class UserData {
     public String who_are_you;
     public String cooking_experience;
     public String what_do_you_do;
-    public String Something_interesting;
+   // public String Something_interesting;
     public String picture_link;
     public int num_followers;
     public int num_likers;
@@ -22,23 +22,21 @@ public class UserData {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    private FirebaseUser user;
+   // private FirebaseUser user;
 
     //default constructor that takes no objects, required for firestore
 public UserData(){}
 
-    public void UserDate(String a, String b, String c, String d, String e, String f,  boolean g, boolean h) {
+    public void UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
 
-        username = a;
-        who_are_you = b;
-        cooking_experience = c;
-        what_do_you_do = d;
-        Something_interesting = e;
-        picture_link=f;
-        over15 = g;
-        premium = h;
-
-
+        this.username = username;
+        who_are_you = realname;
+        cooking_experience = cook_exp;
+        what_do_you_do = do_what;
+       // Something_interesting = something;
+        picture_link=picture;
+        over15 = age;
+        premium = prem;
 
         //initialize to zero
         num_followers = 0;
@@ -47,13 +45,12 @@ public UserData(){}
     }
 
 
-    private void sync_profile(){
+    public void sync_profile(FirebaseUser user){
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
-
+        //db.collection(user.getUid()).add()
         db.collection("users").document(user.getUid()).set(this);
-
     }
 
 
@@ -69,10 +66,10 @@ public UserData(){}
     }
     public String getCooking_experience(){
         return cooking_experience;
-    }
+    }/*
     public String getSomething_interesting() {
         return Something_interesting;
-    }
+    }*/
     public String getPicture_link(){
         return picture_link;
     }

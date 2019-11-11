@@ -1,4 +1,4 @@
-package com.example.ReciPleaseLogin.ui.Search;
+package com.example.ReciPleaseLogin.ui.Levels;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,18 +9,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
-import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
+import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 
-public class SearchActivity extends AppCompatActivity {
+public class LevelsActivity extends AppCompatActivity {
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_levels);
 
         // Upper part of menu
         Toolbar toolbar = findViewById(R.id.menu_toolbar_layout);
@@ -39,27 +39,27 @@ public class SearchActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.toolbar_levels:
-                intent = new Intent(SearchActivity.this, LevelsActivity.class);
+                intent = new Intent(LevelsActivity.this, LevelsActivity.class);
                 this.startActivity(intent);
-
                 return true;
+
             case R.id.toolbar_search:
-                intent = new Intent(SearchActivity.this, SearchActivity.class);
+                intent = new Intent(LevelsActivity.this, SearchActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_messages:
-                intent = new Intent(SearchActivity.this, MessagesActivity.class);
+                intent = new Intent(LevelsActivity.this, MessagesActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_post:
-                intent = new Intent(SearchActivity.this, PostActivity.class);
+                intent = new Intent(LevelsActivity.this, PostActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_profile:
-                intent = new Intent(SearchActivity.this, ProfileActivity.class);
+                intent = new Intent(LevelsActivity.this, ProfileActivity.class);
                 this.startActivity(intent);
                 return true;
         }

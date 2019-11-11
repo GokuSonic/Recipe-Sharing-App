@@ -17,9 +17,12 @@ import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 import android.content.Context;
@@ -28,22 +31,25 @@ import android.content.Context;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    FirebaseUser user;
+
     private Button bLogin;
-    private String user;
+    private String email;
     private String password;
     private TextView status;
     private EditText emailbox, passbox;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         FirebaseApp.initializeApp(this);
 
-        mAuth=FirebaseAuth.getInstance();
-        bLogin=(Button) findViewById(R.id.login);
-        emailbox=findViewById(R.id.username);
-        passbox=findViewById(R.id.password);
+
+        mAuth = FirebaseAuth.getInstance();
+        bLogin = (Button) findViewById(R.id.login);
+        emailbox = findViewById(R.id.username);
+        passbox = findViewById(R.id.rPassword);
         bLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
@@ -51,18 +57,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onStart(){
-        super.onStart();
-        FirebaseUser currentUser =mAuth.getCurrentUser();
-    }
-    private void updateUI(FirebaseUser User)
-    {
 
-        if (User!=null){
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+    }
+
+    private void updateUI(FirebaseUser User) {
+
+        if (User != null) {
             ; //login
-        }else {
-            ;//register?
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+            startActivity(intent);
+        } else {
+            ;//?
         }
     }
 
@@ -72,28 +81,63 @@ public class LoginActivity extends AppCompatActivity {
         if (!validateUser()) {
             return;
         } else { //collect user pass combo
-            user = emailbox.getText().toString();
+            email = emailbox.getText().toString();
             password = passbox.getText().toString();
         }
 
-        mAuth.signInWithEmailAndPassword(user,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+        //autocomplete generated header structure, notify listeners of auth
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 final Context context = LoginActivity.this;
-                if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(intent);
-                } else {
+
+                if (!task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Login Failure", Toast.LENGTH_SHORT).show();
-                   // Intent intent=new Intent( LoginActivity.this, RegisterActivity.class);
+                    try {
+                        throw task.getException();
+                    }
+                    catch(Exception e){
+
+                        if (e instanceof FirebaseAuthInvalidUserException){
+                            Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                            //register user
+                            ;//register?
+                            Intent intent =new Intent(LoginActivity.this, Registration.class);
+                            startActivity(intent);
+
+
+                        }
+                        else if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                            //forgot password
+
+                        }
+                        else {
+                            //unhandled
+
+                        }
+
+
+                    }
+
+                } else {
+                    Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                    user=mAuth.getCurrentUser();
+
+                    updateUI(user);
+                    //startActivity(intent);
+
 
                 }
 
             }
         });
-
     }
+
+
+//    }
     public boolean validateUser(){
         //default to true, if it makes past both conditions and is still true return true
         boolean valid =true;

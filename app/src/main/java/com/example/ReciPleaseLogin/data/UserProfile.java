@@ -1,18 +1,18 @@
 package com.example.ReciPleaseLogin.data;
 
 
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.firestore.FirebaseFirestore;
+   //     import com.google.firebase.auth.FirebaseAuth;
+  //      import com.google.firebase.auth.FirebaseUser;
+  //      import com.google.firebase.firestore.FirebaseFirestore;
 
-public class UserData {
+public class UserProfile {
 
     public String username;
 
     public String who_are_you;
     public String cooking_experience;
     public String what_do_you_do;
-   // public String Something_interesting;
+    public String something_interesting; //firebase doesnt like it, complains about another getter , but none found
     public String picture_link;
     public int num_followers;
     public int num_likers;
@@ -20,20 +20,20 @@ public class UserData {
     public boolean over15;
     public boolean premium;
 
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
+  //  private FirebaseFirestore db;
+  //  private FirebaseAuth mAuth;
    // private FirebaseUser user;
 
     //default constructor that takes no objects, required for firestore
-public UserData(){}
+public UserProfile(){}
 
-    public void UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
+    public  UserProfile(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
 
         this.username = username;
         who_are_you = realname;
         cooking_experience = cook_exp;
         what_do_you_do = do_what;
-       // Something_interesting = something;
+       something_interesting = something;
         picture_link=picture;
         over15 = age;
         premium = prem;
@@ -42,15 +42,6 @@ public UserData(){}
         num_followers = 0;
         num_likers = 0;
         num_recipes = 0;
-    }
-
-
-    public void sync_profile(FirebaseUser user){
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getInstance().getCurrentUser();
-        db = FirebaseFirestore.getInstance();
-        //db.collection(user.getUid()).add()
-        db.collection("users").document(user.getUid()).set(this);
     }
 
 
@@ -64,12 +55,13 @@ public UserData(){}
     public String getWhat_do_you_do() {
         return what_do_you_do;
     }
-    public String getCooking_experience(){
+    public String getCooking_experience() {
         return cooking_experience;
-    }/*
+    }
+    //firebase complains about this one and crashes
     public String getSomething_interesting() {
-        return Something_interesting;
-    }*/
+        return something_interesting;
+    }
     public String getPicture_link(){
         return picture_link;
     }
@@ -88,4 +80,25 @@ public UserData(){}
     public boolean isPremium() {
         return premium;
     }
+
+
+    public void updateDB(){
+
+        DB.push(this);
+
+
+        //nolonger needed
+        /*mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getInstance().getCurrentUser();
+        db = FirebaseFirestore.getInstance();
+        //db.collection(user.getUid()).add()
+        db.collection("users").document(user.getEmail()).set(this);*/
+
+    }
+
+    //fetch new data
+    public void updateView(){
+       // DB.pull(this);
+    }
+
 }

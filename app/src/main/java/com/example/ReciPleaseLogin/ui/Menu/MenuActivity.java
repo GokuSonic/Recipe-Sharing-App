@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 
@@ -112,6 +114,8 @@ public class MenuActivity extends AppCompatActivity {
                 msg = "Levels";
                 break;
             case R.id.toolbar_search:
+                Intent intent = new Intent(MenuActivity.this, SearchActivity.class);
+                startActivity(intent);
                 msg = "Search";
                 break;
             case R.id.toolbar_messages:

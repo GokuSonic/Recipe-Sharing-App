@@ -1,34 +1,50 @@
 {
   "project_info": {
-    "project_number": "147936678681",
-    "firebase_url": "https://reciplease-6588e.firebaseio.com",
-    "project_id": "reciplease-6588e",
-    "storage_bucket": "reciplease-6588e.appspot.com"
+    "project_number": "433919804518",
+    "firebase_url": "https://recipe-sharing-app-8e4b2.firebaseio.com",
+    "project_id": "recipe-sharing-app-8e4b2",
+    "storage_bucket": "recipe-sharing-app-8e4b2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:147936678681:android:6f6d4b85ba9e55ab562b88",
+        "mobilesdk_app_id": "1:433919804518:android:ff41e53f213405af1499a7",
         "android_client_info": {
           "package_name": "com.example.ReciPleaseLogin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "147936678681-pi1m7b45segohfrth488uf4kdg8d1ci5.apps.googleusercontent.com",
+          "client_id": "433919804518-07r0mpk3frpldq3pnhjdkcsar1ibqlbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ReciPleaseLogin",
+            "certificate_hash": "df05015a586d054d30a488eda882f78f2fa1419f"
+          }
+        },
+        {
+          "client_id": "433919804518-hm1bm3m40trbatmcktnp1erpudrqgq72.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ReciPleaseLogin",
+            "certificate_hash": "624ab8fb37cb8555bc8438fa7b4329a6e8fb8810"
+          }
+        },
+        {
+          "client_id": "433919804518-97t3av8goes9sukth6d2pvbk356dbs7n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBi12mRzZzIy6jhHV4hQlgIbINUXTU1Olw"
+          "current_key": "AIzaSyA41kFzrOGX_YRxaZvxphDJYAXNEAjNT8c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "147936678681-pi1m7b45segohfrth488uf4kdg8d1ci5.apps.googleusercontent.com",
+              "client_id": "433919804518-97t3av8goes9sukth6d2pvbk356dbs7n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

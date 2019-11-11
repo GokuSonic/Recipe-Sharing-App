@@ -1,7 +1,7 @@
 
 [![Build Status](https://img.shields.io/badge/Build%20-Passing-brightgreen)](https://www.csusm.edu/)
 [![Test Status](https://img.shields.io/badge/Tests-None-red)](https://www.csusm.edu/)
-[![Build Number](https://img.shields.io/badge/Build%20-1.0.5-blue)](https://www.csusm.edu/)
+[![Build Number](https://img.shields.io/badge/Build%20-1.1.0-blue)](https://www.csusm.edu/)
 
 # ReciPlease App
 
@@ -41,7 +41,7 @@ Still in development
 Explain what these tests test and why
 
 ```
-Give an example
+Still in development
 ```
 
 ### And coding style tests
@@ -49,7 +49,7 @@ Give an example
 Explain what these tests test and why
 
 ```
-Give an example
+Still in development
 ```
 
 ## Deployment
@@ -58,9 +58,7 @@ We will be deploying on android market place
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Recycler Worms](https://github.com/tommybuonomo/dotsindicator) - Used to generate worm slider
 
 ## Contributing
 
@@ -72,9 +70,11 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Patrick Caldwell** - *Initial work* - [Page](https://github.com/GokuSonic)
+* **Sean Gow** - *Initial work* - [Page](https://github.com/Sean8499)
+* **Evan Smith** - *Helps debug* - [Page](https://github.com/charmas3r)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/GokuSonic/Recipe-Sharing-App/graphs/contributors) who participated in this project.
 
 ## License
 

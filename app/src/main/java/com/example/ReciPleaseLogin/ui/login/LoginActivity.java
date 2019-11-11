@@ -43,13 +43,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         FirebaseApp.initializeApp(this);
 
 
         mAuth = FirebaseAuth.getInstance();
         bLogin = (Button) findViewById(R.id.login);
         emailbox = findViewById(R.id.username);
-        passbox = findViewById(R.id.rPassword);
+        passbox = findViewById(R.id.Password);
         bLogin.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
@@ -142,16 +143,17 @@ public class LoginActivity extends AppCompatActivity {
         //default to true, if it makes past both conditions and is still true return true
         boolean valid =true;
 
-        String useremail = emailbox.getText().toString();
-        if(useremail.isEmpty()){
+        email = emailbox.getText().toString();
+        if(email.isEmpty()){
             emailbox.setError("Email is required");
             valid=false;
         }
         else{
             emailbox.setError(null);
+
         }
 
-        String password =passbox.getText().toString();
+        password = passbox.getText().toString();
 
         if (password.isEmpty()){
             passbox.setError("Password is required");
@@ -159,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         else {
             passbox.setError(null);
+
         }
         return valid ;
     }

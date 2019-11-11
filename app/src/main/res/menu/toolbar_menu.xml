@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     android:id="@+id/toolbar_menu"
 
+
+    <item
+        android:id="@+id/toolbar_profile"
+        android:icon="@drawable/profile_24dp"
+        android:title=""
+        app:showAsAction="always" />
     <item
         android:id="@+id/toolbar_messages"
         android:icon="@drawable/messages_24dp"

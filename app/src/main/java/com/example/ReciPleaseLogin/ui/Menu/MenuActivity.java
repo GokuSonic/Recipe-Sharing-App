@@ -19,7 +19,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
+import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
+import com.example.ReciPleaseLogin.ui.Post.PostActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
+import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
+
+
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 
@@ -108,22 +114,32 @@ public class MenuActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        String msg = "";
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.toolbar_levels:
-                msg = "Levels";
-                break;
-            case R.id.toolbar_search:
-                Intent intent = new Intent(MenuActivity.this, SearchActivity.class);
+                intent = new Intent(MenuActivity.this, LevelsActivity.class);
                 startActivity(intent);
-                msg = "Search";
-                break;
+                return true;
+
+            case R.id.toolbar_search:
+                intent = new Intent(MenuActivity.this, SearchActivity.class);
+                startActivity(intent);
+                return true;
+
             case R.id.toolbar_messages:
-                msg = "Messages";
-                break;
+                intent = new Intent(MenuActivity.this, MessagesActivity.class);
+                this.startActivity(intent);
+                return true;
+
             case R.id.toolbar_post:
-                msg = "Post";
-                break;
+                intent = new Intent(MenuActivity.this, PostActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.toolbar_profile:
+                intent = new Intent(MenuActivity.this, ProfileActivity.class);
+                startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

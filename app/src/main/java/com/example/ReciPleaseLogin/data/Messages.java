@@ -3,7 +3,7 @@ package com.example.ReciPleaseLogin.data;
 public class Messages {
 
 
-
+    Message[] messages;
 
 
 
@@ -17,18 +17,16 @@ public class Messages {
     }
 
 
+    public Message[] getMessages(){
+        return messages;
+    }
+
+
+
 
     public void updateDB(){
 
         DB.push(this);
-
-
-        //nolonger needed
-        /*mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getInstance().getCurrentUser();
-        db = FirebaseFirestore.getInstance();
-        //db.collection(user.getUid()).add()
-        db.collection("users").document(user.getEmail()).set(this);*/
 
     }
 

@@ -81,11 +81,9 @@ public UserProfile(){}
         return premium;
     }
 
-
     public void updateDB(){
 
         DB.push(this);
-
 
         //nolonger needed
         /*mAuth=FirebaseAuth.getInstance();

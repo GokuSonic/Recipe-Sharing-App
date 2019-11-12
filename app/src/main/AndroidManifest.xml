@@ -26,6 +26,21 @@
             android:label="@string/app_name">
 
         </activity>
+        <activity
+            android:name=".ui.Search.SearchActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.Post.PostActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.Messages.MessagesActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.Levels.LevelsActivity"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".ui.Profile.ProfileActivity"
+            android:label="@string/app_name"></activity>
     </application>
 
 </manifest>

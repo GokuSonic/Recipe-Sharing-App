@@ -1,11 +1,17 @@
 package com.example.ReciPleaseLogin.data;
 
+import java.util.List;
+import java.util.Vector;
+
 public class Messages {
 
 
-    Message[] messages;
+    List<Message> messages;
 
 
+    public Messages(){
+        messages= new Vector<Message>();
+    }
 
     public void post(Message message){
 
@@ -17,7 +23,7 @@ public class Messages {
     }
 
 
-    public Message[] getMessages(){
+    public List<Message> getMessages(){
         return messages;
     }
 

@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class Recipe {
 
-public     String owner;
+    public     String owner;
     public     String recipe_name;
     public Date posted;
     public List<String> ingredients;
@@ -23,7 +23,9 @@ public     String owner;
 
     public Recipe(){
         ingredients=new Vector<String>();
-
+        instructions= new Vector<String>();
+        tags=new Vector<String>();
+        likers =new Vector<String>();
 
     }
 

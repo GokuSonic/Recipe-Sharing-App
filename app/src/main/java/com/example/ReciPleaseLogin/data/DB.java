@@ -12,7 +12,7 @@ public class DB {
     static  private FirebaseAuth mAuth;
     static private FirebaseUser mUser;
     static private FirebaseFirestore db;
-    private User user;
+    static private User user;
 
     //submit any object to db
     static public void push( Object object){
@@ -32,7 +32,23 @@ public class DB {
             }
         }
         else if (object instanceof Message){
-            db.collection("users").document(mUser.getUid()).collection("messages").add(object);
+
+            //send to sender and recipient
+            if (((Message) object).recipeUid ==null) {
+                db.collection("users").document(mUser.getUid()).collection("messages").add(object);
+
+                //fake recipient
+                db.collection("users").document("recipient").collection("messages").add(object);
+
+
+
+            }else{
+                if (((Message) object).premium==true)
+                    db.collection("PremiumRecipes").document(((Message) object).recipeUid).collection("comments").add(object);
+                else
+                    db.collection("PublicRecipes").document(((Message) object).recipeUid).collection("comments").add(object);
+
+            }
         }
 
     }
@@ -58,23 +74,23 @@ public class DB {
 
         /*(< , <= , ==, > >=, array-contains, in, array-contains-any "*/
         for (int i=0;i<query.num_queries;i++){
-            if (query.type[i]=="<") {
-                ref.whereLessThan(collection, query.searchfor[i]);
+            if (query.type.get(i)=="<") {
+                ref.whereLessThan(collection, query.searchfor.get(i));
             }
-            else if (query.type[i]=="<=") {
-                ref.whereLessThanOrEqualTo(collection, query.searchfor[i]);
+            else if (query.type.get(i)=="<=") {
+                ref.whereLessThanOrEqualTo(collection, query.searchfor.get(i));
             }
-            else if (query.type[i]=="==") {
-                ref.whereEqualTo(collection, query.searchfor[i]);
+            else if (query.type.get(i)=="==") {
+                ref.whereEqualTo(collection, query.searchfor.get(i));
             }
-            else if (query.type[i]==">") {
-                ref.whereGreaterThan(collection, query.searchfor[i]);
+            else if (query.type.get(i)==">") {
+                ref.whereGreaterThan(collection, query.searchfor.get(i));
             }
-            else if (query.type[i]==">=") {
-                ref.whereGreaterThanOrEqualTo(collection, query.searchfor[i]);
+            else if (query.type.get(i)==">=") {
+                ref.whereGreaterThanOrEqualTo(collection, query.searchfor.get(i));
             }
-            else if (query.type[i]=="array-contains") {
-                ref.whereArrayContains(collection, query.searchfor[i]);
+            else if (query.type.get(i)=="array-contains") {
+                ref.whereArrayContains(collection, query.searchfor.get(i));
             }
             //not found
             //else if (query.type[i]=="in") {

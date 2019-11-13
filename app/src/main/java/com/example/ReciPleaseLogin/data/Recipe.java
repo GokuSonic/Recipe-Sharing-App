@@ -1,26 +1,31 @@
 package com.example.ReciPleaseLogin.data;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 public class Recipe {
-    String owner;
-    String recipe_name;
-    Date posted;
-    String[] ingredients;
-    String[] instructions;
-    int num_ingredients;
-    String[] tags;
-    String[] likers;
-    int num_likers;
-    boolean premium;
-    Messages comments;
+
+public     String owner;
+    public     String recipe_name;
+    public Date posted;
+    public List<String> ingredients;
+    public List<String> instructions;
+    public int num_ingredients;
+    public List<String> tags;
+    public List<String> likers;
+    public int num_likers;
+    public boolean premium;
+    public Messages comments;
 
 
 
 
-    public Recipe(){}
+    public Recipe(){
+        ingredients=new Vector<String>();
 
-    //public void Recipe(){};
+
+    }
 
     public String getOwner(){
         return owner;
@@ -34,11 +39,11 @@ public class Recipe {
     {
         return posted;
     }
-    public String[] getIngredients()
+    public List<String> getIngredients()
     {
     return ingredients;
     }
-    public String[] getInstructions()
+    public List<String> getInstructions()
     {
     return instructions;
     }
@@ -46,11 +51,11 @@ public class Recipe {
     {
 return num_ingredients;
     }
-    public String[] getTags()
+    public List<String> getTags()
     {
 return tags;
     }
-    public String[] getLikers()
+    public List<String> getLikers()
     {
 return likers;
     }

@@ -10,19 +10,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class DB {
 
     static  private FirebaseAuth mAuth;
-    static private FirebaseUser user;
+    static private FirebaseUser mUser;
     static private FirebaseFirestore db;
-
+    private User user;
 
     //submit any object to db
     static public void push( Object object){
 
         mAuth= FirebaseAuth.getInstance();
-        user=mAuth.getInstance().getCurrentUser();
+        mUser=mAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
         if (object instanceof UserProfile) {
-            db.collection("users").document(user.getUid()).set(object);
+            db.collection("users").document(mUser.getUid()).set(object);
         }
         else if (object instanceof Recipe) {
             if (((Recipe) object).premium==true)
@@ -32,7 +32,7 @@ public class DB {
             }
         }
         else if (object instanceof Message){
-            db.collection("users").document(user.getUid()).collection("messages").add(object);
+            db.collection("users").document(mUser.getUid()).collection("messages").add(object);
         }
 
     }

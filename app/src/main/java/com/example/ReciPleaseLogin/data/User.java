@@ -2,14 +2,17 @@ package com.example.ReciPleaseLogin.data;
 
 public class User {
     int instance=0;
-    UserFeed userFeed;
-    UserProfile CurrentProfile;
+    UserFeed feed;
+    UserProfile profile;
 
+private User user;
+    private User(){}
 
-private void GetInstance(){
-    if (instance==0)
-        instance=1;
-}
+public User GetInstance(){
+    if (user==null)
+        user=new User();
+    return user;
+    }
 
 
 

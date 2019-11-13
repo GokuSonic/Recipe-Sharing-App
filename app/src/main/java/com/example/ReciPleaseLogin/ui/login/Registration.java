@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.ReciPleaseLogin.R;
 
+import com.example.ReciPleaseLogin.data.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,7 +123,7 @@ private void submit_profile(FirebaseUser user){
     FirebaseFirestore db = FirebaseFirestore.getInstance();
         //get user identification string for database identification
             String uid=user.getUid();
-
+/*
     Map<String, Object> profile = new HashMap<>();
 
     profile.put("uid",uid);
@@ -130,8 +131,21 @@ private void submit_profile(FirebaseUser user){
     profile.put("dispname",dname);
     profile.put("email",email);
     profile.put("experience",exp);
-    profile.put("oldenough",over15);
+    profile.put("oldenough",over15);*/
 
+ //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
+        UserProfile userdb =new UserProfile(); //initialize userdata object
+
+     userdb.username=name;
+
+     userdb.who_are_you=dname;
+     userdb.cooking_experience=exp;
+     userdb.what_do_you_do=occ;
+     userdb.picture_link=null;
+     userdb.over15=over15;
+
+
+     userdb.updateDB();
     //name
 
     //displayname
@@ -141,7 +155,7 @@ private void submit_profile(FirebaseUser user){
 
     //experience
 
-
+/*
 // Add a new document with a generated ID
     db.collection("users").add(profile)
             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -159,6 +173,8 @@ private void submit_profile(FirebaseUser user){
                     Toast.makeText(Registration.this, "Upload Failed", Toast.LENGTH_SHORT).show();
                 }
             });
+*/
+
 
 }
 
@@ -167,36 +183,45 @@ private void submit_profile(FirebaseUser user){
 private boolean validate_info(){
         boolean valid=true;
 
-    if (emailbox.getText().length()==0){
+        if (emailbox.getText().length()==0){
         valid=false;
         emailbox.setError("Email is required");
+        }
+        else{
+        email=emailbox.getText().toString();
+
     }
-        else{}
-    if (passbox.getText().length()<6){
+
+        if (passbox.getText().length()<6){
         //error
         valid=false;
         passbox.setError("Password is required and minimum length of 6");
 
     }else
         {
-         email=emailbox.getText().toString();
+         password=passbox.getText().toString();
         }
-    if (namebox.getText().length()==0){
+
+        if (namebox.getText().length()==0){
         valid=false;
         namebox.setError("Name is required");
     }else
     {
-        password=passbox.getText().toString();
+        name=namebox.getText().toString();
 
     }
-    if (dispbox.getText().length()==0){
+
+
+        if (dispbox.getText().length()==0){
         dispbox.setError("Preferred Display Name is required");
         valid=false;
     }else
     {
         dname=dispbox.getText().toString();
     }
-    if (occbox.getText().length()==0){
+
+
+        if (occbox.getText().length()==0){
         occbox.setError("Please tell us what do you do?");
         valid=false;
     }else
@@ -204,7 +229,9 @@ private boolean validate_info(){
         occ=occbox.getText().toString();
 
     }
-    if (expbox.getText().length()==0){
+
+
+        if (expbox.getText().length()==0){
         expbox.setError("Please Enter your cooking experience");
         valid=false;
     }else
@@ -212,6 +239,7 @@ private boolean validate_info(){
         exp=expbox.getText().toString();
 
     }
+
     if (!age.isChecked()){
         age.setError("Come Back when you are at least 15 years old");
         valid=false;

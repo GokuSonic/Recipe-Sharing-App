@@ -116,6 +116,11 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
+            case R.id.toolbar_home:
+                intent = new Intent(MenuActivity.this, MenuActivity.class);
+                startActivity(intent);
+                return true;
+
             case R.id.toolbar_levels:
                 intent = new Intent(MenuActivity.this, LevelsActivity.class);
                 startActivity(intent);

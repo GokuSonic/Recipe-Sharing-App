@@ -74,7 +74,7 @@ return premium;
 return comments;
     }
 
-    /* local data only
+/*
     public void updateDB(){
         DB.push(this);
     }

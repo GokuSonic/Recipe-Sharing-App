@@ -139,9 +139,9 @@ private void submit_profile(FirebaseUser user){
  //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
         UserProfile userdb =new UserProfile(); //initialize userdata object
 
-     userdb.username=name;
+     userdb.username=dname;
 
-     userdb.who_are_you=dname;
+     userdb.who_are_you=name;
      userdb.cooking_experience=exp;
      userdb.what_do_you_do=occ;
      userdb.picture_link=null;

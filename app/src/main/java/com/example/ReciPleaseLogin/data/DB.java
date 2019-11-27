@@ -2,109 +2,153 @@ package com.example.ReciPleaseLogin.data;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+//import firebase.RTD
+
+import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
 
 
 public class DB {
 
-    static  private FirebaseAuth mAuth;
+    static private FirebaseAuth mAuth;
     static private FirebaseUser mUser;
-    static private FirebaseFirestore db;
-    static private User user;
 
-    //submit any object to db
-    static public void push( Object object){
+    static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    static DatabaseReference mRootRef = database.getReference("Root");
 
-        mAuth= FirebaseAuth.getInstance();
-        mUser=mAuth.getInstance().getCurrentUser();
-        db = FirebaseFirestore.getInstance();
+//}
 
-        if (object instanceof UserProfile) {
-            db.collection("users").document(mUser.getUid()).set(object);
-        }
-        else if (object instanceof Recipe) {
-            if (((Recipe) object).premium==true)
-                db.collection("PremiumRecipes").add(object);
-            else if (((Recipe) object).premium==false){
-                db.collection("PublicRecipes").add(object);
-            }
-        }
-        else if (object instanceof Message){
-
-            //send to sender and recipient
-            if (((Message) object).recipeUid ==null) {
-                db.collection("users").document(mUser.getUid()).collection("messages").add(object);
-
-                //fake recipient
-                db.collection("users").document("recipient").collection("messages").add(object);
-
-
-
-            }else{
-                if (((Message) object).premium==true)
-                    db.collection("PremiumRecipes").document(((Message) object).recipeUid).collection("comments").add(object);
-                else
-                    db.collection("PublicRecipes").document(((Message) object).recipeUid).collection("comments").add(object);
-
-            }
-        }
-
+    static public void pushWhoAreYou(String who_are_you) //Real Name
+    {
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getInstance().getCurrentUser();
+        mRootRef.child(mUser.getUid()).child("Real Name").setValue(who_are_you);
+        return;
     }
 
-
-    //not sure yet
-    //currently does nothing, returns object it was given;
-    static public Object pull(Object object){
-
-
-        //fetch something
-
-        return object;
-    };
-
-
-
-
-    static public  void query(query query ){
-        String collection=query.collection;
-
-        CollectionReference ref=db.collection(collection);
-
-        /*(< , <= , ==, > >=, array-contains, in, array-contains-any "*/
-        for (int i=0;i<query.num_queries;i++){
-            if (query.type.get(i)=="<") {
-                ref.whereLessThan(collection, query.searchfor.get(i));
-            }
-            else if (query.type.get(i)=="<=") {
-                ref.whereLessThanOrEqualTo(collection, query.searchfor.get(i));
-            }
-            else if (query.type.get(i)=="==") {
-                ref.whereEqualTo(collection, query.searchfor.get(i));
-            }
-            else if (query.type.get(i)==">") {
-                ref.whereGreaterThan(collection, query.searchfor.get(i));
-            }
-            else if (query.type.get(i)==">=") {
-                ref.whereGreaterThanOrEqualTo(collection, query.searchfor.get(i));
-            }
-            else if (query.type.get(i)=="array-contains") {
-                ref.whereArrayContains(collection, query.searchfor.get(i));
-            }
-            //not found
-            //else if (query.type[i]=="in") {
-              //  ref.w(collection, query.searchfor[i]);
-    //        }
-  //          else if (query.type[i]=="array-contains-any") {
-//                ref.whereEqualTo(collection, query.searchfor[i]);
-      //      }
-        }
-
-
-
-
+    static public void pushUserName(String displayName)
+    {
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getInstance().getCurrentUser();
+        mRootRef.child(mUser.getUid()).child("UserName").setValue(displayName);
+        return;
     }
 
+    static public void pushCookingExp(String cooking_experience)
+    {
+        mRootRef.child(mUser.getUid()).child("Cooking Experience").setValue(cooking_experience);
+        return;
+    }
 
-}
+    static public void pushWhatYouDo(String what_do_you_do)
+    {
+        mRootRef.child(mUser.getUid()).child("What do you do").setValue(what_do_you_do);
+        return;
+    }
+
+    static public void pushSomethingInteresting(String something_int)
+    {
+        mRootRef.child(mUser.getUid()).child("Something Interesting").setValue(something_int);
+        return;
+    }
+
+//private void pushPicture save for later
+
+    //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
+//before the push function is called, convert int to string
+    static public void pushNumFollowers(int num_followers)
+    {
+        mRootRef.child(mUser.getUid()).child("Number of Followers").setValue(num_followers);
+        return;
+    }
+
+    static public void pushNumLikers(int num_likers)
+    {
+        mRootRef.child(mUser.getUid()).child("Number of Likers").setValue(num_likers);
+        return;
+    }
+    //Note for group: If the user was able to make an account to use, they had to be over 15, what is this check for?
+    static public void pushAgeCheck(boolean over15)
+    {
+        String check = "";
+
+        if(over15)
+        {
+            check = "true";
+        }
+        else
+        {
+            check = "false";
+        }
+        mRootRef.child(mUser.getUid()).child("User over 15").setValue(check);
+        return;
+    }
+
+    static public void pushPremiumStatus(boolean premium)
+    {
+        mRootRef.child(mUser.getUid()).child("Premium").setValue(premium);
+        return;
+    }
+
+    //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
+//before the push function is called, convert int to string
+    static public void pushNumberOfRecipes(String num_recipes)
+    {
+        mRootRef.child(mUser.getUid()).child("Number of Recipes").setValue(num_recipes);
+        return;
+    }
+
+    static public void pushRecipeName(String recipe_name)
+    {
+        mRootRef.child(mUser.getUid()).child("Recipes").child("Recipe Name").setValue(recipe_name);
+        return;
+    }
+    //Date needs to be converted to String/long: https://www.javatpoint.com/java-date-to-string
+    static public void pushRecipeDate(String recipe_name, String posted)
+    {
+        mRootRef.child(mUser.getUid()).child("Recipes").child(recipe_name).child("Date Posted").setValue(posted);
+        return;
+    }
+    //Check
+    static public void pushIngredients(String recipe_name, List<String> ingredients)
+    {
+        mRootRef.child(mUser.getUid()).child("Recipes").child(recipe_name).child("Ingredients").setValue(ingredients);
+        return;
+    }
+
+    static public void pushInstructions(String recipe_name, List<String> instructions)
+    {
+        mRootRef.child(mUser.getUid()).child("Recipes").child(recipe_name).child("Instructions").setValue(instructions);
+        return;
+    }
+    //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
+//before the push function is called, convert int to string
+    static public void pushLikersPerRecipe(String recipe_name, String recipe_likers)
+    {
+        mRootRef.child(mUser.getUid()).child("Recipes").child(recipe_name).child("Number of Likes").setValue(recipe_likers);
+        return;
+    }
+
+    static public void pushLikers(String recipe_name, List<String> likers)
+    {
+        mRootRef.child(mUser.getUid()).child("Recipes").child(recipe_name).child("Likers").setValue(likers);
+        return;
+    }
+
+//--------------------------------------------------------------------------------------------------------
+//Example of a pull
+//
+//
+//
+//
+//
+//
+//
+//
+};

@@ -32,13 +32,13 @@ public class Messages {
 
     public void updateDB(){
 
-        DB.push(this);
+        //DB.push(this);
 
     }
 
     //fetch new data
-    public void updateView(){
-        DB.pull(this);
-    }
+    //public void updateView(){
+        //DB.pull(this);
+    //}
 
 }

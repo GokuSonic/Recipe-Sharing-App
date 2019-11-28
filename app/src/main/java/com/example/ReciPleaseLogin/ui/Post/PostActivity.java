@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.data.RecipeTwo;
 import com.example.ReciPleaseLogin.data.UserProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
@@ -60,7 +61,7 @@ public class PostActivity extends AppCompatActivity {
         bPostRecipe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
-                Recipe newRecipe = new Recipe(); //initialize userdata object
+                RecipeTwo newRecipe = new RecipeTwo(); //initialize userdata object
                 if(validate_info(newRecipe)) {
                     newRecipe.updateDB();
                     submit_profile();
@@ -120,14 +121,21 @@ public class PostActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean validate_info(Recipe newRecipe){
+    private boolean validate_info(RecipeTwo newRecipe)
+    {
+        boolean valid = true;
+        //if(newRecipe)
+        return true;
+    }
+
+    private boolean validate_info(RecipeTwo newRecipe){
         boolean valid=true;
         if (Receipt_Name.getText().length()==0){
             valid=false;
             Receipt_Name.setError("Recipe is required");
         }
         else{
-            newRecipe.recipe_name=Receipt_Name.getText().toString();
+            newRecipe.setRecipe_name(Receipt_Name.getText().toString());
 
         }
 
@@ -138,7 +146,7 @@ public class PostActivity extends AppCompatActivity {
 
         }else
         {
-            newRecipe.tags.add(Type.getText().toString());
+            newRecipe.setTags(Type.getText().toString()); //have Sean Start Looking Here
         }
 
         if (Description.getText().length()==0){

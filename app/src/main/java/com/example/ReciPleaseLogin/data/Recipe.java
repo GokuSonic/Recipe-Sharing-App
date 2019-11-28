@@ -23,23 +23,25 @@ public class Recipe {
     public Messages comments;
 
 
-
-
-    public Recipe(){
-        ingredients=new Vector<String>();
-        instructions= new Vector<String>();
-        instruction_pics= new Vector<String>();
-        tags=new Vector<String>();
-        likers =new Vector<String>();
+    public Recipe() {
+        //ingredients = new Vector<String>();
+        //instructions = new Vector<String>();
+        //instruction_pics = new Vector<String>();
+        //tags = new Vector<String>();
+        //likers = new Vector<String>();
 
     }
 
-    public Recipe(String recipe_name, String description, List<String> ingredients)
-    {
+    public Recipe(String recipe_name, String description, List<String> ingredients, List<String> instructions, List<String> tags) {
         this.recipe_name = recipe_name;
         this.description = description;
         this.ingredients = ingredients;
+        this.instructions = instructions;
+        this.tags = tags;
     }
+
+    //public Recipe() {
+    //}
 
 
     public String getOwner(){
@@ -96,6 +98,7 @@ return comments;
         DB.getInstance().pushDescription(recipe_name, description);
         DB.getInstance().pushInstructions(recipe_name, instructions);
         DB.getInstance().pushTags(recipe_name, tags);
+
 
     }
 /*

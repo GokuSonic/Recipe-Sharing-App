@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.data.RecipeTwo;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
@@ -36,7 +37,7 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private TextView test;
+    private TextView allThings;
     public static class MenuFragementAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
@@ -90,15 +91,13 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b2 = findViewById(R.id.imageView2);
         final ImageView b3 = findViewById(R.id.imageView3);
         final ImageView b4 = findViewById(R.id.imageView4);
-        test = findViewById(R.id.textView16);
+        allThings = findViewById(R.id.textView16);
         //test.setText("Success");
-        String recipe_name = "steak";
+        String recipe_name = "SteakExample";
         DB.getInstance().pullRecipe(new IRecipeListener(){
             @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-                String theName = recipe.recipe_name;
-                test.setText(theName);
-                Log.i("TEST", "" + recipe.recipe_name);
+            public void onRetrievalSuccess(RecipeTwo recipe) {
+                allThings.setText(recipe.getRecipe_name());
             }
             @Override
             public void onRetrievalFailure() {

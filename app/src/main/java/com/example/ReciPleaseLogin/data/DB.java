@@ -136,6 +136,8 @@ public class DB {
 
     static public void pushDescription(String recipe_name, String description) {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("description").setValue(description);
+        //Recipe recipe = new Recipe();
+        //recipe.description = "description";
         return;
     }
 
@@ -161,11 +163,14 @@ public class DB {
         return;
     }
 
+
+
 //--------------------------------------------------------------------------------------------------------
 //Example of a pull
 
-    public void pullRecipe(final IRecipeListener listener, String recipe_name) {
+    public void pullRecipe(final IRecipeListener listener, String rName) {
        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        Log.i("DBManager", "Retreiving" + rName + " from database");
             ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange (DataSnapshot dataSnapshot){
@@ -173,14 +178,19 @@ public class DB {
                 //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
                 //String recipe = dataSnapshot.getValue(String.class);
                 //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
-                Recipe recipe = dataSnapshot.getValue(Recipe.class);
+                RecipeTwo recipe = dataSnapshot.getValue(RecipeTwo.class);
                 if (recipe!=null) {
 
-                    Log.i(TAG, "recipe is:" + recipe.recipe_name);
-                    Log.i(TAG, "description is:" + recipe.description);
-                    Log.i(TAG, "ingredients is:" + recipe.ingredients);
+                    //Log.i(TAG, "recipe is:" + recipe.recipe_name);
+                    //Log.i(TAG, "description is:" + (recipe.description));
+                    //Log.i(TAG, "ingredients is:" + recipe.ingredients);
+                    //Log.i(TAG, "ingredients is:" + recipe.instructions);
+                    //Log.i(TAG, "ingredients is:" + recipe.tags);
                     //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
                     listener.onRetrievalSuccess(recipe);
+                }
+                else{
+                    listener.onRetrievalFailure();
                 }
             }
 
@@ -190,8 +200,9 @@ public class DB {
                 Log.i(TAG, "DB F");
             }
         };
-        Log.i(TAG, "recipe is(outside):" + recipe_name);
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
+        Log.i(TAG, "recipe is(outside):" + rName);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(rName).addValueEventListener(postListener);
+        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(rName).addValueEventListener(postListener);
         //});
     }
 // FirebaseDatabase.getInstance().getReference()

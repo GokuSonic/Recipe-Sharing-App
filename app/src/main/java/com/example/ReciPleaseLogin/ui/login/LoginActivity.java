@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
 
-        mAuth = FirebaseAuth.getInstance();
+        mAuth = DB.getInstance().mAuth;
         bLogin = (Button) findViewById(R.id.login);
         emailbox = findViewById(R.id.username);
         passbox = findViewById(R.id.Password);
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        DB.getInstance();
     }
 
     private void updateUI(FirebaseUser User) {

@@ -39,7 +39,7 @@ public class Registration extends AppCompatActivity {
     //account
     private String email, password;
     //profile
-    private String name, dname, occ,exp;
+    private String name, dname, occ, exp;
     boolean over15;
 
     //connection to ui

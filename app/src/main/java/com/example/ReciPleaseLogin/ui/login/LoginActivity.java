@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +32,6 @@ import android.content.Context;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    FirebaseUser user;
 
     private Button bLogin;
     private String email;
@@ -46,8 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-
-        mAuth = FirebaseAuth.getInstance();
+        DB.getInstance();
         bLogin = (Button) findViewById(R.id.login);
         emailbox = findViewById(R.id.username);
         passbox = findViewById(R.id.Password);
@@ -62,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        mAuth.getInstance();
     }
 
     private void updateUI(FirebaseUser User) {
@@ -89,12 +88,13 @@ public class LoginActivity extends AppCompatActivity {
 
         //autocomplete generated header structure, notify listeners of auth
 
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        DB.getInstance().mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 final Context context = LoginActivity.this;
 
                 if (!task.isSuccessful()) {
+                    DB.getInstance().mAuth.getCurrentUser();
                     Toast.makeText(LoginActivity.this, "Login Failure", Toast.LENGTH_SHORT).show();
                     try {
                         throw task.getException();
@@ -125,9 +125,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    user=mAuth.getCurrentUser();
 
-                    updateUI(user);
+                    updateUI(DB.getInstance().mAuth.getCurrentUser());
                     //startActivity(intent);
 
 

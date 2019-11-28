@@ -6,24 +6,27 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import android.os.Bundle;
 import android.widget.ImageView;
-
+import android.widget.TextView;
 
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
+import com.example.ReciPleaseLogin.data.DB;
 
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -31,6 +34,7 @@ import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private TextView test;
     public static class MenuFragementAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
@@ -51,9 +55,9 @@ public class MenuActivity extends AppCompatActivity {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return com.example.ReciPleaseLogin.ui.Menu.FirstFragment.newInstance(0, "Page # 1");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return com.example.ReciPleaseLogin.ui.Menu.FirstFragment.newInstance(1, "Page # 2");
+                    return com.example.ReciPleaseLogin.ui.Menu.SecondFragment.newInstance(1, "Page # 2");
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return com.example.ReciPleaseLogin.ui.Menu.SecondFragment.newInstance(2, "Page # 3");
+                    return com.example.ReciPleaseLogin.ui.Menu.ThirdFragment.newInstance(2, "Page # 3");
                 default:
                     return null;
             }
@@ -84,25 +88,40 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b2 = findViewById(R.id.imageView2);
         final ImageView b3 = findViewById(R.id.imageView3);
         final ImageView b4 = findViewById(R.id.imageView4);
+        test = findViewById(R.id.textView16);
+        //test.setText("Success");
+        String recipe_name = "steak";
+        DB.getInstance().pullRecipe(new IRecipeListener(){
+            @Override
+            public void onRetrievalSuccess(Recipe recipe) {
+                String theName = recipe.recipe_name;
+                test.setText(theName);
+                Log.i("TEST", "" + recipe.recipe_name);
+            }
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST", "F");
+            }
 
+        }, recipe_name);
 
         //Lower part of Menu
-
         ViewPager vpPager = (ViewPager) findViewById(R.id.menu_viewpage);
 
-        /* Crashes
+        // Crashes
         MenuFragementAdapter adapterViewPager = new MenuFragementAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-*/
+
 
         DotsIndicator dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
         ViewPager viewPager = (ViewPager) findViewById(R.id.menu_viewpage);
 
-        /*  CRASHES
+
         FragmentPagerAdapter adapter = new MenuActivity.MenuFragementAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+
         dotsIndicator.setViewPager(viewPager);
-        */
+
 
     }
 
@@ -116,6 +135,11 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
+            case R.id.toolbar_home:
+                intent = new Intent(MenuActivity.this, MenuActivity.class);
+                startActivity(intent);
+                return true;
+
             case R.id.toolbar_levels:
                 intent = new Intent(MenuActivity.this, LevelsActivity.class);
                 startActivity(intent);

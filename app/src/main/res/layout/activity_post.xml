@@ -27,7 +27,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <EditText
         android:id="@+id/pName"
         android:layout_width="wrap_content"
@@ -80,6 +79,7 @@
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pDescription" />
+
     <EditText
         android:id="@+id/pFrontLink"
         android:layout_width="wrap_content"
@@ -159,10 +159,12 @@
         android:id="@+id/pPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="28dp"
         android:text="Post"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pSteps" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toEndOf="@+id/pSteps"
+        app:layout_constraintTop_toBottomOf="@+id/pStep2Link"
+        app:layout_constraintVertical_bias="0.106" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

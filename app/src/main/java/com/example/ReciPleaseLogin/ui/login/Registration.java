@@ -3,6 +3,7 @@ package com.example.ReciPleaseLogin.ui.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.ReciPleaseLogin.R;
 
 import com.example.ReciPleaseLogin.data.UserProfile;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +60,7 @@ public class Registration extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
+
         bCreateUser = (Button) findViewById(R.id.register);
         emailbox = findViewById(R.id.rEmail);
         passbox = findViewById(R.id.rPassword);
@@ -72,7 +75,7 @@ public class Registration extends AppCompatActivity {
                 // Do something in response to button click
                 if(validate_info()){
                     create_user();
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    user = FirebaseAuth.getInstance().getCurrentUser();
                     if (user != null) {
                         submit_profile(user);
                     }
@@ -120,9 +123,7 @@ private void create_user() {
 
 
 private void submit_profile(FirebaseUser user){
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //get user identification string for database identification
-            String uid=user.getUid();
+    Intent intent;
 /*
     Map<String, Object> profile = new HashMap<>();
 
@@ -134,7 +135,7 @@ private void submit_profile(FirebaseUser user){
     profile.put("oldenough",over15);*/
 
  //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
-        UserProfile userdb =new UserProfile(); //initialize userdata object
+    UserProfile userdb =new UserProfile(); //initialize userdata object
 
      userdb.username=name;
 
@@ -146,36 +147,9 @@ private void submit_profile(FirebaseUser user){
 
 
      userdb.updateDB();
-    //name
-
-    //displayname
-
-
-    //occupation/what do you do
-
-    //experience
-
-/*
-// Add a new document with a generated ID
-    db.collection("users").add(profile)
-            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                @Override
-                public void onSuccess(DocumentReference documentReference) {
-                    Toast.makeText(Registration.this, "Upload Success", Toast.LENGTH_SHORT).show();
-
-                    //         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-        //            Log.w(TAG, "Error adding document", e);
-                    Toast.makeText(Registration.this, "Upload Failed", Toast.LENGTH_SHORT).show();
-                }
-            });
-*/
-
-
+    Toast.makeText(Registration.this, "Account Created!", Toast.LENGTH_SHORT).show();
+    intent = new Intent(Registration.this, LoginActivity.class);
+    startActivity(intent);
 }
 
 

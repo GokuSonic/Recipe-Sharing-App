@@ -40,7 +40,7 @@ public class UserFeed {
 
     public void updateDB(){
 
-        DB.push(this);
+        //DB.push(this);
 
 
         //nolonger needed
@@ -53,8 +53,8 @@ public class UserFeed {
     }
 
     //fetch new data
-    public void updateView(){
-         DB.pull(this);
-    }
+    //public void updateView(){
+         //DB.pull(this);
+    //}
 
 }

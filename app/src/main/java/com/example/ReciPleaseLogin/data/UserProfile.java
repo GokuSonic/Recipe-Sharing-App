@@ -1,28 +1,25 @@
 package com.example.ReciPleaseLogin.data;
 
 
-   //     import com.google.firebase.auth.FirebaseAuth;
-  //      import com.google.firebase.auth.FirebaseUser;
-  //      import com.google.firebase.firestore.FirebaseFirestore;
+import android.util.Log;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class UserProfile {
 
+    public String name;
     public String username;
 
     public String who_are_you;
     public String cooking_experience;
     public String what_do_you_do;
-    public String something_interesting; //firebase doesnt like it, complains about another getter , but none found
+    public String something_int; //firebase doesnt like it, complains about another getter , but none found
     public String picture_link;
     public int num_followers;
     public int num_likers;
     public int num_recipes;
     public boolean over15;
     public boolean premium;
-
-  //  private FirebaseFirestore db;
-  //  private FirebaseAuth mAuth;
-   // private FirebaseUser user;
 
     //default constructor that takes no objects, required for firestore
 public UserProfile(){}
@@ -33,7 +30,7 @@ public UserProfile(){}
         who_are_you = realname;
         cooking_experience = cook_exp;
         what_do_you_do = do_what;
-       something_interesting = something;
+        something_int = something;
         picture_link=picture;
         over15 = age;
         premium = prem;
@@ -59,8 +56,8 @@ public UserProfile(){}
         return cooking_experience;
     }
     //firebase complains about this one and crashes
-    public String getSomething_interesting() {
-        return something_interesting;
+    public String getSomething_int() {
+        return something_int;
     }
     public String getPicture_link(){
         return picture_link;
@@ -83,12 +80,19 @@ public UserProfile(){}
 
     public void updateDB(){
 
-        DB.push(this);
+        //DB.push(this);
+        DB.getInstance().pushWhoAreYou(who_are_you);
+        DB.pushUserName(username);
+        DB.pushCookingExp(cooking_experience);
+        DB.pushWhatYouDo(what_do_you_do);
+        DB.pushSomethingInteresting(something_int);
+        DB.pushNumFollowers(num_followers);
+        DB.pushAgeCheck(over15);
+
 
         //nolonger needed
         /*mAuth=FirebaseAuth.getInstance();
         user=mAuth.getInstance().getCurrentUser();
-        db = FirebaseFirestore.getInstance();
         //db.collection(user.getUid()).add()
         db.collection("users").document(user.getEmail()).set(this);*/
 

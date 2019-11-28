@@ -2,24 +2,23 @@ package com.example.ReciPleaseLogin.data;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
+import com.example.ReciPleaseLogin.ui.Menu.IUpdatable;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-//import firebase.RTD
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -43,7 +42,6 @@ public class DB {
     }
 
     private DB() {
-
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         mRootRef = database.getReference("Root");
@@ -162,27 +160,51 @@ public class DB {
     }
 
 //--------------------------------------------------------------------------------------------------------
+
+    public void saveRecipeToDatabase(final IUpdatable listener) {
+        RecipeExample recipeExample = new RecipeExample("SteakExample", "Steak", 2, System.currentTimeMillis());
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipeExample.getName()).setValue(recipeExample)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        listener.onUpdateSuccess();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onUpdateFailure();
+                    }
+                });
+    }
+
+
 //Example of a pull
 
-    public void pullRecipe(final IRecipeListener listener, final Recipe recipe_name) {
-       mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+    public void pullRecipe(final IRecipeListener listener, String name) {
+        Log.i("DBManager", "Retreiving" + name + " from database");
+        ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
-                //String recipe = dataSnapshot.getValue(String.class);
-                Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
-                Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                listener.onRetrievalSuccess(recipe);
-
+                // Get Post object and use the values to update the UI
+                RecipeExample recipeExample = dataSnapshot.getValue(RecipeExample.class);
+                if (recipeExample != null ) {
+                    Log.i("DBManager", "retreived " + recipeExample.getName());
+                    listener.onRetrievalSuccess(recipeExample);
+                } else {
+                    listener.onRetrievalFailure();
+                }
+                // ...
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-            //pretend we have stuff here
-                Log.i(TAG, "DB F");
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                listener.onRetrievalFailure();
             }
-
-        });
+        };
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(name).addValueEventListener(postListener);
     }
 // FirebaseDatabase.getInstance().getReference()
 //    public void pullRecipe(final IRecipeListener listener, String recipe_name) {
@@ -203,5 +225,6 @@ public class DB {
 //
 //        });
 //    }
+
 
 };

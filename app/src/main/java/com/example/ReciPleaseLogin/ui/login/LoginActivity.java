@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
+import com.example.ReciPleaseLogin.ui.Menu.IUpdatable;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
-        DB.getInstance();
         bLogin = (Button) findViewById(R.id.login);
         emailbox = findViewById(R.id.username);
         passbox = findViewById(R.id.Password);
@@ -56,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                 onLogin(view);
             }
         });
+
     }
 
     @Override

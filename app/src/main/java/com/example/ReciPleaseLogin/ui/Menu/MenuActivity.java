@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.data.RecipeExample;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
@@ -82,6 +83,33 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
 
+        //test saving functionality...
+        DB.getInstance().saveRecipeToDatabase(new IUpdatable() {
+            @Override
+            public void onUpdateSuccess() {
+                Log.i("Login Activity", "Saving Successful!");
+            }
+
+            @Override
+            public void onUpdateFailure() {
+                Log.i("Login Activity", "Saving Failed");
+            }
+        });
+
+        String name = "SteakExample";
+        //test retrieving functionality
+        DB.getInstance().pullRecipe(new IRecipeListener() {
+            @Override
+            public void onRetrievalSuccess(RecipeExample recipe) {
+                test.setText(recipe.getName());
+            }
+
+            @Override
+            public void onRetrievalFailure() {
+
+            }
+        }, name);
+
         // Upper part of menu
         Toolbar toolbar = findViewById(R.id.menu_toolbar_layout);
         setSupportActionBar(toolbar);
@@ -92,19 +120,19 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b4 = findViewById(R.id.imageView4);
         test = findViewById(R.id.textView16);
         //test.setText("Success");
-        Recipe recipe_name = new Recipe();
-        DB.getInstance().pullRecipe(new IRecipeListener(){
-            @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-            test.setText(recipe.recipe_name);
-                Log.i("TEST", "" + recipe);
-            }
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST", "F");
-            }
-
-        }, recipe_name);
+//        Recipe recipe_name = new Recipe();
+//        DB.getInstance().pullRecipe(new IRecipeListener(){
+//            @Override
+//            public void onRetrievalSuccess(Recipe recipe) {
+//            test.setText(recipe.recipe_name);
+//                Log.i("TEST", "" + recipe);
+//            }
+//            @Override
+//            public void onRetrievalFailure() {
+//                Log.i("TEST", "F");
+//            }
+//
+//        }, recipe_name);
 
         //Lower part of Menu
 

@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
+import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
@@ -38,6 +39,11 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
+            case R.id.toolbar_home:
+                intent = new Intent(SearchActivity.this, MenuActivity.class);
+                startActivity(intent);
+                return true;
+
             case R.id.toolbar_levels:
                 intent = new Intent(SearchActivity.this, LevelsActivity.class);
                 this.startActivity(intent);

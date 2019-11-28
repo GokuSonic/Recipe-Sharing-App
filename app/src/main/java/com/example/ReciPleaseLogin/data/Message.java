@@ -3,7 +3,8 @@ package com.example.ReciPleaseLogin.data;
 import java.util.Date;
 
 public class Message {
-
+    public String recipeUid;
+    public boolean premium;
     public String sender;
     public String recipient;
     public Date timestamp;
@@ -26,6 +27,14 @@ public class Message {
     public String getMessage(){
         return message;
     }
+    public String getRecipeUid(){
+        return recipeUid;
+    }
+    public boolean getPremium(){
+        return premium;
+    }
+
+
 
 
 /* local data only

@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     android:id="@+id/toolbar_menu"
 
-
     <item
-        android:id="@+id/toolbar_profile"
-        android:icon="@drawable/profile_24dp"
+        android:id="@+id/toolbar_home"
+        android:icon="@drawable/home_24dp"
         android:title=""
         app:showAsAction="always" />
     <item
@@ -21,12 +20,17 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/toolbar_levels"
-        android:icon="@drawable/levels_24dp"
+        android:icon="@drawable/heart_24dp"
         android:title=""
         app:showAsAction="always" />
     <item
         android:id="@+id/toolbar_search"
         android:icon="@drawable/search_24dp"
+        android:title=""
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/toolbar_profile"
+        android:icon="@drawable/profile_24dp"
         android:title=""
         app:showAsAction="always" />
 

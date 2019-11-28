@@ -3,6 +3,7 @@ package com.example.ReciPleaseLogin.ui.login;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.example.ReciPleaseLogin.R;
 
 import com.example.ReciPleaseLogin.data.UserProfile;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,7 +39,7 @@ public class Registration extends AppCompatActivity {
     //account
     private String email, password;
     //profile
-    private String name, dname, occ,exp;
+    private String name, dname, occ, exp;
     boolean over15;
 
     //connection to ui
@@ -120,6 +122,7 @@ private void create_user() {
 
 
 private void submit_profile(FirebaseUser user){
+    Intent intent;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
         //get user identification string for database identification
             String uid=user.getUid();
@@ -136,9 +139,9 @@ private void submit_profile(FirebaseUser user){
  //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
         UserProfile userdb =new UserProfile(); //initialize userdata object
 
-     userdb.username=name;
+     userdb.username=dname;
 
-     userdb.who_are_you=dname;
+     userdb.who_are_you=name;
      userdb.cooking_experience=exp;
      userdb.what_do_you_do=occ;
      userdb.picture_link=null;
@@ -146,6 +149,10 @@ private void submit_profile(FirebaseUser user){
 
 
      userdb.updateDB();
+    Toast.makeText(Registration.this, "Account Created!", Toast.LENGTH_SHORT).show();
+    intent = new Intent(Registration.this, LoginActivity.class);
+    startActivity(intent);
+
     //name
 
     //displayname

@@ -81,7 +81,7 @@ public UserProfile(){}
     public void updateDB(){
 
         //DB.push(this);
-        DB.pushWhoAreYou(who_are_you);
+        DB.getInstance().pushWhoAreYou(who_are_you);
         DB.pushUserName(username);
         DB.pushCookingExp(cooking_experience);
         DB.pushWhatYouDo(what_do_you_do);

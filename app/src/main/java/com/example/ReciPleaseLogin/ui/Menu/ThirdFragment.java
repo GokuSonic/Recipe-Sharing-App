@@ -10,14 +10,14 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
 
-public class SecondFragment extends Fragment {
+public class ThirdFragment extends Fragment {
     // Store instance variables
     private String title;
     private int page;
 
     // newInstance constructor for creating fragment with arguments
-    public static SecondFragment newInstance(int page, String title) {
-        SecondFragment fragmentFirst = new SecondFragment();
+    public static ThirdFragment newInstance(int page, String title) {
+        ThirdFragment fragmentFirst = new ThirdFragment();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
@@ -37,7 +37,7 @@ public class SecondFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        android.view.View view = inflater.inflate(R.layout.activity_menu_fragment_2, container, false);
+        View view = inflater.inflate(R.layout.activity_menu_fragment_3, container, false);
         return view;
     }
 }

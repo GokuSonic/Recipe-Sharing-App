@@ -119,7 +119,7 @@ public class DB {
 
     static public void pushRecipeName(String recipe_name)
     {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("Recipe Name").setValue(recipe_name);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).setValue(recipe_name);
         return;
     }
     //Date needs to be converted to String/long: https://www.javatpoint.com/java-date-to-string
@@ -132,6 +132,12 @@ public class DB {
     static public void pushIngredients(String recipe_name, List<String> ingredients)
     {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Ingredients").setValue(ingredients);
+        return;
+    }
+
+    static public void pushDescription(String recipe_name, String description)
+    {
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Description").setValue(description);
         return;
     }
 

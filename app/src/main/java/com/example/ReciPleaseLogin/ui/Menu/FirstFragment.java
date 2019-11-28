@@ -38,9 +38,7 @@ public class FirstFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        android.view.View view = inflater.inflate(R.layout.activity_menu, container, false);
-        TextView tvLabel = (TextView) view.findViewById(R.id.menu_viewpage);
-        tvLabel.setText(page + " -- " + title);
+        android.view.View view = inflater.inflate(R.layout.activity_menu_fragment_1, container, false);
         return view;
     }
 }

@@ -9,10 +9,8 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import android.os.Bundle;
 import android.widget.ImageView;
-
 
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentManager;
@@ -51,9 +49,9 @@ public class MenuActivity extends AppCompatActivity {
                 case 0: // Fragment # 0 - This will show FirstFragment
                     return com.example.ReciPleaseLogin.ui.Menu.FirstFragment.newInstance(0, "Page # 1");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return com.example.ReciPleaseLogin.ui.Menu.FirstFragment.newInstance(1, "Page # 2");
+                    return com.example.ReciPleaseLogin.ui.Menu.SecondFragment.newInstance(1, "Page # 2");
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return com.example.ReciPleaseLogin.ui.Menu.SecondFragment.newInstance(2, "Page # 3");
+                    return com.example.ReciPleaseLogin.ui.Menu.ThirdFragment.newInstance(2, "Page # 3");
                 default:
                     return null;
             }
@@ -87,22 +85,22 @@ public class MenuActivity extends AppCompatActivity {
 
 
         //Lower part of Menu
-
         ViewPager vpPager = (ViewPager) findViewById(R.id.menu_viewpage);
 
-        /* Crashes
+        // Crashes
         MenuFragementAdapter adapterViewPager = new MenuFragementAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
-*/
+
 
         DotsIndicator dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
         ViewPager viewPager = (ViewPager) findViewById(R.id.menu_viewpage);
 
-        /*  CRASHES
+
         FragmentPagerAdapter adapter = new MenuActivity.MenuFragementAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+
         dotsIndicator.setViewPager(viewPager);
-        */
+
 
     }
 

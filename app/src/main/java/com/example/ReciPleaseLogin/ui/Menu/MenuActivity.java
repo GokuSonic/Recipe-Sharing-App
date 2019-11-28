@@ -92,14 +92,14 @@ public class MenuActivity extends AppCompatActivity {
         vpPager.setAdapter(adapterViewPager);
 
 
-        //DotsIndicator dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
-        //ViewPager viewPager = (ViewPager) findViewById(R.id.menu_viewpage);
+        DotsIndicator dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.menu_viewpage);
 
 
-        //FragmentPagerAdapter adapter = new MenuActivity.MenuFragementAdapter(getSupportFragmentManager());
-        //viewPager.setAdapter(adapter);
+        FragmentPagerAdapter adapter = new MenuActivity.MenuFragementAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
 
-        //dotsIndicator.setViewPager(viewPager);
+        dotsIndicator.setViewPager(viewPager);
 
 
     }

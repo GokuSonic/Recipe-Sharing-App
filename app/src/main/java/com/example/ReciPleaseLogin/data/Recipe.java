@@ -83,7 +83,9 @@ return comments;
 
 
     public void updateDB(){
-        DB.pushRecipeName(recipe_name);
+        DB.getInstance().pushRecipeName(recipe_name);
+        DB.getInstance().pushIngredients(recipe_name, ingredients);
+        DB.getInstance().pushDescription(recipe_name, description);
 
     }
 /*

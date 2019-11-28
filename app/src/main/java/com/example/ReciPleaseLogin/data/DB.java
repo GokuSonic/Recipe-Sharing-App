@@ -164,20 +164,24 @@ public class DB {
 //--------------------------------------------------------------------------------------------------------
 //Example of a pull
 
-    public void pullRecipe(final IRecipeListener listener, final String recipe_name) {
+    public void pullRecipe(final IRecipeListener listener, String recipe_name) {
        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
             ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange (DataSnapshot dataSnapshot){
+
                 //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
                 //String recipe = dataSnapshot.getValue(String.class);
                 //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
                 Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                //String recipeName = recipe.recipe_name;
+                if (recipe!=null) {
 
-                Log.i(TAG, "recipe is:" + recipe_name);
-                //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
-                listener.onRetrievalSuccess(recipe_name);
+                    Log.i(TAG, "recipe is:" + recipe.recipe_name);
+                    Log.i(TAG, "description is:" + recipe.description);
+                    Log.i(TAG, "ingredients is:" + recipe.ingredients);
+                    //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
+                    listener.onRetrievalSuccess(recipe);
+                }
             }
 
             @Override
@@ -186,6 +190,7 @@ public class DB {
                 Log.i(TAG, "DB F");
             }
         };
+        Log.i(TAG, "recipe is(outside):" + recipe_name);
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
     }

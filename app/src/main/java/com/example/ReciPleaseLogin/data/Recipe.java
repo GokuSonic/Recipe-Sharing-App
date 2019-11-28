@@ -34,6 +34,14 @@ public class Recipe {
 
     }
 
+    public Recipe(String recipe_name, String description, List<String> ingredients)
+    {
+        this.recipe_name = recipe_name;
+        this.description = description;
+        this.ingredients = ingredients;
+    }
+
+
     public String getOwner(){
         return owner;
     }
@@ -86,6 +94,8 @@ return comments;
         DB.getInstance().pushRecipeName(recipe_name);
         DB.getInstance().pushIngredients(recipe_name, ingredients);
         DB.getInstance().pushDescription(recipe_name, description);
+        DB.getInstance().pushInstructions(recipe_name, instructions);
+        DB.getInstance().pushTags(recipe_name, tags);
 
     }
 /*

@@ -34,6 +34,14 @@ public class Recipe {
 
     }
 
+    public Recipe(String recipe_name, String description, List<String> ingredients)
+    {
+        this.recipe_name = recipe_name;
+        this.description = description;
+        this.ingredients = ingredients;
+    }
+
+
     public String getOwner(){
         return owner;
     }

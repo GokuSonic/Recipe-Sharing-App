@@ -92,11 +92,12 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b4 = findViewById(R.id.imageView4);
         test = findViewById(R.id.textView16);
         //test.setText("Success");
-        Recipe recipe_name = new Recipe();
+        final String recipe_name = "steak";
         DB.getInstance().pullRecipe(new IRecipeListener(){
             @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-            test.setText(recipe.recipe_name);
+            public void onRetrievalSuccess(String recipe) {
+                String theName = recipe;
+                test.setText(theName);
                 Log.i("TEST", "" + recipe);
             }
             @Override

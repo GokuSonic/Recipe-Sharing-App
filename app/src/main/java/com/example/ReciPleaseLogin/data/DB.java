@@ -164,25 +164,30 @@ public class DB {
 //--------------------------------------------------------------------------------------------------------
 //Example of a pull
 
-    public void pullRecipe(final IRecipeListener listener, final Recipe recipe_name) {
-       mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+    public void pullRecipe(final IRecipeListener listener, final String recipe_name) {
+       //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+            ValueEventListener postListener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange (DataSnapshot dataSnapshot){
                 //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
                 //String recipe = dataSnapshot.getValue(String.class);
-                Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
+                //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
                 Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                listener.onRetrievalSuccess(recipe);
+                //String recipeName = recipe.recipe_name;
 
+                Log.i(TAG, "recipe is:" + recipe_name);
+                //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
+                listener.onRetrievalSuccess(recipe_name);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-            //pretend we have stuff here
+            public void onCancelled (DatabaseError databaseError){
+                //pretend we have stuff here
                 Log.i(TAG, "DB F");
             }
-
-        });
+        };
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
+        //});
     }
 // FirebaseDatabase.getInstance().getReference()
 //    public void pullRecipe(final IRecipeListener listener, String recipe_name) {

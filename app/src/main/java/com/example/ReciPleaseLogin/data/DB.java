@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 //import firebase.RTD
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -123,23 +124,23 @@ public class DB {
 
     //Date needs to be converted to String/long: https://www.javatpoint.com/java-date-to-string
     static public void pushRecipeDate(String recipe_name, String posted) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Date Posted").setValue(posted);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("posted").setValue(posted);
         return;
     }
 
     //Check
     static public void pushIngredients(String recipe_name, List<String> ingredients) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Ingredients").setValue(ingredients);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("ingredients").setValue(ingredients);
         return;
     }
 
     static public void pushDescription(String recipe_name, String description) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Description").setValue(description);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("description").setValue(description);
         return;
     }
 
     static public void pushTags(String recipe_name, List<String> tag) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Description").setValue(tag);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("tags").setValue(tag);
         return;
     }
 
@@ -151,25 +152,26 @@ public class DB {
     //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
 //before the push function is called, convert int to string
     static public void pushLikersPerRecipe(String recipe_name, String recipe_likers) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Number of Likes").setValue(recipe_likers);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("num_likers").setValue(recipe_likers);
         return;
     }
 
     static public void pushLikers(String recipe_name, List<String> likers) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Likers").setValue(likers);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("likers").setValue(likers);
         return;
     }
 
 //--------------------------------------------------------------------------------------------------------
 //Example of a pull
 
-    public void pullRecipe(final IRecipeListener listener, String recipe_name) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addListenerForSingleValueEvent(new ValueEventListener() {
+    public void pullRecipe(final IRecipeListener listener, final Recipe recipe_name) {
+       mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Recipe> map = (Map<String, Recipe>) dataSnapshot.getValue();
-                String recipe = dataSnapshot.getValue(String.class);
-                Log.i(TAG, "recipe is:" + recipe);
+                //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
+                //String recipe = dataSnapshot.getValue(String.class);
+                Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
+                Recipe recipe = dataSnapshot.getValue(Recipe.class);
                 listener.onRetrievalSuccess(recipe);
 
             }

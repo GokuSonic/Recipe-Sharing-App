@@ -11,15 +11,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-//import firebase.RTD
+//import com.google.firebase.firestore.CollectionReference;
+//import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
-import java.util.HashMap;
+    //import firebase.RTD
+
+//import java.util.Date;
+//import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Vector;
+//import java.util.Map;
+//import java.util.Vector;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -119,6 +120,7 @@ public class DB {
 
     static public void pushRecipeName(String recipe_name) {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).setValue(recipe_name);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("recipename").setValue(recipe_name);
         return;
     }
 
@@ -145,7 +147,7 @@ public class DB {
     }
 
     static public void pushInstructions(String recipe_name, List<String> instructions) {
-        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("Instructions").setValue(instructions);
+        mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).child("instructions").setValue(instructions);
         return;
     }
 
@@ -165,18 +167,19 @@ public class DB {
 //Example of a pull
 
     public void pullRecipe(final IRecipeListener listener, String recipe_name) {
-       //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
-            ValueEventListener postListener = new ValueEventListener() {
+        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        ValueEventListener postListener = new ValueEventListener() {
             @Override
-            public void onDataChange (DataSnapshot dataSnapshot){
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
                 //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
                 //String recipe = dataSnapshot.getValue(String.class);
                 //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
                 Recipe recipe = dataSnapshot.getValue(Recipe.class);
-                if (recipe!=null) {
+                if (recipe != null) {
 
-                    Log.i(TAG, "recipe is:" + recipe.recipe_name);
+                    Log.i(TAG, "recipe_name is(inside):" + recipe.recipe_name);
+                    //Log.i(TAG, "recipename is(inside):" + recipe.recipename);
                     Log.i(TAG, "description is:" + recipe.description);
                     Log.i(TAG, "ingredients is:" + recipe.ingredients);
                     //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
@@ -185,7 +188,7 @@ public class DB {
             }
 
             @Override
-            public void onCancelled (DatabaseError databaseError){
+            public void onCancelled(DatabaseError databaseError) {
                 //pretend we have stuff here
                 Log.i(TAG, "DB F");
             }
@@ -194,24 +197,60 @@ public class DB {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
     }
-// FirebaseDatabase.getInstance().getReference()
-//    public void pullRecipe(final IRecipeListener listener, String recipe_name) {
-//        mRootRef.child(mAuth.getCurrentUser().getUid())child(addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String recipe = dataSnapshot.getValue(String.class);
-//                Log.i(TAG, "recipe is:" + recipe);
-//                listener.onRetrievalSuccess(recipe);
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                //pretend we have stuff here
-//                Log.i(TAG, "DB F");
-//            }
-//
-//        });
-//    }
 
-};
+    static public void push(Object obj) {
+    if (obj instanceof UserProfile){
+        DatabaseReference users=mRootRef.child("users");
+         users.setValue((UserProfile)obj);
+    }
+    else if (obj instanceof Message){
+        DatabaseReference userMsg=mRootRef.child("users");
+        if (obj!=null) {
+            //check if message or comment, messages shouldnt have recipeUid
+
+            if (((Message) obj).recipeUid==null) {
+                //this is a message
+                //post into logged in users messages sent
+
+                ((Message) obj).sender = mUser.getUid();
+                userMsg.child(mUser.getUid()).child("Sent").setValue((Message) obj);
+                // Search for user uuid in UI
+                // post in  "user" "user uid" "Messages" "Recieved"
+                if(((Message)obj).recipientUid!=null)
+                    userMsg.child(((Message) obj).recipientUid).child("recieved").setValue((Message) obj);
+            }
+            else {
+                DatabaseReference userComment=mRootRef.child("users").child(((Message)obj).senderUid).child("Recipes").child(((Message) obj).recipeUid);
+                userComment.setValue((Message)obj);
+
+            }
+        }
+
+    }
+        else if (obj instanceof Recipe) {
+            DatabaseReference recipes = mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes");
+            ;
+            //need to fetch current value increment by one and push/
+            // mRootRef.child(mAuth.getCurrentUser().getUid()).child("Number of Recipes").setValue((long)num_recipes);   /// do we need or can we get recipes list size?
+            DatabaseReference newrecipe = recipes.push();
+            ((Recipe) obj).owner = mUser.getUid();
+            newrecipe.setValue((Recipe) obj);
+            newrecipe.child(newrecipe.getKey());
+
+        /*;recipe.recipe_name);
+
+        //Date needs to be converted to String/long: https://www.javatpoint.com/java-date-to-string
+        newrecipe.child(newrecipe.getKey()).child("posted").setValue(recipe.posted);
+        //Check
+        newrecipe.child(newrecipe.getKey()).child("ingredients").setValue(recipe.ingredients);
+        newrecipe.child(newrecipe.getKey()).child("description").setValue(recipe.description);
+        newrecipe.child(newrecipe.getKey()).child("tags").setValue(recipe.tags);
+        newrecipe.child(newrecipe.getKey()).child("instructions").setValue(recipe.instructions);
+        //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
+        //before the push function is called, convert int to string
+        newrecipe.child(newrecipe.getKey()).child("num_likers").setValue((long) recipe.num_likers);
+        newrecipe.child(newrecipe.getKey()).child("likers").setValue(recipe.likers);
+        return;*/
+        }
+    }
+}

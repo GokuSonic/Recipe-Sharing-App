@@ -6,8 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.Registration">
 
+    <ImageView
+        android:id="@+id/rPhoto"
+        android:layout_width="95dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/topText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
@@ -26,7 +35,7 @@
         android:layout_width="331dp"
         android:layout_height="41dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
@@ -35,8 +44,9 @@
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/rPhoto" />
 
     <EditText
         android:id="@+id/rPassword"
@@ -47,7 +57,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Password  (6 characters)"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rrealName"
@@ -65,7 +75,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="Full Name"
+        android:hint="Full Name  (ie. Ketty Wang)"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rDisplayName"
@@ -112,7 +122,7 @@
         android:id="@+id/rOcc"
         android:layout_width="335dp"
         android:layout_height="40dp"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
@@ -148,4 +158,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rExperience" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

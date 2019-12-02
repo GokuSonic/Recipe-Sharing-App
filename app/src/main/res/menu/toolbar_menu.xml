@@ -34,7 +34,10 @@
         android:title=""
         app:showAsAction="always" />
 
-    <item android:title="Item1" />
-    <item android:title="Item2" />
-    <item android:title="Item3" />
+    <item
+        android:id="@+id/toolbar_edit_profile"
+        android:title="Edit Profile" />
+    <item
+        android:id="@+id/toolbar_premium"
+        android:title="Premium Status" />
 </menu>

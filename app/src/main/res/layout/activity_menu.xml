@@ -1,198 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/standard_backgound">
 
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/menu_toolbar_layout"
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#BF2F86FA"
-            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/menu_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#BF2F86FA"
+                android:elevation="4dp"
 
-        </androidx.appcompat.widget.Toolbar>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="76dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="335dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:focusable="auto"
-        android:src="@mipmap/sample_recipe2_round"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="76dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="335dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:focusable="auto"
-        android:src="@mipmap/sample_recipe1_round"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="76dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="335dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="auto"
+            android:src="@mipmap/sample_recipe2_round"
+            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView1" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="76dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="335dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:focusable="auto"
-        android:src="@mipmap/sample_recipe3_round"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="76dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="335dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="auto"
+            android:src="@mipmap/sample_recipe1_round"
+            app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="76dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="335dp"
-        android:layout_marginBottom="353dp"
-        android:clickable="true"
-        android:focusable="auto"
-        android:src="@mipmap/sample_recipe4_round"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="76dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="335dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="true"
+            android:focusable="auto"
+            android:src="@mipmap/sample_recipe3_round"
+            app:layout_constraintBottom_toTopOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-
-    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-        android:id="@+id/dots_indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="148dp"
-        android:visibility="visible"
-        app:dotsColor="#0318FB"
-        app:dotsCornerRadius="8dp"
-        app:dotsSize="16dp"
-        app:dotsSpacing="4dp"
-        app:dotsWidthFactor="2.5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.986"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_viewpage"
-        app:progressMode="true"
-        app:selectedDotColor="#F80000" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="75dp"
-        android:text="Recipe: ..... Difficulty:...... Type:......"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView1" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="65dp"
-        android:text="Recipe: ..... Difficulty:...... Type:......"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="70dp"
-        android:text="Recipe: ..... Difficulty:...... Type:......"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="213dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="30dp"
-        android:text="Recipe: ..... Difficulty:...... Type:......"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView1"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/menu_viewpage"
-        android:layout_width="409dp"
-        android:layout_height="323dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
-
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="76dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="335dp"
+            android:layout_marginBottom="353dp"
+            android:clickable="true"
+            android:focusable="auto"
+            android:src="@mipmap/sample_recipe4_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/dots_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="715dp"
-            app:dotsColor="@color/cardview_light_background"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="148dp"
+            android:visibility="visible"
+            app:dotsColor="#0318FB"
             app:dotsCornerRadius="8dp"
             app:dotsSize="16dp"
             app:dotsSpacing="4dp"
             app:dotsWidthFactor="2.5"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.986"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu_viewpage"
             app:progressMode="true"
-            app:selectedDotColor="@color/cardview_dark_background" />
-    </androidx.viewpager.widget.ViewPager>
+            app:selectedDotColor="#FFFFFFFF" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="75dp"
+            android:text="Recipe: ..... Difficulty:...... Type:......"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="65dp"
+            android:text="Recipe: ..... Difficulty:...... Type:......"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="70dp"
+            android:text="Recipe: ..... Difficulty:...... Type:......"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="213dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:text="Recipe: ..... Difficulty:...... Type:......"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView1"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/menu_viewpage"
+            android:layout_width="409dp"
+            android:layout_height="323dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="715dp"
+                app:dotsColor="@color/cardview_light_background"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="16dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="2.5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:progressMode="true"
+                app:selectedDotColor="@color/cardview_dark_background" />
+        </androidx.viewpager.widget.ViewPager>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

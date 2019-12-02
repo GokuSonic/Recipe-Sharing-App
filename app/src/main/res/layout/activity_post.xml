@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/standard_backgound">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -36,6 +41,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Receipt Name"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
@@ -49,6 +56,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Type"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pName" />
@@ -62,6 +71,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Description"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pType" />
@@ -76,6 +87,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Ingredient"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pDescription" />
@@ -89,6 +102,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Front picture link"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pIngredient" />
@@ -102,6 +117,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Step 1"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pFrontLink" />
@@ -115,6 +132,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Picture link 1"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pStep1" />
@@ -128,6 +147,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Step 2"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pStep1Link" />
@@ -141,6 +162,8 @@
         android:ems="10"
         android:gravity="start|top"
         android:hint="Picture link 2"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pStep2" />
@@ -168,3 +191,4 @@
         app:layout_constraintVertical_bias="0.106" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

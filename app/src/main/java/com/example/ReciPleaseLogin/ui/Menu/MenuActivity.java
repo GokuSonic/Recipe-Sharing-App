@@ -1,34 +1,30 @@
 package com.example.ReciPleaseLogin.ui.Menu;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
-import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
-import com.example.ReciPleaseLogin.data.DB;
-
-
+import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 
@@ -88,7 +84,7 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b2 = findViewById(R.id.imageView2);
         final ImageView b3 = findViewById(R.id.imageView3);
         final ImageView b4 = findViewById(R.id.imageView4);
-        test = findViewById(R.id.textView16);
+        //test = findViewById(R.id.textView16);
         //test.setText("Success");
         String recipe_name = "steak";
         DB.getInstance().pullRecipe(new IRecipeListener(){
@@ -106,15 +102,15 @@ public class MenuActivity extends AppCompatActivity {
         }, recipe_name);
 
         //Lower part of Menu
-        ViewPager vpPager = (ViewPager) findViewById(R.id.menu_viewpage);
+        ViewPager vpPager = findViewById(R.id.menu_viewpage);
 
         // Crashes
         MenuFragementAdapter adapterViewPager = new MenuFragementAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 
 
-        DotsIndicator dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.menu_viewpage);
+        DotsIndicator dotsIndicator = findViewById(R.id.dots_indicator);
+        ViewPager viewPager = findViewById(R.id.menu_viewpage);
 
 
         FragmentPagerAdapter adapter = new MenuActivity.MenuFragementAdapter(getSupportFragmentManager());
@@ -163,6 +159,11 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.toolbar_profile:
                 intent = new Intent(MenuActivity.this, ProfileActivity.class);
                 startActivity(intent);
+                return true;
+
+            case R.id.toolbar_edit_profile:
+                intent = new Intent(MenuActivity.this, EditProfile.class);
+                this.startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

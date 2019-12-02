@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/standard_backgound">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
     <androidx.appcompat.widget.Toolbar
@@ -26,20 +32,9 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="150dp"
         android:text="Premium User"
+        android:textColor="#FFFFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NameTextBox" />
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
         android:id="@+id/profile_picture"
@@ -60,24 +55,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginEnd="35dp"
         android:text="Name"
+        android:textColor="#FFFFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/bakerStar4"
         app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
 
     <RatingBar
         android:id="@+id/bakerStar4"
-        android:layout_width="70dp"
-        android:layout_height="49dp"
+        style="@android:style/Widget.Holo.Light.RatingBar"
+        android:layout_width="142dp"
+        android:layout_height="55dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:clickable="false"
-        android:indeterminate="true"
+        android:indeterminate="false"
+        android:isIndicator="true"
         android:numStars="3"
         android:rating="1"
-        android:stepSize=".1"
+        android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

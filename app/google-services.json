@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "433919804518-5phs8g777mcgjb3njj5pqplhdcfcm5vd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ReciPleaseLogin",
+            "certificate_hash": "ea1c117d17715ef3d4825a4cdd08f7570acebbb7"
+          }
+        },
+        {
           "client_id": "433919804518-07r0mpk3frpldq3pnhjdkcsar1ibqlbo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

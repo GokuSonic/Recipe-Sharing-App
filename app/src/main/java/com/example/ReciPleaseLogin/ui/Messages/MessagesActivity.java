@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
-import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
+import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 
 
 public class MessagesActivity extends AppCompatActivity {
@@ -67,6 +68,11 @@ public class MessagesActivity extends AppCompatActivity {
 
             case R.id.toolbar_profile:
                 intent = new Intent(MessagesActivity.this, ProfileActivity.class);
+                this.startActivity(intent);
+                return true;
+
+            case R.id.toolbar_edit_profile:
+                intent = new Intent(MessagesActivity.this, EditProfile.class);
                 this.startActivity(intent);
                 return true;
         }

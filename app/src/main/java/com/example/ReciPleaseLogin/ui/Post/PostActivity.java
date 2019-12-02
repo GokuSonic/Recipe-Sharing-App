@@ -1,32 +1,24 @@
 package com.example.ReciPleaseLogin.ui.Post;
 
 import android.content.Intent;
-import android.graphics.Picture;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.Recipe;
-import com.example.ReciPleaseLogin.data.UserProfile;
+import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
-import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
-import com.example.ReciPleaseLogin.ui.login.LoginActivity;
-import com.example.ReciPleaseLogin.ui.login.Registration;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.List;
+import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -55,8 +47,7 @@ public class PostActivity extends AppCompatActivity {
         Picture_Link_2 = findViewById(R.id.pStep2Link);
 
 
-
-        bPostRecipe = (Button) findViewById(R.id.pPost);
+        bPostRecipe = findViewById(R.id.pPost);
         bPostRecipe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
@@ -108,6 +99,11 @@ public class PostActivity extends AppCompatActivity {
 
             case R.id.toolbar_profile:
                 intent = new Intent(PostActivity.this, ProfileActivity.class);
+                this.startActivity(intent);
+                return true;
+
+            case R.id.toolbar_edit_profile:
+                intent = new Intent(PostActivity.this, EditProfile.class);
                 this.startActivity(intent);
                 return true;
         }

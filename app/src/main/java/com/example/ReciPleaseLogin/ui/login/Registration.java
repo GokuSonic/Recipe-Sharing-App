@@ -1,11 +1,7 @@
 package com.example.ReciPleaseLogin.ui.login;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,23 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ReciPleaseLogin.R;
-
 import com.example.ReciPleaseLogin.data.UserProfile;
-
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Registration extends AppCompatActivity {
@@ -60,7 +50,7 @@ public class Registration extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        bCreateUser = (Button) findViewById(R.id.register);
+        bCreateUser = findViewById(R.id.register);
         emailbox = findViewById(R.id.rEmail);
         passbox = findViewById(R.id.rPassword);
         namebox = findViewById(R.id.rrealName);
@@ -89,43 +79,41 @@ public class Registration extends AppCompatActivity {
     }
 
 
+    private void create_user() {
 
+        //email
+        //password
 
-private void create_user() {
-
-    //email
-    //password
-
-    mAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
 //                        Log.d(TAG, "createUserWithEmail:success");
-                       // FirebaseUser user = mAuth.getCurrentUser();
+                            // FirebaseUser user = mAuth.getCurrentUser();
 
-                       // create_profile(user);
-                      //  LoginActivity.updateUI(user);
-                    } else {
-                        // If sign in fails, display a message to the user.
+                            // create_profile(user);
+                            //  LoginActivity.updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
 //                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
-  //                      Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
-                      //          Toast.LENGTH_SHORT).show();
-                      //  LoginActivity.updateUI(null);
+                            //                      Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
+                            //          Toast.LENGTH_SHORT).show();
+                            //  LoginActivity.updateUI(null);
+                        }
+
+                        // ...
                     }
-
-                    // ...
-                }
-            });
-}
+                });
+    }
 
 
-private void submit_profile(FirebaseUser user){
-    Intent intent;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private void submit_profile(FirebaseUser user) {
+        Intent intent;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         //get user identification string for database identification
-            String uid=user.getUid();
+        String uid = user.getUid();
 /*
     Map<String, Object> profile = new HashMap<>();
 
@@ -136,31 +124,31 @@ private void submit_profile(FirebaseUser user){
     profile.put("experience",exp);
     profile.put("oldenough",over15);*/
 
- //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
-        UserProfile userdb =new UserProfile(); //initialize userdata object
+        //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
+        UserProfile userdb = new UserProfile(); //initialize userdata object
 
-     userdb.username=dname;
+        userdb.username = dname;
 
-     userdb.who_are_you=name;
-     userdb.cooking_experience=exp;
-     userdb.what_do_you_do=occ;
-     userdb.picture_link=null;
-     userdb.over15=over15;
-
-
-     userdb.updateDB();
-    Toast.makeText(Registration.this, "Account Created!", Toast.LENGTH_SHORT).show();
-    intent = new Intent(Registration.this, LoginActivity.class);
-    startActivity(intent);
-
-    //name
-
-    //displayname
+        userdb.who_are_you = name;
+        userdb.cooking_experience = exp;
+        userdb.what_do_you_do = occ;
+        userdb.picture_link = null;
+        userdb.over15 = over15;
 
 
-    //occupation/what do you do
+        userdb.updateDB();
+        Toast.makeText(Registration.this, "Account Created!", Toast.LENGTH_SHORT).show();
+        intent = new Intent(Registration.this, LoginActivity.class);
+        startActivity(intent);
 
-    //experience
+        //name
+
+        //displayname
+
+
+        //occupation/what do you do
+
+        //experience
 
 /*
 // Add a new document with a generated ID
@@ -183,87 +171,76 @@ private void submit_profile(FirebaseUser user){
 */
 
 
-}
-
-
-
-private boolean validate_info(){
-        boolean valid=true;
-
-        if (emailbox.getText().length()==0){
-        valid=false;
-        emailbox.setError("Email is required");
-        }
-        else{
-        email=emailbox.getText().toString();
-
     }
 
-        if (passbox.getText().length()<6){
-        //error
-        valid=false;
-        passbox.setError("Password is required and minimum length of 6");
 
-    }else
-        {
-         password=passbox.getText().toString();
+    private boolean validate_info() {
+        boolean valid = true;
+
+        if (emailbox.getText().length() == 0) {
+            valid = false;
+            emailbox.setError("Email is required");
+        } else {
+            email = emailbox.getText().toString();
+
         }
 
-        if (namebox.getText().length()==0){
-        valid=false;
-        namebox.setError("Name is required");
-    }else
-    {
-        name=namebox.getText().toString();
+        if (passbox.getText().length() < 6) {
+            //error
+            valid = false;
+            passbox.setError("Password is required and minimum length of 6");
 
+        } else {
+            password = passbox.getText().toString();
+        }
+
+        if (namebox.getText().length() == 0) {
+            valid = false;
+            namebox.setError("Name is required");
+        } else {
+            name = namebox.getText().toString();
+
+        }
+
+
+        if (dispbox.getText().length() == 0) {
+            dispbox.setError("Preferred Display Name is required");
+            valid = false;
+        } else {
+            dname = dispbox.getText().toString();
+        }
+
+
+        if (occbox.getText().length() == 0) {
+            occbox.setError("Please tell us what do you do?");
+            valid = false;
+        } else {
+            occ = occbox.getText().toString();
+
+        }
+
+
+        if (expbox.getText().length() == 0) {
+            expbox.setError("Please Enter your cooking experience");
+            valid = false;
+        } else {
+            exp = expbox.getText().toString();
+
+        }
+
+        if (!age.isChecked()) {
+            age.setError("Come Back when you are at least 15 years old");
+            valid = false;
+        } else {
+            over15 = true;
+
+        }
+
+        return valid;
     }
 
 
-        if (dispbox.getText().length()==0){
-        dispbox.setError("Preferred Display Name is required");
-        valid=false;
-    }else
-    {
-        dname=dispbox.getText().toString();
-    }
-
-
-        if (occbox.getText().length()==0){
-        occbox.setError("Please tell us what do you do?");
-        valid=false;
-    }else
-    {
-        occ=occbox.getText().toString();
-
-    }
-
-
-        if (expbox.getText().length()==0){
-        expbox.setError("Please Enter your cooking experience");
-        valid=false;
-    }else
-    {
-        exp=expbox.getText().toString();
-
-    }
-
-    if (!age.isChecked()){
-        age.setError("Come Back when you are at least 15 years old");
-        valid=false;
-    }else
-    {
-        over15=true;
-
-    }
-
- return valid;
 }
-
-
-
-
-}
-
 
 
 

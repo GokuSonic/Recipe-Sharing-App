@@ -2,6 +2,7 @@ package com.example.ReciPleaseLogin.data;
 
 import android.util.Log;
 
+import com.example.ReciPleaseLogin.IObjectListener;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +31,7 @@ public class DB {
     static public FirebaseAuth mAuth;
     static public FirebaseUser mUser = mAuth.getInstance().getCurrentUser();
 
-    static FirebaseDatabase database;
+    static public FirebaseDatabase database;
     static DatabaseReference mRootRef;
 
     //singleton
@@ -197,6 +198,43 @@ public class DB {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
     }
+    public void pull(final IObjectListener listener, Object OutsideObject, DatabaseReference dref) {
+        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
+                //String recipe = dataSnapshot.getValue(String.class);
+                //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
+                //Recipe recipe = dataSnapshot.getValue(Recipe.class);
+
+                Object object =dataSnapshot.getValue(Object.class);
+                if (object != null) {
+
+                  /*  Log.i(TAG, "recipe_name is(inside):" + recipe.recipe_name);
+                    //Log.i(TAG, "recipename is(inside):" + recipe.recipename);
+                    Log.i(TAG, "description is:" + recipe.description);
+                    Log.i(TAG, "ingredients is:" + recipe.ingredients);*/
+                    //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
+                    Log.i(TAG, "DB Failure"+ object.toString());
+                    listener.onRetrievalSuccess(object);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //pretend we have stuff here
+                Log.i(TAG, "DB Failure");
+            }
+        };
+        Log.i(TAG, "dref:" +dref.toString());
+        dref.addValueEventListener(postListener);
+        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
+        //});
+    }
+
+
 
     static public void push(Object obj) {
     if (obj instanceof UserProfile){

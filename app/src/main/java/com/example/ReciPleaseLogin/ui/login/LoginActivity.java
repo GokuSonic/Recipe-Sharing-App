@@ -7,14 +7,18 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ReciPleaseLogin.IObjectListener;
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
+import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,6 +29,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
 
 import android.content.Context;
 
@@ -68,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (User != null) {
             ; //login
+            test();
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
         } else {
@@ -98,24 +105,21 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login Failure", Toast.LENGTH_SHORT).show();
                     try {
                         throw task.getException();
-                    }
-                    catch(Exception e){
+                    } catch (Exception e) {
 
-                        if (e instanceof FirebaseAuthInvalidUserException){
+                        if (e instanceof FirebaseAuthInvalidUserException) {
                             Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             //register user
                             ;//register?
-                            Intent intent =new Intent(LoginActivity.this, Registration.class);
+                            Intent intent = new Intent(LoginActivity.this, Registration.class);
                             startActivity(intent);
 
 
-                        }
-                        else if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                        } else if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             //forgot password
 
-                        }
-                        else {
+                        } else {
                             //unhandled
 
                         }
@@ -137,36 +141,72 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-//    }
-    public boolean validateUser(){
+    //    }
+    public boolean validateUser() {
         //default to true, if it makes past both conditions and is still true return true
-        boolean valid =true;
+        boolean valid = true;
 
         email = emailbox.getText().toString();
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             emailbox.setError("Email is required");
-            valid=false;
-        }
-        else{
+            valid = false;
+        } else {
             emailbox.setError(null);
 
         }
 
         password = passbox.getText().toString();
 
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             passbox.setError("Password is required");
-            valid=false;
-        }
-        else {
+            valid = false;
+        } else {
             passbox.setError(null);
 
         }
-        return valid ;
+        return valid;
     }
+
+
+    public void test() {
+/*
+    String recipe_name = "steak";
+    DB.getInstance().pullRecipe(new IRecipeListener(){
+        @Override
+        public void onRetrievalSuccess(Recipe recipe) {
+            String theName = recipe.recipe_name;
+            test.setText(theName);
+            Log.i("TEST", "" + recipe.recipe_name);
+        }
+        @Override
+        public void onRetrievalFailure() {
+            Log.i("TEST", "F");
+        }
+
+    }, recipe_name);
+    */
+        Object OutsideObject =new Object();
+        DatabaseReference dref;
+        dref =DB.getInstance().database.getReference("Root");; //download eVeRyTHING and make massive object
+        DB.getInstance().pull(new IObjectListener() {
+            @Override
+            public void onRetrievalSuccess(Object InsideObject) {
+                Object OutsideObject = InsideObject;
+                Log.i("TEST", "" + InsideObject.toString());
+            }
+
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST", "F");
+            }
+
+        }, OutsideObject, dref);
+
+
+    }
+
+
 }
-
-
 /* autogenerated
 
 package com.example.ReciPleaseLogin.ui.login;

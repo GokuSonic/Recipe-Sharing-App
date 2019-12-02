@@ -1,5 +1,6 @@
 package com.example.ReciPleaseLogin.ui.Post;
 
+import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
@@ -22,8 +24,10 @@ import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 
 public class PostActivity extends AppCompatActivity {
 
-    private Button bPostRecipe;
-    private EditText Receipt_Name, Type, Description, Ingredient, Front_Picture_Link, Step_1, Picture_Link_1, Step_2, Picture_Link_2;
+    private Button bPostRecipe, bPostNext ;
+    private EditText Receipt_Name, Type, Description, Ingredient, Front_Picture_Link, Instruction, Instruction_pic;
+
+    Recipe newRecipe;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,29 +40,47 @@ public class PostActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false); // hide the current title from the Toolbar
 
+
         Receipt_Name = findViewById(R.id.pName);
         Type = findViewById(R.id.pType);
         Description = findViewById(R.id.pDescription);
         Ingredient = findViewById(R.id.pIngredient);
         Front_Picture_Link = findViewById(R.id.pFrontLink);
-        Step_1 = findViewById(R.id.pStep1);
-        Picture_Link_1 = findViewById(R.id.pStep1Link);
-        Step_2 = findViewById(R.id.pStep2);
-        Picture_Link_2 = findViewById(R.id.pStep2Link);
+        Instruction = findViewById(R.id.pStep1);
+        Instruction_pic= findViewById(R.id.pStep1Link);
+        //Step_2 = findViewById(R.id.pStep2);
+        //Picture_Link_2 = findViewById(R.id.pStep2Link);
 
+        bPostNext = findViewById(R.id.pSteps);
 
         bPostRecipe = findViewById(R.id.pPost);
         bPostRecipe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
-                Recipe newRecipe = new Recipe(); //initialize userdata object
                 if(validate_info(newRecipe)) {
                     newRecipe.updateDB();
-                    submit_profile();
+                    //intent
                 }
                 else {
 
                 }
+
+            }
+        });
+        bPostNext = findViewById(R.id.pSteps);
+        bPostNext.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Do something in response to button click
+                if(Instruction.getText().length()>=0 &&Instruction_pic.getText().length()>=0) {
+                    Instruction.setText("");
+                    Instruction_pic.setText("");
+                newRecipe.instructions.add(Instruction.getText().toString());
+                newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
+                }
+                else {
+
+                }
+
             }
         });
     }
@@ -68,6 +90,12 @@ public class PostActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onStart(){
+    super.onStart();
+       newRecipe = new Recipe(); //initialize userdata object
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
@@ -155,25 +183,29 @@ public class PostActivity extends AppCompatActivity {
             newRecipe.ingredients.add(Ingredient.getText().toString());
         }
 
-
-        if (Step_1.getText().length()==0){
-            Step_1.setError("A step is required");
+        if (newRecipe.instructions.size()!=0) {
+        ;
+        }
+        else if (Instruction.getText().length()==0){
+            Instruction.setError("A step is required");
             valid=false;
         }else
         {
-            newRecipe.instructions.add(Step_1.getText().toString());
+            newRecipe.instructions.add(Instruction.getText().toString());
         }
 
-
-        if (Picture_Link_1.getText().length()==0){
-            Picture_Link_1.setError("A Link is required?");
+        if (newRecipe.instruction_pics.size()!=0){
+            ;
+        }
+        else if (Instruction_pic.getText().length()==0){
+            Instruction_pic.setError("A Link is required?");
             valid=false;
         }else
         {
-            newRecipe.instruction_pics.add(Picture_Link_1.getText().toString());
+            newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
         }
 
-
+/*
         if (Step_2.getText().length()==0){
             Step_2.setError("A Step is required");
             valid=false;
@@ -190,7 +222,7 @@ public class PostActivity extends AppCompatActivity {
         {
             newRecipe.instruction_pics.add(Picture_Link_2.getText().toString());
         }
-
+*/
         return valid;
     }
 

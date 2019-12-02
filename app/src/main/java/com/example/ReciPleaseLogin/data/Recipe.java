@@ -46,7 +46,7 @@ public class Recipe {
         return recipe_name;
     }
     public String getDescription() { return description; }
-    public List<String> getinstructionPictures() { return instruction_pics; }
+    public List<String> getInstruction_pics() { return instruction_pics; }
     public Date getPosted()
     {
         return posted;
@@ -87,6 +87,7 @@ return comments;
 
     public void updateDB(){
         DB.getInstance().push(this);
+
         /*
         DB.getInstance().pushRecipeName(recipe_name);
         DB.getInstance().pushIngredients(recipe_name, ingredients);

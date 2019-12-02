@@ -2,7 +2,7 @@ package com.example.ReciPleaseLogin.data;
 
 import android.util.Log;
 
-import com.example.ReciPleaseLogin.IObjectListener;
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -10,7 +10,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 //import com.google.firebase.firestore.CollectionReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
@@ -198,7 +197,7 @@ public class DB {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
     }
-    public void pull(final IObjectListener listener, Object OutsideObject, DatabaseReference dref) {
+    public void pull(final IObjectListener listener,Object InsidetoOutside, DatabaseReference dref) {
         //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
         ValueEventListener postListener = new ValueEventListener() {
             @Override

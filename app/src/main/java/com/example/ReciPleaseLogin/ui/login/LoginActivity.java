@@ -14,11 +14,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.ReciPleaseLogin.IObjectListener;
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
-import com.example.ReciPleaseLogin.data.Recipe;
-import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,7 +28,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.DocumentReference;
 
 import android.content.Context;
 
@@ -185,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }, recipe_name);
     */
-        Object OutsideObject =new Object();
+        Object ReturnInsideOutside =new Object();
         DatabaseReference dref;
         dref =DB.getInstance().database.getReference("Root");; //download eVeRyTHING and make massive object
         DB.getInstance().pull(new IObjectListener() {
@@ -197,12 +194,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onRetrievalFailure() {
-                Log.i("TEST", "F");
+                Log.i("TEST-INSIDE", "F");
             }
 
-        }, OutsideObject, dref);
+        }, ReturnInsideOutside, dref);
 
-
+        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
     }
 
 

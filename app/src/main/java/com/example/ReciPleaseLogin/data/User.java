@@ -14,6 +14,4 @@ public User GetInstance(){
     return user;
     }
 
-
-
 }

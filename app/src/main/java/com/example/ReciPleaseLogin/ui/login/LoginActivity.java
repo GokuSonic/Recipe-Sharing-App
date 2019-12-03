@@ -1,24 +1,26 @@
 package com.example.ReciPleaseLogin.ui.login;
 
-import androidx.annotation.NonNull;
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,18 +28,32 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
-import android.content.Context;
-
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
     private Button bLogin;
     private String email;
     private String password;
     private TextView status;
     private EditText emailbox, passbox;
+
+    RelativeLayout splash1;
+    ImageView logo;
+
+    Handler handle = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            splash1.setVisibility(View.VISIBLE);
+            logo = findViewById(R.id.logoImage);
+            final ConstraintLayout.LayoutParams layoutparams = (ConstraintLayout.LayoutParams) logo.getLayoutParams();
+            layoutparams.setMargins(300, 250, 300, 0);
+
+        }
+    };
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +63,13 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
 
         DB.getInstance();
-        bLogin = (Button) findViewById(R.id.login);
+
+        splash1 = findViewById(R.id.splash1);
+
+        //what for s seconds
+        handle.postDelayed(runnable, 2000);
+
+        bLogin = findViewById(R.id.login);
         emailbox = findViewById(R.id.username);
         passbox = findViewById(R.id.Password);
         bLogin.setOnClickListener(new View.OnClickListener() {
@@ -61,17 +83,17 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.getInstance();
+        FirebaseAuth.getInstance();
     }
 
     private void updateUI(FirebaseUser User) {
 
         if (User != null) {
-            ; //login
+            //login
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
         } else {
-            ;//?
+            //?
         }
     }
 
@@ -104,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (e instanceof FirebaseAuthInvalidUserException){
                             Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             //register user
-                            ;//register?
+                            //register?
                             Intent intent =new Intent(LoginActivity.this, Registration.class);
                             startActivity(intent);
 

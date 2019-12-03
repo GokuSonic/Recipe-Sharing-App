@@ -78,7 +78,7 @@
             android:id="@+id/menu_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#BF2F86FA"
+            android:background="#000000"
             android:elevation="4dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 

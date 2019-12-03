@@ -2,6 +2,7 @@ package com.example.ReciPleaseLogin.data;
 
 import android.util.Log;
 
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -9,7 +10,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 //import com.google.firebase.firestore.CollectionReference;
 //import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,7 +30,7 @@ public class DB {
     static public FirebaseAuth mAuth;
     static public FirebaseUser mUser = mAuth.getInstance().getCurrentUser();
 
-    static FirebaseDatabase database;
+    static public FirebaseDatabase database;
     static DatabaseReference mRootRef;
 
     //singleton
@@ -197,6 +197,43 @@ public class DB {
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
     }
+    public void pull(final IObjectListener listener,Object InsidetoOutside, DatabaseReference dref) {
+        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
+                //String recipe = dataSnapshot.getValue(String.class);
+                //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
+                //Recipe recipe = dataSnapshot.getValue(Recipe.class);
+
+                Object object =dataSnapshot.getValue(Object.class);
+                if (object != null) {
+
+                  /*  Log.i(TAG, "recipe_name is(inside):" + recipe.recipe_name);
+                    //Log.i(TAG, "recipename is(inside):" + recipe.recipename);
+                    Log.i(TAG, "description is:" + recipe.description);
+                    Log.i(TAG, "ingredients is:" + recipe.ingredients);*/
+                    //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
+                    Log.i(TAG, "DB Failure"+ object.toString());
+                    listener.onRetrievalSuccess(object);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                //pretend we have stuff here
+                Log.i(TAG, "DB Failure");
+            }
+        };
+        Log.i(TAG, "dref:" +dref.toString());
+        dref.addValueEventListener(postListener);
+        //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
+        //});
+    }
+
+
 
     static public void push(Object obj) {
     if (obj instanceof UserProfile){
@@ -214,7 +251,7 @@ public class DB {
 
                 ((Message) obj).sender = mUser.getUid();
                 userMsg.child(mUser.getUid()).child("Sent").setValue((Message) obj);
-                // Search for user uuid in UI
+                //TODO: for UI find user uuid in UI update recipientUid in message
                 // post in  "user" "user uid" "Messages" "Recieved"
                 if(((Message)obj).recipientUid!=null)
                     userMsg.child(((Message) obj).recipientUid).child("recieved").setValue((Message) obj);
@@ -237,20 +274,6 @@ public class DB {
             newrecipe.setValue((Recipe) obj);
             newrecipe.child(newrecipe.getKey());
 
-        /*;recipe.recipe_name);
-
-        //Date needs to be converted to String/long: https://www.javatpoint.com/java-date-to-string
-        newrecipe.child(newrecipe.getKey()).child("posted").setValue(recipe.posted);
-        //Check
-        newrecipe.child(newrecipe.getKey()).child("ingredients").setValue(recipe.ingredients);
-        newrecipe.child(newrecipe.getKey()).child("description").setValue(recipe.description);
-        newrecipe.child(newrecipe.getKey()).child("tags").setValue(recipe.tags);
-        newrecipe.child(newrecipe.getKey()).child("instructions").setValue(recipe.instructions);
-        //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
-        //before the push function is called, convert int to string
-        newrecipe.child(newrecipe.getKey()).child("num_likers").setValue((long) recipe.num_likers);
-        newrecipe.child(newrecipe.getKey()).child("likers").setValue(recipe.likers);
-        return;*/
         }
     }
 }

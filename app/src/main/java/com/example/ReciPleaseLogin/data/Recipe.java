@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-import static com.example.ReciPleaseLogin.data.DB.pushRecipeName;
+//import static com.example.ReciPleaseLogin.data.DB.pushRecipeName;
 
 public class Recipe {
     public String owner;
@@ -25,9 +25,8 @@ public class Recipe {
 
 
 
-
-    public Recipe(){
-    }
+    public Recipe()
+    {}
 
     public Recipe(String recipe_name, String description, List<String> ingredients)
     {
@@ -46,7 +45,7 @@ public class Recipe {
         return recipe_name;
     }
     public String getDescription() { return description; }
-    public List<String> getinstructionPictures() { return instruction_pics; }
+    public List<String> getInstruction_pics() { return instruction_pics; }
     public Date getPosted()
     {
         return posted;
@@ -87,6 +86,7 @@ return comments;
 
     public void updateDB(){
         DB.getInstance().push(this);
+
         /*
         DB.getInstance().pushRecipeName(recipe_name);
         DB.getInstance().pushIngredients(recipe_name, ingredients);
@@ -95,12 +95,7 @@ return comments;
         DB.getInstance().pushTags(recipe_name, tags);
 */
     }
-/*
-    //fetch new data
-    public void updateView(){
-        DB.pull(this);
-    }
-*/
+
 
 
 }

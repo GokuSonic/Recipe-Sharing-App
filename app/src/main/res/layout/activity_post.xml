@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -108,87 +109,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pIngredient" />
 
-    <EditText
-        android:id="@+id/pStep1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Step 1"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pFrontLink" />
+        <EditText
+            android:id="@+id/pStep1"
+            android:layout_width="211dp"
+            android:layout_height="233dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Step 1"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pFrontLink" />
 
-    <EditText
-        android:id="@+id/pStep1Link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Picture link 1"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pStep1" />
+        <EditText
+            android:id="@+id/pStep1Link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Picture link 1"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pStep1" />
 
-    <EditText
-        android:id="@+id/pStep2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Step 2"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pStep1Link" />
+        <Button
+            android:id="@+id/pSteps"
+            android:layout_width="117dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:text="Add Instruction"
+            app:layout_constraintStart_toEndOf="@+id/pStep1"
+            app:layout_constraintTop_toTopOf="@+id/pStep1" />
 
-    <EditText
-        android:id="@+id/pStep2Link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Picture link 2"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pStep2" />
+        <Button
+            android:id="@+id/pPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.913"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="600dp" />
 
-    <Button
-        android:id="@+id/pSteps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:text="More steps"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pStep2Link" />
+        <Button
+            android:id="@+id/pAddIngredient"
+            android:layout_width="113dp"
+            android:layout_height="58dp"
+            android:text="Add Ingredient"
+            app:layout_constraintStart_toEndOf="@+id/pIngredient"
+            app:layout_constraintTop_toTopOf="@+id/pIngredient" />
 
-    <Button
-        android:id="@+id/pPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.089"
-        app:layout_constraintStart_toEndOf="@+id/pSteps"
-        app:layout_constraintTop_toBottomOf="@+id/pStep2Link"
-        app:layout_constraintVertical_bias="0.106" />
+        <Button
+            android:id="@+id/pAddTags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Tags"
+            app:layout_constraintStart_toEndOf="@+id/pType"
+            app:layout_constraintTop_toTopOf="@+id/pType" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

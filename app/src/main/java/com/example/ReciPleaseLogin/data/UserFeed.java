@@ -52,9 +52,5 @@ public class UserFeed {
 
     }
 
-    //fetch new data
-    //public void updateView(){
-         //DB.pull(this);
-    //}
 
 }

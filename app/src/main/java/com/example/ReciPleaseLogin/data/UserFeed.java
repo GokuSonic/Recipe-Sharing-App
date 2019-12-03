@@ -40,7 +40,7 @@ public class UserFeed {
 
     public void updateDB(){
 
-        //DB.push(this);
+        DB.push(this);
 
 
         //nolonger needed

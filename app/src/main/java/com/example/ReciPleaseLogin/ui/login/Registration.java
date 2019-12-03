@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ReciPleaseLogin.R;
+import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,8 +30,8 @@ public class Registration extends AppCompatActivity {
     //account
     private String email, password;
     //profile
-    private String name, dname, occ, exp;
-    boolean over15;
+   // private String name, dname, occ, exp;
+    //boolean over15;
 
     //connection to ui
     private Button bCreateUser;
@@ -38,7 +39,7 @@ public class Registration extends AppCompatActivity {
     private TextView status;
     private EditText emailbox, passbox,namebox,dispbox,occbox,expbox;
 
-
+    private UserProfile newProfile;
 
 
 
@@ -89,13 +90,14 @@ public class Registration extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-//                        Log.d(TAG, "createUserWithEmail:success");
-                            // FirebaseUser user = mAuth.getCurrentUser();
+                         //   Toast.makeText(Registration.this, "Logged In", Toast.LENGTH_SHORT).show();
+                            //update user
+                            DB.getInstance().mUser=mAuth.getCurrentUser();
 
-                            // create_profile(user);
-                            //  LoginActivity.updateUI(user);
                         } else {
+
+                            //Toast.makeText(Registration.this, "Login Failure", Toast.LENGTH_SHORT).show();
+
                             // If sign in fails, display a message to the user.
 //                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             //                      Toast.makeText(EmailPasswordActivity.this, "Authentication failed.",
@@ -111,47 +113,17 @@ public class Registration extends AppCompatActivity {
 
     private void submit_profile(FirebaseUser user) {
         Intent intent;
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        //get user identification string for database identification
-        String uid = user.getUid();
-/*
-    Map<String, Object> profile = new HashMap<>();
-
-    profile.put("uid",uid);
-    profile.put("name",name);
-    profile.put("dispname",dname);
-    profile.put("email",email);
-    profile.put("experience",exp);
-    profile.put("oldenough",over15);*/
-
-        //UserDate(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
-        UserProfile userdb = new UserProfile(); //initialize userdata object
-
-        userdb.username = dname;
-
-        userdb.who_are_you = name;
-        userdb.cooking_experience = exp;
-        userdb.what_do_you_do = occ;
-        userdb.picture_link = null;
-        userdb.over15 = over15;
 
 
-        userdb.updateDB();
-        Toast.makeText(Registration.this, "Account Created!", Toast.LENGTH_SHORT).show();
+        newProfile.updateDB();
+
+        Toast.makeText(Registration.this, "Account Submitted!", Toast.LENGTH_SHORT).show();
+
         intent = new Intent(Registration.this, LoginActivity.class);
         startActivity(intent);
 
-        //name
-
-        //displayname
-
-
-        //occupation/what do you do
-
-        //experience
-
 /*
-// Add a new document with a generated ID
+// Add a new document with a generated ID  //FIRESTORE???  TODO:cleanup/remove commented code
     db.collection("users").add(profile)
             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
@@ -177,12 +149,12 @@ public class Registration extends AppCompatActivity {
     private boolean validate_info() {
         boolean valid = true;
 
+
         if (emailbox.getText().length() == 0) {
             valid = false;
             emailbox.setError("Email is required");
         } else {
             email = emailbox.getText().toString();
-
         }
 
         if (passbox.getText().length() < 6) {
@@ -198,7 +170,7 @@ public class Registration extends AppCompatActivity {
             valid = false;
             namebox.setError("Name is required");
         } else {
-            name = namebox.getText().toString();
+            newProfile.who_are_you = namebox.getText().toString();
 
         }
 
@@ -207,7 +179,7 @@ public class Registration extends AppCompatActivity {
             dispbox.setError("Preferred Display Name is required");
             valid = false;
         } else {
-            dname = dispbox.getText().toString();
+            newProfile.username = dispbox.getText().toString();
         }
 
 
@@ -215,7 +187,7 @@ public class Registration extends AppCompatActivity {
             occbox.setError("Please tell us what do you do?");
             valid = false;
         } else {
-            occ = occbox.getText().toString();
+            newProfile.what_do_you_do = occbox.getText().toString();
 
         }
 
@@ -224,7 +196,7 @@ public class Registration extends AppCompatActivity {
             expbox.setError("Please Enter your cooking experience");
             valid = false;
         } else {
-            exp = expbox.getText().toString();
+            newProfile.cooking_experience = expbox.getText().toString();
 
         }
 
@@ -232,7 +204,7 @@ public class Registration extends AppCompatActivity {
             age.setError("Come Back when you are at least 15 years old");
             valid = false;
         } else {
-            over15 = true;
+            newProfile.over15 = true;
 
         }
 

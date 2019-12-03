@@ -84,23 +84,7 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b2 = findViewById(R.id.imageView2);
         final ImageView b3 = findViewById(R.id.imageView3);
         final ImageView b4 = findViewById(R.id.imageView4);
-        //test = findViewById(R.id.textView16);
-        //test.setText("Success");
-        String recipe_name = "steak";
-        DB.getInstance().pullRecipe(new IRecipeListener(){
-            @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-                String theName = recipe.recipe_name;
-                test.setText(theName);
-                Log.i("TEST", "" + recipe.recipe_name);
-            }
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST", "F");
-            }
-
-        }, recipe_name);
-
+    test();
         //Lower part of Menu
         ViewPager vpPager = findViewById(R.id.menu_viewpage);
 
@@ -170,4 +154,23 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
+    public void test(){
+        //test = findViewById(R.id.textView16);
+        //test.setText("Success");
+        String recipe_name = "steak";
+        DB.getInstance().pullRecipe(new IRecipeListener(){
+            @Override
+            public void onRetrievalSuccess(Recipe recipe) {
+                String theName = recipe.recipe_name;
+                test.setText(theName);
+                Log.i("TEST", "" + recipe.recipe_name);
+            }
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST", "F");
+            }
+
+        }, recipe_name);
+
+    }
 }

@@ -80,7 +80,9 @@ public UserProfile(){}
 
     public void updateDB(){
 
-        //DB.push(this);
+        DB.push(this);
+       /*
+        //update single values
         DB.getInstance().pushWhoAreYou(who_are_you);
         DB.pushUserName(username);
         DB.pushCookingExp(cooking_experience);
@@ -88,7 +90,7 @@ public UserProfile(){}
         DB.pushSomethingInteresting(something_int);
         DB.pushNumFollowers(num_followers);
         DB.pushAgeCheck(over15);
-
+*/
 
         //nolonger needed
         /*mAuth=FirebaseAuth.getInstance();
@@ -96,11 +98,6 @@ public UserProfile(){}
         //db.collection(user.getUid()).add()
         db.collection("users").document(user.getEmail()).set(this);*/
 
-    }
-
-    //fetch new data
-    public void updateView(){
-       // DB.pull(this);
     }
 
 }

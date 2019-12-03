@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
-import static com.example.ReciPleaseLogin.data.DB.pushRecipeName;
+//import static com.example.ReciPleaseLogin.data.DB.pushRecipeName;
 
 public class Recipe {
     public String owner;
@@ -25,9 +25,8 @@ public class Recipe {
 
 
 
-
-    public Recipe(){
-    }
+    public Recipe()
+    {}
 
     public Recipe(String recipe_name, String description, List<String> ingredients)
     {
@@ -96,12 +95,7 @@ return comments;
         DB.getInstance().pushTags(recipe_name, tags);
 */
     }
-/*
-    //fetch new data
-    public void updateView(){
-        DB.pull(this);
-    }
-*/
+
 
 
 }

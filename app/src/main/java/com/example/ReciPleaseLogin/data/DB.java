@@ -251,7 +251,7 @@ public class DB {
 
                 ((Message) obj).sender = mUser.getUid();
                 userMsg.child(mUser.getUid()).child("Sent").setValue((Message) obj);
-                // Search for user uuid in UI
+                //TODO: for UI find user uuid in UI update recipientUid in message
                 // post in  "user" "user uid" "Messages" "Recieved"
                 if(((Message)obj).recipientUid!=null)
                     userMsg.child(((Message) obj).recipientUid).child("recieved").setValue((Message) obj);
@@ -274,20 +274,6 @@ public class DB {
             newrecipe.setValue((Recipe) obj);
             newrecipe.child(newrecipe.getKey());
 
-        /*;recipe.recipe_name);
-
-        //Date needs to be converted to String/long: https://www.javatpoint.com/java-date-to-string
-        newrecipe.child(newrecipe.getKey()).child("posted").setValue(recipe.posted);
-        //Check
-        newrecipe.child(newrecipe.getKey()).child("ingredients").setValue(recipe.ingredients);
-        newrecipe.child(newrecipe.getKey()).child("description").setValue(recipe.description);
-        newrecipe.child(newrecipe.getKey()).child("tags").setValue(recipe.tags);
-        newrecipe.child(newrecipe.getKey()).child("instructions").setValue(recipe.instructions);
-        //Note for group and self: Basic write operations enjoy string/long over int. Either make int variables long or
-        //before the push function is called, convert int to string
-        newrecipe.child(newrecipe.getKey()).child("num_likers").setValue((long) recipe.num_likers);
-        newrecipe.child(newrecipe.getKey()).child("likers").setValue(recipe.likers);
-        return;*/
         }
     }
 }

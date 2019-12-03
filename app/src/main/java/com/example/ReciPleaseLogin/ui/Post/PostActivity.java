@@ -24,7 +24,7 @@ import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 
 public class PostActivity extends AppCompatActivity {
 
-    private Button bPostRecipe, bPostNext ;
+    private Button bPostRecipe, bPostNext, bAddIngredient ,bAddTags;
     private EditText Receipt_Name, Type, Description, Ingredient, Front_Picture_Link, Instruction, Instruction_pic;
 
     Recipe newRecipe;
@@ -40,7 +40,7 @@ public class PostActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false); // hide the current title from the Toolbar
 
-
+    //text fields
         Receipt_Name = findViewById(R.id.pName);
         Type = findViewById(R.id.pType);
         Description = findViewById(R.id.pDescription);
@@ -51,15 +51,21 @@ public class PostActivity extends AppCompatActivity {
         //Step_2 = findViewById(R.id.pStep2);
         //Picture_Link_2 = findViewById(R.id.pStep2Link);
 
+        //buttons
+        bPostNext = (Button) findViewById(R.id.pSteps);
         bPostNext = findViewById(R.id.pSteps);
-
         bPostRecipe = findViewById(R.id.pPost);
+        bAddTags =findViewById(R.id.pAddTags);
+        bAddIngredient=findViewById(R.id.pAddIngredient);
+
+
+        /*Button listeners */
         bPostRecipe.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
                 if(validate_info(newRecipe)) {
                     newRecipe.updateDB();
-                    //intent
+            //change intent?
                 }
                 else {
 
@@ -67,15 +73,16 @@ public class PostActivity extends AppCompatActivity {
 
             }
         });
-        bPostNext = findViewById(R.id.pSteps);
+
         bPostNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 // Do something in response to button click
                 if(Instruction.getText().length()>=0 &&Instruction_pic.getText().length()>=0) {
-                    Instruction.setText("");
-                    Instruction_pic.setText("");
+
                 newRecipe.instructions.add(Instruction.getText().toString());
                 newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
+                    Instruction.setText("");
+                    Instruction_pic.setText("");
                 }
                 else {
 
@@ -83,7 +90,42 @@ public class PostActivity extends AppCompatActivity {
 
             }
         });
+
+
+        bAddIngredient.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Do something in response to button click
+                if(Ingredient.getText().length()>=0) {
+                    newRecipe.ingredients.add(Ingredient.getText().toString());
+                    //erase text box for next usage
+                    Ingredient.setText("");
+
+                }
+                else {
+
+                }
+
+            }
+        });
+
+        bAddTags.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                // Do something in response to button click
+                if(Instruction.getText().length()>=0) {
+          //do something
+
+                }
+                else {
+
+                }
+
+            }
+        });
+
+
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -138,7 +180,7 @@ public class PostActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void submit_profile() {
+    private void submit() {
         Intent intent;
         intent = new Intent(PostActivity.this, MenuActivity.class);
         startActivity(intent);
@@ -205,7 +247,7 @@ public class PostActivity extends AppCompatActivity {
             newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
         }
 
-/*
+/* removed infavor of larger text box and add instruction button
         if (Step_2.getText().length()==0){
             Step_2.setError("A Step is required");
             valid=false;

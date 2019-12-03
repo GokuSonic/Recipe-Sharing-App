@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
@@ -41,14 +42,20 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout splash1;
     ImageView logo;
 
+
     Handler handle = new Handler();
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
             splash1.setVisibility(View.VISIBLE);
             logo = findViewById(R.id.logoImage);
-            final ConstraintLayout.LayoutParams layoutparams = (ConstraintLayout.LayoutParams) logo.getLayoutParams();
-            layoutparams.setMargins(300, 250, 300, 0);
+
+            ConstraintLayout logoLayout = findViewById(R.id.imageConstraint);
+            ConstraintSet constraintSet = new ConstraintSet();
+            constraintSet.clone(logoLayout);
+            constraintSet.connect(R.id.logoImage, ConstraintSet.RIGHT, R.id.relativeParent, ConstraintSet.RIGHT, 0);
+            constraintSet.connect(R.id.logoImage, ConstraintSet.TOP, R.id.relativeParent, ConstraintSet.TOP, 100);
+            constraintSet.applyTo(logoLayout);
 
         }
     };

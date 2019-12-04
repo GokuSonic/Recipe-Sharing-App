@@ -3,14 +3,8 @@ package com.example.ReciPleaseLogin.ui.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-
 import android.os.Handler;
-
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,11 +13,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.example.ReciPleaseLogin.data.Recipe;
-import com.example.ReciPleaseLogin.data.Recipes;
-import com.example.ReciPleaseLogin.ui.IObjectListener;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,6 +20,9 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
+import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.data.Recipes;
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -112,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser User) {
 
         if (User != null) {
-            ; //login
+            //login
             test();
 
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
@@ -220,7 +212,7 @@ public class LoginActivity extends AppCompatActivity {
 
         List<Recipe> ReturnInsideOutside =new Vector<>();
         DatabaseReference dref;
-        dref =DB.getInstance().database.getReference("Root").child("Recipes");; //download eVeRyTHING and make massive object
+        dref = DB.getInstance().database.getReference("Root").child("Recipes");//download eVeRyTHING and make massive object
         DB.getInstance().pull(new IObjectListener() {
             @Override
             public void onRetrievalSuccess(Object InsideObject) {
@@ -231,15 +223,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onRetrievalFailure() {
                 Log.i("TEST-INSIDE", "F");
             }
-        }, ReturnInsideOutside, dref);
+        }, ReturnInsideOutside, dref, new Recipe());
         Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
 
-        Object recipes=(Object)  ReturnInsideOutside;
+        Object recipes = ReturnInsideOutside;
         recipes.toString();
         Log.i("TEST", "" + recipes.toString());
 
         //((Recipes) recipes);
-        Log.i("TEST", "" +((List<Recipe>) recipes).toString());
+        Log.i("TEST", "" + recipes.toString());
 
     }
 

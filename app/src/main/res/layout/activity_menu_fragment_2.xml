@@ -12,6 +12,8 @@
         android:layout_marginEnd="76dp"
         android:text="First 20 -50 words of message depending on size of screen"
         android:textColor="#FFFFFFFF"
+        android:minLines="1"
+        android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_fragment2_user_messages_pic" />
 

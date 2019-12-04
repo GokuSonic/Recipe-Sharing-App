@@ -110,14 +110,16 @@ public class MenuActivity extends AppCompatActivity {
         //get latest user recipes
 
         List<Recipe> ReturnInsideOutside = new Vector<>();
-        DatabaseReference dref;
-        dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public"); //download eVeRyTHING and make massive object
+        //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        //download eVeRyTHING and make massive object
         DB.getInstance().pull(new IObjectListener() {
             @Override
             public void onRetrievalSuccess(Object InsideObject) {
                 Object OutsideObject = InsideObject;
                 Log.i("TEST", "" + InsideObject.toString());
             }
+
             @Override
             public void onRetrievalFailure() {
                 Log.i("TEST-INSIDE", "F");
@@ -129,13 +131,9 @@ public class MenuActivity extends AppCompatActivity {
         recipes.toString();
         Log.i("TEST", "" + recipes.toString());
 
-        //((Recipes) recipes);
-        Log.i("TEST", "" + recipes.toString());
-
-
         //GET the public most updated recipes
         List<Recipe> DBrecipes = ((List<Recipe>) recipes);
-            Recipe[] most_recent_recipies = new Recipe[3];
+        Recipe[] most_recent_recipies = new Recipe[3];
 
         System.out.println("\n\n\nHERE size --" + DBrecipes.size());
         for (int i = 0; i < DBrecipes.size(); i++) {
@@ -147,7 +145,7 @@ public class MenuActivity extends AppCompatActivity {
             TextView post = findViewById(R.id.textView1);
             //grab recipe data
             for (int i = 0; i < 1000; i++) {
-                post.setText(i + "hello");
+                post.setText("Recipe: test \nDifficulty: Hard\nDirections:1) Add data 2) create test");
             }
 
     }
@@ -202,23 +200,3 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 }
- /*   public void test(){
-        //test = findViewById(R.id.textView16);
-        //test.setText("Success");
-        String recipe_name = "steak";
-        DB.getInstance().pullRecipe(new IRecipeListener(){
-            @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-                String theName = recipe.recipe_name;
-                test.setText(theName);
-                Log.i("TEST", "" + recipe.recipe_name);
-            }
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST", "F");
-            }
-
-        }, recipe_name);
-
-    }
-}*/

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -40,5 +39,6 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         android.view.View view = inflater.inflate(R.layout.activity_menu_fragment_1, container, false);
         return view;
+
     }
 }

@@ -17,8 +17,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
+import com.example.ReciPleaseLogin.data.ImageLoadTask;
 import com.example.ReciPleaseLogin.data.Recipe;
-import com.example.ReciPleaseLogin.data.Recipes;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
@@ -110,16 +110,56 @@ public class MenuActivity extends AppCompatActivity {
 
         dotsIndicator.setViewPager(viewPager);
         //get latest user recipes
-test();
+
+        final List<Recipe> ReturnInsideOutside = new Vector<>();
+        //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        //download eVeRyTHING and make massive object
+        DB.getInstance().pull(new IObjectListener() {
+            @Override
+            public void onRetrievalSuccess(Object InsideObject) {
+                Object OutsideObject = InsideObject;
+                Log.i("TEST", "" + InsideObject.toString());
 
 
+                Object recipes = ReturnInsideOutside;
+                //GET the public most updated recipes
+                List<Recipe> DBrecipes = ((List<Recipe>) recipes);
+                Recipe[] most_recent_recipies = new Recipe[3];
 
-            // update 'shell' objects
-            TextView post = findViewById(R.id.textView1);
-            //grab recipe data
-            for (int i = 0; i < 1000; i++) {
-                post.setText("Recipe: test \nDifficulty: Hard\nDirections:1) Add data 2) create test");
+                System.out.println("\n\n\nHERE size --" + DBrecipes.size());
+                for (int i = 0; i < DBrecipes.size(); i++) {
+                    System.out.println(DBrecipes.get(i).posted.toDate());
+                }
+
+
+                // update 'shell' objects
+                TextView post = findViewById(R.id.textView1);
+                ImageView image = findViewById(R.id.imageView1);
+
+                //takes the URL from the database and converts it so the phone can display it
+                new ImageLoadTask("https://2.bp.blogspot.com/_fogL-F6jDxo/S-hrZYJixBI/AAAAAAAABoQ/H2y1p4in8lk/s1600/steak.jpg", image).execute();
+
+                //grab recipe data
+                for (int i = 0; i < 1000; i++) {
+                    post.setText("Recipe: test \nDifficulty: Hard\nDirections:1) Add data 2) create test");
+                }
+
             }
+
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST-INSIDE", "F");
+            }
+        }, ReturnInsideOutside, dref, new Recipe());
+        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
+
+        Object recipes = ReturnInsideOutside;
+        recipes.toString();
+        Log.i("TEST", "" + recipes.toString());
+
+
+
 
     }
 
@@ -176,6 +216,7 @@ test();
         }
         return super.onOptionsItemSelected(item);
     }
+    /*
 public void test(){
 
     Recipes ReturnInsideOutside = new Recipes();
@@ -208,8 +249,8 @@ public void test(){
     System.out.println("\n\n\nHERE size --" + DBrecipes.size());
     for (int i = 0; i < DBrecipes.size(); i++) {
         System.out.println(DBrecipes.get(i).posted.toDate());
-    }*/
+    }
 
-}
+}*/
 }
 

@@ -8,21 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
-import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.UserProfile;
 import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.google.firebase.database.DatabaseReference;
-
-import java.util.List;
-
-import static com.example.ReciPleaseLogin.data.DB.mUser;
-import static com.example.ReciPleaseLogin.data.DB.database;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FirstFragment extends Fragment {
     // Store instance variables
@@ -66,11 +61,11 @@ public class FirstFragment extends Fragment {
     public void level(){
         Object ReturnInsideOutside = new Object();
         DatabaseReference dref;
-        dref = DB.database.getInstance().getReference("Root").child("users").child(DB.mUser.getUid()).child("num_likers");//download eVeRyTHING under each user slot and make massive object
+        dref = FirebaseDatabase.getInstance().getReference("Root").child("users").child(DB.mUser.getUid()).child("num_likers");//download eVeRyTHING under each user slot and make massive object
         DB.getInstance().pull(new IObjectListener() {
             @Override
             public void onRetrievalSuccess(Object InsideObject) {
-                Object OutsideObject = ((Object) InsideObject);
+                Object OutsideObject = InsideObject;
                 Log.i("TEST-Success", "" + InsideObject.toString());
             }
 
@@ -78,7 +73,7 @@ public class FirstFragment extends Fragment {
             public void onRetrievalFailure() {
                 Log.i("TEST-INSIDE-FAIL", "F");
             }
-        }, ReturnInsideOutside, dref);
+        }, ReturnInsideOutside, dref, ReturnInsideOutside);
         //if (ReturnInsideOutside instanceof UserProfile) {
         Log.i("TEST-OUTSIDE", "" + (ReturnInsideOutside).toString());
 
@@ -89,8 +84,8 @@ public class FirstFragment extends Fragment {
         {}
         int level = user.num_likers;
         System.out.println("\n\n\n\t\t level " + level);
-        ProgressBar progress = (ProgressBar) getView().findViewById(R.id.menu_fragment1_baker_progressbar);
-        RatingBar rate = (RatingBar) getView().findViewById(R.id.menu_fragment1_bakerStar);
+        ProgressBar progress = getView().findViewById(R.id.menu_fragment1_baker_progressbar);
+        RatingBar rate = getView().findViewById(R.id.menu_fragment1_bakerStar);
         if (level < 1000) {
             progress.setMax(1000);
             progress.setProgress(level);

@@ -1,10 +1,6 @@
 package com.example.ReciPleaseLogin.data;
 
 
-import android.util.Log;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class UserProfile {
 
     public String name;
@@ -19,11 +15,12 @@ public class UserProfile {
     public int num_recipes;
     public boolean over15;
     public boolean premium;
+    public String uid;
 
     //default constructor that takes no objects, required for firestore
 public UserProfile(){}
 
-    public  UserProfile(String username, String realname, String cook_exp, String do_what, String something, String picture,  boolean age, boolean prem) {
+    public UserProfile(String username, String realname, String cook_exp, String do_what, String something, String picture, boolean age, boolean prem, String UID) {
 
         this.username = username;
         who_are_you = realname;
@@ -33,6 +30,7 @@ public UserProfile(){}
         picture_link=picture;
         over15 = age;
         premium = prem;
+        uid = UID;
 
         //initialize to zero
         num_followers = 0;
@@ -75,6 +73,10 @@ public UserProfile(){}
     }
     public boolean isPremium() {
         return premium;
+    }
+
+    public String getUID() {
+        return uid;
     }
 
     public void updateDB(){

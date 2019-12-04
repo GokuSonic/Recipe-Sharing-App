@@ -133,7 +133,7 @@ public class MenuActivity extends AppCompatActivity {
 
         //GET the public most updated recipes
         List<Recipe> DBrecipes = ((List<Recipe>) recipes);
-            Recipe[] most_recent_recipies = new Recipe[3];
+        Recipe[] most_recent_recipies = new Recipe[3];
 
         System.out.println("\n\n\nHERE size --" + DBrecipes.size());
         for (int i = 0; i < DBrecipes.size(); i++) {

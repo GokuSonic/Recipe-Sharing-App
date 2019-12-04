@@ -264,21 +264,32 @@ public class PostActivity extends AppCompatActivity {
         } else if (Instruction_pic.getText().length() == 0) {
             Instruction_pic.setError("A Link is required?");
             valid = false;
-        } else if (Diet.getText().length() == 0) {
+        } else {
+            newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
+        }
+
+        if (Diet.getText().length() == 0) {
             //error
             valid = false;
             Diet.setError("Diet is Required");
-        } else if (Difficulty.getText().length() == 0) {
+        } else {
+            newRecipe.diet = Diet.getText().toString();
+        }
+
+        if (Difficulty.getText().length() == 0) {
             //error
             valid = false;
             Difficulty.setError("Difficulty is Required");
-        } else if (PrepAndCookTime.getText().length() == 0) {
+        } else {
+            newRecipe.difficulty = Difficulty.getText().toString();
+        }
+        if (PrepAndCookTime.getText().length() == 0) {
             //error
             valid = false;
-            Diet.setError("Prep and cook time are Required");
+            PrepAndCookTime.setError("Prep and cook time are Required");
         } else
         {
-            newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
+            newRecipe.prepTimeCookTime = PrepAndCookTime.getText().toString();
         }
 
 /* removed infavor of larger text box and add instruction button

@@ -12,71 +12,164 @@
         android:layout_height="match_parent">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/menu_toolbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000000"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        <TextView
+            android:id="@+id/recipe_text"
+            android:layout_width="348dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif"
+            android:minLines="1"
+            android:singleLine="false"
+            android:text="Recipe: ..... \nDifficulty:...... \nType:......"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_picture" />
 
-    </androidx.appcompat.widget.Toolbar>
+        <TextView
+            android:id="@+id/IGurl"
+            android:layout_width="260dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="IG Url:"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/YTurl" />
 
-    <TextView
-        android:id="@+id/Premium_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="150dp"
-        android:text="Premium User"
-        android:textColor="#FFFFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/NameTextBox" />
+        <TextView
+            android:id="@+id/Likes_and_shares"
+            android:layout_width="261dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="sans-serif"
+            android:minLines="1"
+            android:text="Likes\nFollowers\nNumber of Recipes"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IGurl" />
 
-    <ImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="15dp"
-        android:src="@mipmap/profile_pic5_round"
-        app:layout_constraintEnd_toStartOf="@+id/NameTextBox"
-        app:layout_constraintHorizontal_bias="0.007"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/FBurl2"
+            android:layout_width="260dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="FB Url:"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AboutMe" />
 
-    <TextView
-        android:id="@+id/NameTextBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="35dp"
-        android:text="Name"
-        android:textColor="#FFFFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/bakerStar4"
-        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
+        <TextView
+            android:id="@+id/YTurl"
+            android:layout_width="260dp"
+            android:layout_height="19dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="YT Url:"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FBurl2" />
 
-    <RatingBar
-        android:id="@+id/bakerStar4"
-        style="@android:style/Widget.Holo.Light.RatingBar"
-        android:layout_width="142dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="20dp"
-        android:clickable="false"
-        android:indeterminate="false"
-        android:isIndicator="true"
-        android:numStars="3"
-        android:rating="1"
-        android:stepSize="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/menu_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/Premium_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="44dp"
+            android:text="Premium User"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
+
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="15dp"
+            android:src="@mipmap/profile_pic5_round"
+            app:layout_constraintEnd_toStartOf="@+id/NameTextBox"
+            app:layout_constraintHorizontal_bias="0.007"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/NameTextBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="184dp"
+            android:text="Name"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
+
+        <RatingBar
+            android:id="@+id/bakerStar4"
+            style="@android:style/Widget.Holo.Light.RatingBar"
+            android:layout_width="142dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="100dp"
+            android:clickable="false"
+            android:indeterminate="false"
+            android:isIndicator="true"
+            android:numStars="3"
+            android:rating="1"
+            android:stepSize="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Premium_box" />
+
+        <TextView
+            android:id="@+id/AboutMe"
+            android:layout_width="375dp"
+            android:layout_height="71dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/edit_text_background"
+            android:fontFamily="sans-serif"
+            android:minLines="1"
+            android:singleLine="false"
+            android:text="About me:\n\n\n"
+            android:textColor="#FFFFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bakerStar4" />
+
+        <ImageView
+            android:id="@+id/recipe_picture"
+            android:layout_width="219dp"
+            android:layout_height="91dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="auto"
+            android:src="@mipmap/sample_recipe1_round"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.172"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Likes_and_shares" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

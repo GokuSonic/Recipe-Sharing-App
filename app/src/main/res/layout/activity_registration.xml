@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.Registration">
+    tools:context=".ui.login.Registration"
+    android:background="@drawable/standard_backgound">
 
     <ImageView
         android:id="@+id/rPhoto"
@@ -26,6 +27,8 @@
         android:layout_marginBottom="696dp"
         android:selectAllOnFocus="true"
         android:text="New User Registration"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,6 +47,8 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rPassword"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +66,8 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Password  (6 characters)"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rrealName"
@@ -79,6 +86,8 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Full Name  (ie. Ketty Wang)"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:inputType="textPersonName"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rDisplayName"
@@ -98,6 +107,8 @@
         android:ems="10"
         android:hint="User Name"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rOcc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,6 +126,8 @@
         android:ems="10"
         android:hint="Experience"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.727"
@@ -131,6 +144,8 @@
         android:ems="10"
         android:hint="Occupation"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/rExperience"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,27 +156,29 @@
         android:layout_width="252dp"
         android:layout_height="46dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="Register New User"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rAge" />
 
     <CheckBox
         android:id="@+id/rAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="15dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="80dp"
         android:text="Are you at least 15 years old?"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#FFFFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/register"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rExperience" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

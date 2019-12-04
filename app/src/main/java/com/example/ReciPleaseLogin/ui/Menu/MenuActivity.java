@@ -19,18 +19,22 @@ import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
-import com.example.ReciPleaseLogin.ui.IRecipeListener;
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
+import com.google.firebase.database.DatabaseReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.util.List;
+import java.util.Vector;
 
 public class MenuActivity extends AppCompatActivity {
 
     private TextView test;
+
     public static class MenuFragementAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 3;
 
@@ -84,7 +88,9 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b2 = findViewById(R.id.imageView2);
         final ImageView b3 = findViewById(R.id.imageView3);
         final ImageView b4 = findViewById(R.id.imageView4);
-    test();
+      
+    //    test();
+
         //Lower part of Menu
         ViewPager vpPager = findViewById(R.id.menu_viewpage);
 
@@ -101,9 +107,49 @@ public class MenuActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         dotsIndicator.setViewPager(viewPager);
+        //get latest user recipes
 
+        List<Recipe> ReturnInsideOutside = new Vector<>();
+        //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        //download eVeRyTHING and make massive object
+        DB.getInstance().pull(new IObjectListener() {
+            @Override
+            public void onRetrievalSuccess(Object InsideObject) {
+                Object OutsideObject = InsideObject;
+                Log.i("TEST", "" + InsideObject.toString());
+            }
+
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST-INSIDE", "F");
+            }
+        }, ReturnInsideOutside, dref);
+        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
+
+        Object recipes = ReturnInsideOutside;
+        recipes.toString();
+        Log.i("TEST", "" + recipes.toString());
+
+        //GET the public most updated recipes
+        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
+        Recipe[] most_recent_recipies = new Recipe[3];
+
+        System.out.println("\n\n\nHERE size --" + DBrecipes.size());
+        for (int i = 0; i < DBrecipes.size(); i++) {
+            System.out.println(DBrecipes.get(i).posted.toDate());
+            }
+
+
+            // update 'shell' objects
+            TextView post = findViewById(R.id.textView1);
+            //grab recipe data
+            for (int i = 0; i < 1000; i++) {
+                post.setText("Recipe: test \nDifficulty: Hard\nDirections:1) Add data 2) create test");
+            }
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,24 +199,4 @@ public class MenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void test(){
-        //test = findViewById(R.id.textView16);
-        //test.setText("Success");
-        String recipe_name = "steak";
-        DB.getInstance().pullRecipe(new IRecipeListener(){
-            @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-                String theName = recipe.recipe_name;
-                test.setText(theName);
-                Log.i("TEST", "" + recipe.recipe_name);
-            }
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST", "F");
-            }
-
-        }, recipe_name);
-
-    }
 }

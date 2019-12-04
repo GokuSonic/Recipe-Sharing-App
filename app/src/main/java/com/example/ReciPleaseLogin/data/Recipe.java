@@ -1,9 +1,9 @@
 package com.example.ReciPleaseLogin.data;
 
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 //import static com.example.ReciPleaseLogin.data.DB.pushRecipeName;
 
@@ -12,7 +12,7 @@ public class Recipe {
     public String recipe_name;
     //public String recipename;
     public String description;
-    public Date posted;
+    public Timestamp posted;
     public List<String> ingredients =new ArrayList<>();
     public List<String> instructions=new ArrayList<>();
     public List<String> instruction_pics=new ArrayList<>();
@@ -46,7 +46,8 @@ public class Recipe {
     }
     public String getDescription() { return description; }
     public List<String> getInstruction_pics() { return instruction_pics; }
-    public Date getPosted()
+
+    public Timestamp getPosted()
     {
         return posted;
     }

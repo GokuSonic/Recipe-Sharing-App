@@ -11,24 +11,24 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-//import com.google.firebase.firestore.CollectionReference;
-//import com.google.firebase.firestore.FirebaseFirestore;
 
-    //import firebase.RTD
-
-//import java.util.Date;
-//import java.util.HashMap;
 import java.util.List;
-//import java.util.Map;
-//import java.util.Vector;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
+
+//import com.google.firebase.firestore.CollectionReference;
+//import com.google.firebase.firestore.FirebaseFirestore;
+//import firebase.RTD
+//import java.util.Date;
+//import java.util.HashMap;
+//import java.util.Map;
+//import java.util.Vector;
 
 
 public class DB {
 
     static public FirebaseAuth mAuth;
-    static public FirebaseUser mUser = mAuth.getInstance().getCurrentUser();
+    static public FirebaseUser mUser = FirebaseAuth.getInstance().getCurrentUser();
 
     static public FirebaseDatabase database;
     static DatabaseReference mRootRef;
@@ -237,8 +237,8 @@ public class DB {
 
     static public void push(Object obj) {
     if (obj instanceof UserProfile){
-        DatabaseReference users=mRootRef.child("users");
-         users.setValue((UserProfile)obj);
+        DatabaseReference users = mRootRef.child("users").push();
+        users.setValue(obj);
     }
     else if (obj instanceof Message){
         DatabaseReference userMsg=mRootRef.child("users");
@@ -250,30 +250,43 @@ public class DB {
                 //post into logged in users messages sent
 
                 ((Message) obj).sender = mUser.getUid();
-                userMsg.child(mUser.getUid()).child("Sent").setValue((Message) obj);
+                userMsg.child(mUser.getUid()).child("Sent").push().setValue(obj);
                 //TODO: for UI find user uuid in UI update recipientUid in message
                 // post in  "user" "user uid" "Messages" "Recieved"
                 if(((Message)obj).recipientUid!=null)
-                    userMsg.child(((Message) obj).recipientUid).child("recieved").setValue((Message) obj);
+                    userMsg.child(((Message) obj).recipientUid).child("recieved").push().setValue(obj);
             }
             else {
                 DatabaseReference userComment=mRootRef.child("users").child(((Message)obj).senderUid).child("Recipes").child(((Message) obj).recipeUid);
-                userComment.setValue((Message)obj);
+                userComment.setValue(obj);
 
             }
         }
 
     }
         else if (obj instanceof Recipe) {
-            DatabaseReference recipes = mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes");
-            ;
-            //need to fetch current value increment by one and push/
+            DatabaseReference recipes;
+            if (((Recipe) obj).premium==true) {
+
+                //going with non user structure to allow easier fetching with limited capabilities of RTDB
+                recipes = mRootRef.child("Recipes").child("Premium");
+            }else {
+                 recipes = mRootRef.child("Recipes").child("Public");
+            }
+        //need to fetch current value increment by one and push/
             // mRootRef.child(mAuth.getCurrentUser().getUid()).child("Number of Recipes").setValue((long)num_recipes);   /// do we need or can we get recipes list size?
             DatabaseReference newrecipe = recipes.push();
             ((Recipe) obj).owner = mUser.getUid();
-            newrecipe.setValue((Recipe) obj);
+        newrecipe.setValue(obj);
             newrecipe.child(newrecipe.getKey());
 
         }
+
+        else if (obj instanceof Recipes){
+            List<Recipe> recipes=((Recipes) obj).recipes;
+
+
+
+    }
     }
 }

@@ -6,11 +6,11 @@ import java.util.Vector;
 public class Messages {
 
 
-    List<Message> messages;
+    List<Message> messages=new Vector<Message>();
 
 
     public Messages(){
-        messages= new Vector<Message>();
+
     }
 
     public void post(Message message){

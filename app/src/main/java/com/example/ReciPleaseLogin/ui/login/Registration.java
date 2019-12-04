@@ -1,11 +1,14 @@
 package com.example.ReciPleaseLogin.ui.login;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,13 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
+import com.example.ReciPleaseLogin.data.User;
 import com.example.ReciPleaseLogin.data.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Registration extends AppCompatActivity {
@@ -50,7 +53,7 @@ public class Registration extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
+        newProfile=new UserProfile();
         bCreateUser = findViewById(R.id.register);
         emailbox = findViewById(R.id.rEmail);
         passbox = findViewById(R.id.rPassword);
@@ -59,6 +62,7 @@ public class Registration extends AppCompatActivity {
         occbox = findViewById(R.id.rOcc);
         expbox = findViewById(R.id.rExperience);
         age =findViewById(R.id.rAge);
+        newProfile = new UserProfile();
 
         bCreateUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

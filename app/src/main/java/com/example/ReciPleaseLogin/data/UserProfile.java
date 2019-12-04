@@ -9,11 +9,10 @@ public class UserProfile {
 
     public String name;
     public String username;
-
     public String who_are_you;
     public String cooking_experience;
     public String what_do_you_do;
-    public String something_int; //firebase doesnt like it, complains about another getter , but none found
+    public String something_int;
     public String picture_link;
     public int num_followers;
     public int num_likers;

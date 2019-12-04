@@ -1,6 +1,5 @@
 package com.example.ReciPleaseLogin.ui.Post;
 
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
-import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
@@ -21,11 +19,15 @@ import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
+import com.google.firebase.Timestamp;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
+import com.google.firestore.v1.FirestoreGrpc;
 
 public class PostActivity extends AppCompatActivity {
 
     private Button bPostRecipe, bPostNext, bAddIngredient ,bAddTags;
-    private EditText Receipt_Name, Type, Description, Ingredient, Front_Picture_Link, Instruction, Instruction_pic;
+    private EditText Recipe_Name, Type, Description, Ingredient, Front_Picture_Link, Instruction, Instruction_pic;
 
     Recipe newRecipe;
 
@@ -41,7 +43,7 @@ public class PostActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false); // hide the current title from the Toolbar
 
     //text fields
-        Receipt_Name = findViewById(R.id.pName);
+        Recipe_Name = findViewById(R.id.pName);
         Type = findViewById(R.id.pType);
         Description = findViewById(R.id.pDescription);
         Ingredient = findViewById(R.id.pIngredient);
@@ -52,7 +54,7 @@ public class PostActivity extends AppCompatActivity {
         //Picture_Link_2 = findViewById(R.id.pStep2Link);
 
         //buttons
-        bPostNext = (Button) findViewById(R.id.pSteps);
+        bPostNext = findViewById(R.id.pSteps);
         bPostNext = findViewById(R.id.pSteps);
         bPostRecipe = findViewById(R.id.pPost);
         bAddTags =findViewById(R.id.pAddTags);
@@ -64,6 +66,7 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Do something in response to button click
                 if(validate_info(newRecipe)) {
+                    newRecipe.posted= Timestamp.now();
                     newRecipe.updateDB();
             //change intent?
                 }
@@ -181,19 +184,24 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void submit() {
+
+
         Intent intent;
         intent = new Intent(PostActivity.this, MenuActivity.class);
         startActivity(intent);
+
     }
 
     private boolean validate_info(Recipe newRecipe){
         boolean valid=true;
-        if (Receipt_Name.getText().length()==0){
+        if (Recipe_Name.getText().length()==0){
             valid=false;
-            Receipt_Name.setError("Recipe is required");
+            Recipe_Name.setError("Recipe is required");
+            
+
         }
         else{
-            newRecipe.recipe_name=Receipt_Name.getText().toString();
+            newRecipe.recipe_name=Recipe_Name.getText().toString();
 
         }
 
@@ -226,7 +234,6 @@ public class PostActivity extends AppCompatActivity {
         }
 
         if (newRecipe.instructions.size()!=0) {
-        ;
         }
         else if (Instruction.getText().length()==0){
             Instruction.setError("A step is required");
@@ -237,7 +244,6 @@ public class PostActivity extends AppCompatActivity {
         }
 
         if (newRecipe.instruction_pics.size()!=0){
-            ;
         }
         else if (Instruction_pic.getText().length()==0){
             Instruction_pic.setError("A Link is required?");

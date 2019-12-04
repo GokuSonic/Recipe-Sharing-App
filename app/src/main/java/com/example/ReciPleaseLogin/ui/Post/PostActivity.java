@@ -1,6 +1,5 @@
 package com.example.ReciPleaseLogin.ui.Post;
 
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ReciPleaseLogin.R;
-import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
@@ -52,7 +50,7 @@ public class PostActivity extends AppCompatActivity {
         //Picture_Link_2 = findViewById(R.id.pStep2Link);
 
         //buttons
-        bPostNext = (Button) findViewById(R.id.pSteps);
+        bPostNext = findViewById(R.id.pSteps);
         bPostNext = findViewById(R.id.pSteps);
         bPostRecipe = findViewById(R.id.pPost);
         bAddTags =findViewById(R.id.pAddTags);
@@ -184,6 +182,7 @@ public class PostActivity extends AppCompatActivity {
         Intent intent;
         intent = new Intent(PostActivity.this, MenuActivity.class);
         startActivity(intent);
+
     }
 
     private boolean validate_info(Recipe newRecipe){
@@ -226,7 +225,6 @@ public class PostActivity extends AppCompatActivity {
         }
 
         if (newRecipe.instructions.size()!=0) {
-        ;
         }
         else if (Instruction.getText().length()==0){
             Instruction.setError("A step is required");
@@ -237,7 +235,6 @@ public class PostActivity extends AppCompatActivity {
         }
 
         if (newRecipe.instruction_pics.size()!=0){
-            ;
         }
         else if (Instruction_pic.getText().length()==0){
             Instruction_pic.setError("A Link is required?");

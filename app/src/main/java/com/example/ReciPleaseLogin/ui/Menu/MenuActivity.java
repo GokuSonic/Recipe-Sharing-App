@@ -18,15 +18,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.data.Recipes;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
+import com.google.firebase.database.DatabaseReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
-
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -84,7 +86,7 @@ public class MenuActivity extends AppCompatActivity {
         final ImageView b2 = findViewById(R.id.imageView2);
         final ImageView b3 = findViewById(R.id.imageView3);
         final ImageView b4 = findViewById(R.id.imageView4);
-    test();
+        test();
         //Lower part of Menu
         ViewPager vpPager = findViewById(R.id.menu_viewpage);
 
@@ -101,9 +103,47 @@ public class MenuActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         dotsIndicator.setViewPager(viewPager);
+        //get latest user recipes
+
+        Object ReturnInsideOutside = new Object();
+        DatabaseReference dref;
+        dref = DB.getInstance().database.getReference("Root").child("Recipes");//download eVeRyTHING and make massive object
+        DB.getInstance().pull(new IObjectListener() {
+            @Override
+            public void onRetrievalSuccess(Object InsideObject) {
+                Object OutsideObject = InsideObject;
+                Log.i("TEST", "" + InsideObject.toString());
+            }
+
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST-INSIDE", "F");
+            }
+        }, ReturnInsideOutside, dref);
+        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
 
 
+        //GET the public most updated recipes
+        if (ReturnInsideOutside instanceof Recipes) {
+            Recipes DBrecipes = ((Recipes) ReturnInsideOutside);
+
+            Recipe[] most_recent_recipies = new Recipe[3];
+
+
+            for (int i = 0; i < DBrecipes.recipes.size(); i++) {
+                System.out.println(DBrecipes.recipes.get(i).posted.toDate());
+            }
+
+
+            // update 'shell' objects
+            TextView post = findViewById(R.id.textView1);
+            //grab recipe data
+            for (int i = 0; i < 1000; i++) {
+                post.setText(i + "hello");
+            }
+        }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

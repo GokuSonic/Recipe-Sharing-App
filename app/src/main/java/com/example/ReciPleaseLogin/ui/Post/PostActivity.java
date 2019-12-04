@@ -21,7 +21,8 @@ import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.PremiumStatus.PremiumActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
-import com.google.firebase.Timestamp;
+
+import java.util.Date;
 
 public class PostActivity extends AppCompatActivity {
 
@@ -72,7 +73,9 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Do something in response to button click
                 if(validate_info(newRecipe)) {
-                    newRecipe.posted= Timestamp.now();
+
+                    String date = new Date().toString();
+                    newRecipe.posted = date;
                     newRecipe.updateDB();
                     // go to menu
                     Intent intent = new Intent(PostActivity.this, MenuActivity.class);

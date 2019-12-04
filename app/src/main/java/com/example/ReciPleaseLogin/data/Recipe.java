@@ -1,7 +1,5 @@
 package com.example.ReciPleaseLogin.data;
 
-import com.google.firebase.Timestamp;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ public class Recipe {
     public String recipe_name;
     //public String recipename;
     public String description;
-    public Timestamp posted;
+    public String posted;
     public List<String> ingredients =new ArrayList<>();
     public List<String> instructions=new ArrayList<>();
     public List<String> instruction_pics=new ArrayList<>();
@@ -34,11 +32,13 @@ public class Recipe {
     public Recipe()
     {}
 
-    public Recipe(String recipe_name, String description, List<String> ingredients)
+    public Recipe(String recipe_name, String description, List<String> ingredients, String timePosted, String userUid)
     {
         this.recipe_name = recipe_name;
         this.description = description;
         this.ingredients = ingredients;
+        this.posted = timePosted;
+        this.owner = userUid;
     }
 
 
@@ -51,11 +51,14 @@ public class Recipe {
         return recipe_name;
     }
     @Exclude
-    public String getSelf(){return self;};
+    public String getSelf() {
+        return self;
+    }
+
     public String getDescription() { return description; }
     public List<String> getInstruction_pics() { return instruction_pics; }
 
-    public Timestamp getPosted()
+    public String getPosted()
     {
         return posted;
     }

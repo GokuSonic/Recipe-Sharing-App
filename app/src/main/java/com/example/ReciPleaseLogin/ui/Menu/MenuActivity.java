@@ -2,12 +2,12 @@ package com.example.ReciPleaseLogin.ui.Menu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -17,20 +17,23 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
-import com.example.ReciPleaseLogin.data.ImageLoadTask;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
-import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
 import com.example.ReciPleaseLogin.ui.PremiumStatus.PremiumActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 public class MenuActivity extends AppCompatActivity {
@@ -112,10 +115,24 @@ public class MenuActivity extends AppCompatActivity {
         //get latest user recipes
 
         final List<Recipe> ReturnInsideOutside = new Vector<>();
+
         //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
-        final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        final DatabaseReference dref = DB.getInstance().database.getReference().child("Root").child("Recipes").child("Public");
         //download eVeRyTHING and make massive object
-        DB.getInstance().pull(new IObjectListener() {
+        dref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                collecetionOfRecipes((Map<String, Recipe>) dataSnapshot.getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+      /*  DB.getInstance().pull(new IObjectListener() {
             @Override
             public void onRetrievalSuccess(Object InsideObject) {
                 Object OutsideObject = InsideObject;
@@ -161,7 +178,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
 
-    }
+    }*/
 
 
     @Override
@@ -216,41 +233,23 @@ public class MenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    /*
-public void test(){
 
-    Recipes ReturnInsideOutside = new Recipes();
-    //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
-    final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
-    //download eVeRyTHING and make massive object
-    DB.getInstance().pull(new IObjectListener() {
-        @Override
-        public void onRetrievalSuccess(Object InsideObject) {
-            Object OutsideObject = InsideObject;
-            Log.i("TEST", "" + InsideObject.toString());
+    private void collecetionOfRecipes(Map<String, Recipe> recipes) {
 
+        ArrayList<String> recipeList = new ArrayList<>();
+
+        //iterate through each recipe, ignoring their UID
+        for (Map.Entry<String, Recipe> entry : recipes.entrySet()) {
+
+            //Get recipe map
+            Map singleRecipe = (Map) entry.getValue();
+            //Get description field and append to list
+            recipeList.add((String) singleRecipe.get("description"));
         }
 
-        @Override
-        public void onRetrievalFailure() {
-            Log.i("TEST-INSIDE", "F");
+        System.out.println("\t\t!!!!!!!!!!!!!!!!!!!!!!!Works=============" + recipeList.toString());
         }
-    }, ReturnInsideOutside, dref, new Recipes());
-    Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
 
-    Object recipes = ReturnInsideOutside;
-    recipes.toString();
-    Log.i("TEST", "" + recipes.toString());
 
-    //GET the public most updated recipes
-    /*List<Recipe> DBrecipes = ((List<Recipe>) recipes);
-    Recipe[] most_recent_recipies = new Recipe[3];
-
-    System.out.println("\n\n\nHERE size --" + DBrecipes.size());
-    for (int i = 0; i < DBrecipes.size(); i++) {
-        System.out.println(DBrecipes.get(i).posted.toDate());
-    }
-
-}*/
 }
 

@@ -6,48 +6,12 @@
 
 
     <RatingBar
-        android:id="@+id/menu_fragment1_bbqStar"
-        style="@android:style/Widget.Holo.Light.RatingBar"
-        android:layout_width="142dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
-        android:clickable="false"
-        android:indeterminate="false"
-        android:numStars="3"
-        android:rating="0"
-        android:stepSize="1"
-        android:isIndicator="true"
-        app:layout_constraintBottom_toTopOf="@+id/cookRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_cookStar" />
-
-    <RatingBar
-        android:id="@+id/menu_fragment1_cookStar"
-        style="@android:style/Widget.Holo.Light.RatingBar"
-        android:layout_width="142dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="30dp"
-        android:clickable="false"
-        android:indeterminate="false"
-        android:numStars="3"
-        android:rating="0"
-        android:stepSize="1"
-        android:isIndicator="true"
-        app:layout_constraintBottom_toTopOf="@+id/cookRating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_bakerStar" />
-
-    <RatingBar
         android:id="@+id/menu_fragment1_bakerStar"
         style="@android:style/Widget.Holo.Light.RatingBar"
         android:layout_width="142dp"
         android:layout_height="70dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="132dp"
         android:layout_marginBottom="30dp"
         android:background="#000852F5"
         android:clickable="false"
@@ -58,77 +22,36 @@
         android:stepSize="1"
         app:layout_constraintBottom_toTopOf="@+id/cookRating"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/menu_fragment1_cook_progressbar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="65dp"
-        android:max="100"
-        android:progress="5"
-        app:layout_constraintEnd_toStartOf="@+id/menu_fragment1_bbqStar"
-        app:layout_constraintStart_toEndOf="@+id/menu_fragment1_bbq_text"
-        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_cook_progressbar" />
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_baker_progressbar" />
 
     <ProgressBar
         android:id="@+id/menu_fragment1_baker_progressbar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="164dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="100dp"
         android:max="100"
         android:progress="5"
-        app:layout_constraintEnd_toStartOf="@+id/menu_fragment1_bakerStar"
-        app:layout_constraintStart_toEndOf="@+id/menu_fragment1_baker_text"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/menu_fragment1_cook_progressbar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="65dp"
-        android:max="100"
-        android:progress="5"
-        app:layout_constraintEnd_toStartOf="@+id/menu_fragment1_cookStar"
-        app:layout_constraintStart_toEndOf="@+id/menu_fragment1_cook_text"
-        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_baker_progressbar" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_cook_text" />
 
     <TextView
         android:id="@+id/menu_fragment1_cook_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="76dp"
         android:text="Cook"
         android:textColor="#FFFFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_baker_text" />
-
-    <TextView
-        android:id="@+id/menu_fragment1_bbq_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="65dp"
-        android:text="BBQ"
-        android:textColor="#FFFFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_fragment1_cook_text" />
-
-    <TextView
-        android:id="@+id/menu_fragment1_baker_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="80dp"
-        android:text="Baker"
-        android:textColor="#FFFFFFFF"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

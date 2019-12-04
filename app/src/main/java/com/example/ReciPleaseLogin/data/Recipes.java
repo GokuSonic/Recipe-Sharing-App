@@ -1,7 +1,5 @@
 package com.example.ReciPleaseLogin.data;
 
-import com.example.ReciPleaseLogin.data.Recipe;
-
 import java.util.List;
 import java.util.Vector;
 

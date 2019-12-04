@@ -220,7 +220,7 @@ public class LoginActivity extends AppCompatActivity {
 
         List<Recipe> ReturnInsideOutside =new Vector<>();
         DatabaseReference dref;
-        dref =DB.getInstance().database.getReference("Root").child("Recipes");; //download eVeRyTHING and make massive object
+        dref =DB.getInstance().database.getReference("Root").child("Recipes").child("Public");; //download eVeRyTHING and make massive object
         DB.getInstance().pull(new IObjectListener() {
             @Override
             public void onRetrievalSuccess(Object InsideObject) {
@@ -231,7 +231,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onRetrievalFailure() {
                 Log.i("TEST-INSIDE", "F");
             }
-        }, ReturnInsideOutside, dref);
+        }, ReturnInsideOutside, dref,new Recipe());
         Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
 
         Object recipes=(Object)  ReturnInsideOutside;

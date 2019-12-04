@@ -18,6 +18,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
+import com.example.ReciPleaseLogin.data.Recipes;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
@@ -108,37 +109,8 @@ public class MenuActivity extends AppCompatActivity {
 
         dotsIndicator.setViewPager(viewPager);
         //get latest user recipes
+test();
 
-        List<Recipe> ReturnInsideOutside = new Vector<>();
-        //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
-        final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
-        //download eVeRyTHING and make massive object
-        DB.getInstance().pull(new IObjectListener() {
-            @Override
-            public void onRetrievalSuccess(Object InsideObject) {
-                Object OutsideObject = InsideObject;
-                Log.i("TEST", "" + InsideObject.toString());
-            }
-
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST-INSIDE", "F");
-            }
-        }, ReturnInsideOutside, dref);
-        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
-
-        Object recipes = ReturnInsideOutside;
-        recipes.toString();
-        Log.i("TEST", "" + recipes.toString());
-
-        //GET the public most updated recipes
-        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
-        Recipe[] most_recent_recipies = new Recipe[3];
-
-        System.out.println("\n\n\nHERE size --" + DBrecipes.size());
-        for (int i = 0; i < DBrecipes.size(); i++) {
-            System.out.println(DBrecipes.get(i).posted.toDate());
-            }
 
 
             // update 'shell' objects
@@ -198,5 +170,40 @@ public class MenuActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+public void test(){
+
+    Recipes ReturnInsideOutside = new Recipes();
+    //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+    final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+    //download eVeRyTHING and make massive object
+    DB.getInstance().pull(new IObjectListener() {
+        @Override
+        public void onRetrievalSuccess(Object InsideObject) {
+            Object OutsideObject = InsideObject;
+            Log.i("TEST", "" + InsideObject.toString());
+
+        }
+
+        @Override
+        public void onRetrievalFailure() {
+            Log.i("TEST-INSIDE", "F");
+        }
+    }, ReturnInsideOutside, dref, new Recipes());
+    Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
+
+    Object recipes = ReturnInsideOutside;
+    recipes.toString();
+    Log.i("TEST", "" + recipes.toString());
+
+    //GET the public most updated recipes
+    /*List<Recipe> DBrecipes = ((List<Recipe>) recipes);
+    Recipe[] most_recent_recipies = new Recipe[3];
+
+    System.out.println("\n\n\nHERE size --" + DBrecipes.size());
+    for (int i = 0; i < DBrecipes.size(); i++) {
+        System.out.println(DBrecipes.get(i).posted.toDate());
+    }*/
 
 }
+}
+

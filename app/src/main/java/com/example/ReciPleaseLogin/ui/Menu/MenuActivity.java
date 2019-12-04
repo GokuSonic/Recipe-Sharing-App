@@ -18,10 +18,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
-import com.example.ReciPleaseLogin.data.Recipes;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.IObjectListener;
-import com.example.ReciPleaseLogin.ui.IRecipeListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
@@ -29,6 +27,9 @@ import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
+
+import java.util.List;
+import java.util.Vector;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -108,16 +109,15 @@ public class MenuActivity extends AppCompatActivity {
         dotsIndicator.setViewPager(viewPager);
         //get latest user recipes
 
-        Object ReturnInsideOutside = new Object();
+        List<Recipe> ReturnInsideOutside = new Vector<>();
         DatabaseReference dref;
-        dref = DB.getInstance().database.getReference("Root").child("Recipes");//download eVeRyTHING and make massive object
+        dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public"); //download eVeRyTHING and make massive object
         DB.getInstance().pull(new IObjectListener() {
             @Override
             public void onRetrievalSuccess(Object InsideObject) {
                 Object OutsideObject = InsideObject;
                 Log.i("TEST", "" + InsideObject.toString());
             }
-
             @Override
             public void onRetrievalFailure() {
                 Log.i("TEST-INSIDE", "F");
@@ -125,16 +125,21 @@ public class MenuActivity extends AppCompatActivity {
         }, ReturnInsideOutside, dref);
         Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
 
+        Object recipes = ReturnInsideOutside;
+        recipes.toString();
+        Log.i("TEST", "" + recipes.toString());
+
+        //((Recipes) recipes);
+        Log.i("TEST", "" + recipes.toString());
+
 
         //GET the public most updated recipes
-        if (ReturnInsideOutside instanceof Recipes) {
-            Recipes DBrecipes = ((Recipes) ReturnInsideOutside);
-
+        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
             Recipe[] most_recent_recipies = new Recipe[3];
 
-
-            for (int i = 0; i < DBrecipes.recipes.size(); i++) {
-                System.out.println(DBrecipes.recipes.get(i).posted.toDate());
+        System.out.println("\n\n\nHERE size --" + DBrecipes.size());
+        for (int i = 0; i < DBrecipes.size(); i++) {
+            System.out.println(DBrecipes.get(i).posted.toDate());
             }
 
 
@@ -144,7 +149,7 @@ public class MenuActivity extends AppCompatActivity {
             for (int i = 0; i < 1000; i++) {
                 post.setText(i + "hello");
             }
-        }
+
     }
 
 

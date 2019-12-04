@@ -2,7 +2,6 @@ package com.example.ReciPleaseLogin.ui.Menu;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
-import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
@@ -110,31 +108,13 @@ public class MenuActivity extends AppCompatActivity {
         //get latest user recipes
 
         List<Recipe> ReturnInsideOutside = new Vector<>();
-        DatabaseReference dref;
-        dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public"); //download eVeRyTHING and make massive object
-        DB.getInstance().pull(new IObjectListener() {
-            @Override
-            public void onRetrievalSuccess(Object InsideObject) {
-                Object OutsideObject = InsideObject;
-                Log.i("TEST", "" + InsideObject.toString());
-            }
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST-INSIDE", "F");
-            }
-        }, ReturnInsideOutside, dref);
-        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
+        //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
 
-        Object recipes = ReturnInsideOutside;
-        recipes.toString();
-        Log.i("TEST", "" + recipes.toString());
-
-        //((Recipes) recipes);
-        Log.i("TEST", "" + recipes.toString());
 
 
         //GET the public most updated recipes
-        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
+/*        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
             Recipe[] most_recent_recipies = new Recipe[3];
 
         System.out.println("\n\n\nHERE size --" + DBrecipes.size());
@@ -142,7 +122,7 @@ public class MenuActivity extends AppCompatActivity {
             System.out.println(DBrecipes.get(i).posted.toDate());
             }
 
-
+*/
             // update 'shell' objects
             TextView post = findViewById(R.id.textView1);
             //grab recipe data

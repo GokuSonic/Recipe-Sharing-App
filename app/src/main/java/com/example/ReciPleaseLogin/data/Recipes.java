@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class Recipes {
 
-   List<Recipe> recipes=new Vector<Recipe>();;
+   public List<Recipe> recipes=new Vector<Recipe>();;
 
     public Recipes(){
     }

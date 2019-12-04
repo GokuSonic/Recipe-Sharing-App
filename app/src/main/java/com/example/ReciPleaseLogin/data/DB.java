@@ -282,5 +282,12 @@ public class DB {
             newrecipe.child(newrecipe.getKey());
 
         }
+
+        else if (obj instanceof Recipes){
+            List<Recipe> recipes=((Recipes) obj).recipes;
+
+
+
+    }
     }
 }

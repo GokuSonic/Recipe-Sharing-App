@@ -2,6 +2,7 @@ package com.example.ReciPleaseLogin.ui.Menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
+import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
@@ -110,11 +112,27 @@ public class MenuActivity extends AppCompatActivity {
         List<Recipe> ReturnInsideOutside = new Vector<>();
         //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
         final DatabaseReference dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+        //download eVeRyTHING and make massive object
+        DB.getInstance().pull(new IObjectListener() {
+            @Override
+            public void onRetrievalSuccess(Object InsideObject) {
+                Object OutsideObject = InsideObject;
+                Log.i("TEST", "" + InsideObject.toString());
+            }
 
+            @Override
+            public void onRetrievalFailure() {
+                Log.i("TEST-INSIDE", "F");
+            }
+        }, ReturnInsideOutside, dref);
+        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
 
+        Object recipes = ReturnInsideOutside;
+        recipes.toString();
+        Log.i("TEST", "" + recipes.toString());
 
         //GET the public most updated recipes
-/*        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
+        List<Recipe> DBrecipes = ((List<Recipe>) recipes);
             Recipe[] most_recent_recipies = new Recipe[3];
 
         System.out.println("\n\n\nHERE size --" + DBrecipes.size());
@@ -122,12 +140,12 @@ public class MenuActivity extends AppCompatActivity {
             System.out.println(DBrecipes.get(i).posted.toDate());
             }
 
-*/
+
             // update 'shell' objects
             TextView post = findViewById(R.id.textView1);
             //grab recipe data
             for (int i = 0; i < 1000; i++) {
-                post.setText(i + "hello");
+                post.setText("Recipe: test \nDifficulty: Hard\nDirections:1) Add data 2) create test");
             }
 
     }
@@ -182,23 +200,3 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 }
- /*   public void test(){
-        //test = findViewById(R.id.textView16);
-        //test.setText("Success");
-        String recipe_name = "steak";
-        DB.getInstance().pullRecipe(new IRecipeListener(){
-            @Override
-            public void onRetrievalSuccess(Recipe recipe) {
-                String theName = recipe.recipe_name;
-                test.setText(theName);
-                Log.i("TEST", "" + recipe.recipe_name);
-            }
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST", "F");
-            }
-
-        }, recipe_name);
-
-    }
-}*/

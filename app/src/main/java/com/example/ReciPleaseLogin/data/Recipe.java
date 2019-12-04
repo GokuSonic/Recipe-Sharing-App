@@ -22,6 +22,9 @@ public class Recipe {
     public int num_likers;
     public boolean premium;
     public Messages comments;
+    public String prepTimeCookTime;
+    public String diet;
+    public String difficulty;
 
 
 
@@ -83,6 +86,19 @@ return premium;
     {
 return comments;
     }
+
+    public String getPrepTimeCookTime() {
+        return prepTimeCookTime;
+    }
+
+    public String getDiet() {
+        return diet;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
     //public String getRecipename(){ return recipename;};
 
     public void updateDB(){

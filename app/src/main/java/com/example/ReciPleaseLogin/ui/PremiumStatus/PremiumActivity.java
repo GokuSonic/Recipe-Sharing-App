@@ -1,4 +1,4 @@
-package com.example.ReciPleaseLogin.ui.Profile;
+package com.example.ReciPleaseLogin.ui.PremiumStatus;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,17 +14,15 @@ import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
-import com.example.ReciPleaseLogin.ui.PremiumStatus.PremiumActivity;
+import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 
-
-public class ProfileActivity extends AppCompatActivity {
-
+public class PremiumActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_premium);
 
         // Upper part of menu
         Toolbar toolbar = findViewById(R.id.menu_toolbar_layout);
@@ -43,42 +41,42 @@ public class ProfileActivity extends AppCompatActivity {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.toolbar_home:
-                intent = new Intent(ProfileActivity.this, MenuActivity.class);
+                intent = new Intent(PremiumActivity.this, MenuActivity.class);
                 startActivity(intent);
                 return true;
 
             case R.id.toolbar_levels:
-                intent = new Intent(ProfileActivity.this, LevelsActivity.class);
+                intent = new Intent(PremiumActivity.this, LevelsActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_search:
-                intent = new Intent(ProfileActivity.this, SearchActivity.class);
+                intent = new Intent(PremiumActivity.this, SearchActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_messages:
-                intent = new Intent(ProfileActivity.this, MessagesActivity.class);
+                intent = new Intent(PremiumActivity.this, MessagesActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_post:
-                intent = new Intent(ProfileActivity.this, PostActivity.class);
+                intent = new Intent(PremiumActivity.this, PostActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_profile:
-                intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                intent = new Intent(PremiumActivity.this, ProfileActivity.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_edit_profile:
-                intent = new Intent(ProfileActivity.this, EditProfile.class);
+                intent = new Intent(PremiumActivity.this, EditProfile.class);
                 this.startActivity(intent);
                 return true;
 
             case R.id.toolbar_premium:
-                intent = new Intent(ProfileActivity.this, PremiumActivity.class);
+                intent = new Intent(PremiumActivity.this, PremiumActivity.class);
                 this.startActivity(intent);
                 return true;
         }

@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -17,17 +18,18 @@ import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
+import com.example.ReciPleaseLogin.ui.PremiumStatus.PremiumActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.google.firebase.Timestamp;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
-import com.google.firestore.v1.FirestoreGrpc;
 
 public class PostActivity extends AppCompatActivity {
 
     private Button bPostRecipe, bPostNext, bAddIngredient ,bAddTags;
-    private EditText Recipe_Name, Type, Description, Ingredient, Front_Picture_Link, Instruction, Instruction_pic;
+    private EditText Recipe_Name, Type, Description, Ingredient,
+            Front_Picture_Link, Instruction, Instruction_pic,
+            Difficulty, Diet, PrepAndCookTime;
+    int Step = 1;
 
     Recipe newRecipe;
 
@@ -50,6 +52,10 @@ public class PostActivity extends AppCompatActivity {
         Front_Picture_Link = findViewById(R.id.pFrontLink);
         Instruction = findViewById(R.id.pStep1);
         Instruction_pic= findViewById(R.id.pStep1Link);
+        Difficulty = findViewById(R.id.pDifficulty);
+        PrepAndCookTime = findViewById(R.id.pPrepAndCookTime);
+        Diet = findViewById(R.id.pDiet);
+
         //Step_2 = findViewById(R.id.pStep2);
         //Picture_Link_2 = findViewById(R.id.pStep2Link);
 
@@ -68,6 +74,11 @@ public class PostActivity extends AppCompatActivity {
                 if(validate_info(newRecipe)) {
                     newRecipe.posted= Timestamp.now();
                     newRecipe.updateDB();
+                    // go to menu
+                    Intent intent = new Intent(PostActivity.this, MenuActivity.class);
+                    Toast.makeText(PostActivity.this, "Post successful", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+
             //change intent?
                 }
                 else {
@@ -85,7 +96,8 @@ public class PostActivity extends AppCompatActivity {
                 newRecipe.instructions.add(Instruction.getText().toString());
                 newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
                     Instruction.setText("");
-                    Instruction_pic.setText("");
+                    Step += 1;
+                    Instruction.setText("Step " + Step + ")");
                 }
                 else {
 
@@ -179,6 +191,11 @@ public class PostActivity extends AppCompatActivity {
                 intent = new Intent(PostActivity.this, EditProfile.class);
                 this.startActivity(intent);
                 return true;
+
+            case R.id.toolbar_premium:
+                intent = new Intent(PostActivity.this, PremiumActivity.class);
+                this.startActivity(intent);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -197,7 +214,7 @@ public class PostActivity extends AppCompatActivity {
         if (Recipe_Name.getText().length()==0){
             valid=false;
             Recipe_Name.setError("Recipe is required");
-            
+
 
         }
         else{
@@ -244,11 +261,22 @@ public class PostActivity extends AppCompatActivity {
         }
 
         if (newRecipe.instruction_pics.size()!=0){
-        }
-        else if (Instruction_pic.getText().length()==0){
+        } else if (Instruction_pic.getText().length() == 0) {
             Instruction_pic.setError("A Link is required?");
-            valid=false;
-        }else
+            valid = false;
+        } else if (Diet.getText().length() == 0) {
+            //error
+            valid = false;
+            Diet.setError("Diet is Required");
+        } else if (Difficulty.getText().length() == 0) {
+            //error
+            valid = false;
+            Difficulty.setError("Difficulty is Required");
+        } else if (PrepAndCookTime.getText().length() == 0) {
+            //error
+            valid = false;
+            Diet.setError("Prep and cook time are Required");
+        } else
         {
             newRecipe.instruction_pics.add(Instruction_pic.getText().toString());
         }

@@ -5,6 +5,7 @@ import java.util.Vector;
 
 public class Recipes {
 
+    public List<String> key=new Vector<>();
    public List<Recipe> recipes=new Vector<Recipe>();;
 
     public Recipes(){

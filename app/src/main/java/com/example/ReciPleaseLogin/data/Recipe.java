@@ -1,6 +1,8 @@
 package com.example.ReciPleaseLogin.data;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 //import static com.example.ReciPleaseLogin.data.DB.pushRecipeName;
 
 public class Recipe {
+    String self;
     public String owner;
     public String recipe_name;
     //public String recipename;
@@ -47,6 +50,8 @@ public class Recipe {
     {
         return recipe_name;
     }
+    @Exclude
+    public String getSelf(){return self;};
     public String getDescription() { return description; }
     public List<String> getInstruction_pics() { return instruction_pics; }
 

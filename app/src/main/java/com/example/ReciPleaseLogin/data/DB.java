@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+import java.util.Map;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -172,9 +173,6 @@ public class DB {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
-                //String recipe = dataSnapshot.getValue(String.class);
-                //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
                 Recipe recipe = dataSnapshot.getValue(Recipe.class);
                 if (recipe != null) {
 
@@ -190,33 +188,29 @@ public class DB {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 //pretend we have stuff here
-                Log.i(TAG, "DB F");
+                Log.i(TAG, "DB Failed");
             }
         };
         Log.i(TAG, "recipe is(outside):" + recipe_name);
         mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
     }
-    public void pull(final IObjectListener listener,Object InsidetoOutside, DatabaseReference dref) {
+    public void pull(final IObjectListener listener,Object InsidetoOutside, DatabaseReference dref,final Object type) {
         //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child("1").addListenerForSingleValueEvent(new ValueEventListener() {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //HashMap<String, Recipe> map = (HashMap<String, Recipe>) dataSnapshot.getValue();
-                //String recipe = dataSnapshot.getValue(String.class);
-                //Log.i(TAG, "recipe is:" + recipe_name.recipe_name);
-                //Recipe recipe = dataSnapshot.getValue(Recipe.class);
-
-                Object object =dataSnapshot.getValue(Object.class);
+                Object object =dataSnapshot.getValue(type.getClass());
                 if (object != null) {
+
 
                   /*  Log.i(TAG, "recipe_name is(inside):" + recipe.recipe_name);
                     //Log.i(TAG, "recipename is(inside):" + recipe.recipename);
                     Log.i(TAG, "description is:" + recipe.description);
                     Log.i(TAG, "ingredients is:" + recipe.ingredients);*/
                     //listener.onRetrievalSuccess(dataSnapshot.getValue(String.class).toString());
-                    Log.i(TAG, "DB Failure"+ object.toString());
+                    Log.i(TAG, "DB Recieved"+ object.toString());
                     listener.onRetrievalSuccess(object);
                 }
             }
@@ -227,7 +221,7 @@ public class DB {
                 Log.i(TAG, "DB Failure");
             }
         };
-        Log.i(TAG, "dref:" +dref.toString());
+        Log.i(TAG, "From dref:" +dref.toString());
         dref.addValueEventListener(postListener);
         //mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes").child(recipe_name).addValueEventListener(postListener);
         //});
@@ -237,8 +231,9 @@ public class DB {
 
     static public void push(Object obj) {
     if (obj instanceof UserProfile){
-        DatabaseReference users = mRootRef.child("users").push();
-        users.setValue(obj);
+        DatabaseReference users = mRootRef.child("users");
+        users.child(mAuth.getCurrentUser().getUid()).setValue((UserProfile)obj);
+
     }
     else if (obj instanceof Message){
         DatabaseReference userMsg=mRootRef.child("users");
@@ -277,7 +272,8 @@ public class DB {
             // mRootRef.child(mAuth.getCurrentUser().getUid()).child("Number of Recipes").setValue((long)num_recipes);   /// do we need or can we get recipes list size?
             DatabaseReference newrecipe = recipes.push();
             ((Recipe) obj).owner = mUser.getUid();
-        newrecipe.setValue(obj);
+        ((Recipe) obj).self=newrecipe.getKey();
+            newrecipe.setValue(obj);
             newrecipe.child(newrecipe.getKey());
 
         }

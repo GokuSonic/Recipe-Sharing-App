@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,33 +11,33 @@
         android:layout_height="match_parent">
 
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/menu_toolbar_layout"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
-            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/menu_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:elevation="4dp"
 
-        </androidx.appcompat.widget.Toolbar>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <EditText
             android:id="@+id/pName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Recipe Name"
@@ -48,73 +47,73 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <EditText
-        android:id="@+id/pType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Type"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pName" />
+        <EditText
+            android:id="@+id/pType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Type"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pName" />
 
-    <EditText
-        android:id="@+id/pDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Description"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pType" />
+        <EditText
+            android:id="@+id/pDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Description"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pType" />
 
 
-    <EditText
-        android:id="@+id/pIngredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Ingredient"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pDescription" />
+        <EditText
+            android:id="@+id/pIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Ingredient"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pDescription" />
 
-    <EditText
-        android:id="@+id/pFrontLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Front picture link"
-        android:textColor="#FFFFFFFF"
-        android:textColorHint="#FFFFFFFF"
-        android:inputType="textMultiLine"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pIngredient" />
+        <EditText
+            android:id="@+id/pFrontLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Front picture link"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pIngredient" />
 
         <EditText
             android:id="@+id/pStep1"
-            android:layout_width="211dp"
-            android:layout_height="233dp"
+            android:layout_width="217dp"
+            android:layout_height="188dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Step 1"
@@ -129,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="Picture link 1"
@@ -154,7 +153,7 @@
             android:layout_height="wrap_content"
             android:text="Post"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.913"
+            app:layout_constraintHorizontal_bias="0.82"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pStep1Link" />
 
@@ -175,5 +174,51 @@
             app:layout_constraintStart_toEndOf="@+id/pType"
             app:layout_constraintTop_toTopOf="@+id/pType" />
 
+        <EditText
+            android:id="@+id/pDiet"
+            android:layout_width="216dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Diet"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pStep1Link" />
+
+        <EditText
+            android:id="@+id/pPrepAndCookTime"
+            android:layout_width="213dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Prep and Cook time"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pDiet" />
+
+        <EditText
+            android:id="@+id/pDifficulty"
+            android:layout_width="215dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Difficulty"
+            android:inputType="textMultiLine"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pPrepAndCookTime" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

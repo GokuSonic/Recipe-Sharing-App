@@ -13,6 +13,7 @@ import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Menu.MenuActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
+import com.example.ReciPleaseLogin.ui.PremiumStatus.PremiumActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 
@@ -71,6 +72,11 @@ public class EditProfile extends AppCompatActivity {
 
             case R.id.toolbar_edit_profile:
                 intent = new Intent(EditProfile.this, EditProfile.class);
+                this.startActivity(intent);
+                return true;
+
+            case R.id.toolbar_premium:
+                intent = new Intent(EditProfile.this, PremiumActivity.class);
                 this.startActivity(intent);
                 return true;
 

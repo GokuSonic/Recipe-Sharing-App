@@ -24,6 +24,7 @@ import com.example.ReciPleaseLogin.ui.IObjectListener;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
 import com.example.ReciPleaseLogin.ui.Messages.MessagesActivity;
 import com.example.ReciPleaseLogin.ui.Post.PostActivity;
+import com.example.ReciPleaseLogin.ui.PremiumStatus.PremiumActivity;
 import com.example.ReciPleaseLogin.ui.Profile.ProfileActivity;
 import com.example.ReciPleaseLogin.ui.Search.SearchActivity;
 import com.google.firebase.database.DatabaseReference;
@@ -165,6 +166,11 @@ test();
 
             case R.id.toolbar_edit_profile:
                 intent = new Intent(MenuActivity.this, EditProfile.class);
+                this.startActivity(intent);
+                return true;
+
+            case R.id.toolbar_premium:
+                intent = new Intent(MenuActivity.this, PremiumActivity.class);
                 this.startActivity(intent);
                 return true;
         }

@@ -1,14 +1,11 @@
 package com.example.ReciPleaseLogin.ui.login;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
-import com.example.ReciPleaseLogin.data.User;
 import com.example.ReciPleaseLogin.data.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,12 +66,14 @@ public class Registration extends AppCompatActivity {
                 if(validate_info()){
                     create_user();
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                    // if (user != null) {
                        // submit_profile(user);
                     //}
              //   }
                // else{
                  //   return;
+
 
 
                 }
@@ -99,6 +97,7 @@ public class Registration extends AppCompatActivity {
                             //update user
                             //System.out.println("HERE is uid"+DB.mAuth.getCurrentUser());
 
+
                         } else {
 
                             //Toast.makeText(Registration.this, "Login Failure", Toast.LENGTH_SHORT).show();
@@ -121,9 +120,8 @@ public class Registration extends AppCompatActivity {
 
 
         newProfile.updateDB();
-
+        System.out.println("HERE" + newProfile.uid);
         Toast.makeText(Registration.this, "Account Submitted!", Toast.LENGTH_SHORT).show();
-
         intent = new Intent(Registration.this, LoginActivity.class);
         startActivity(intent);
 

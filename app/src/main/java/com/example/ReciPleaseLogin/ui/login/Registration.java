@@ -70,12 +70,12 @@ public class Registration extends AppCompatActivity {
                 if(validate_info()){
                     create_user();
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    if (user != null) {
-                        submit_profile(user);
-                    }
-                }
-                else{
-                    return;
+                   // if (user != null) {
+                       // submit_profile(user);
+                    //}
+             //   }
+               // else{
+                 //   return;
 
 
                 }
@@ -94,9 +94,10 @@ public class Registration extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            submit_profile(mAuth.getCurrentUser());
                          //   Toast.makeText(Registration.this, "Logged In", Toast.LENGTH_SHORT).show();
                             //update user
-                            DB.getInstance().mUser=mAuth.getCurrentUser();
+                            //System.out.println("HERE is uid"+DB.mAuth.getCurrentUser());
 
                         } else {
 

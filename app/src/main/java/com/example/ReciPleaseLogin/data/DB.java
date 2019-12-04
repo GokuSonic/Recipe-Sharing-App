@@ -231,8 +231,9 @@ public class DB {
 
     static public void push(Object obj) {
     if (obj instanceof UserProfile){
-        DatabaseReference users = mRootRef.child("users").push();
-        users.setValue(obj);
+        DatabaseReference users = mRootRef.child("users");
+        users.child(mAuth.getCurrentUser().getUid()).setValue((UserProfile)obj);
+
     }
     else if (obj instanceof Message){
         DatabaseReference userMsg=mRootRef.child("users");

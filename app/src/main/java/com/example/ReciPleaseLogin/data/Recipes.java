@@ -5,11 +5,9 @@ import java.util.Vector;
 
 public class Recipes {
 
-    public List<Recipe> recipes;
-
+   public List<Recipe> recipes=new Vector<Recipe>();;
 
     public Recipes(){
-        recipes=new Vector<Recipe>();
     }
 
 
@@ -18,9 +16,6 @@ public class Recipes {
     }
 
     public void updateDB(){
-
         DB.push(this);
     }
-
-
     }

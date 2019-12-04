@@ -265,7 +265,14 @@ public class DB {
 
     }
         else if (obj instanceof Recipe) {
-            DatabaseReference recipes = mRootRef.child(mAuth.getCurrentUser().getUid()).child("Recipes");
+            DatabaseReference recipes;
+            if (((Recipe) obj).premium==true) {
+
+                //going with non user structure to allow easier fetching with limited capabilities of RTDB
+                recipes = mRootRef.child("Recipes").child("Premium");
+            }else {
+                 recipes = mRootRef.child("Recipes").child("Public");
+            }
             ;
             //need to fetch current value increment by one and push/
             // mRootRef.child(mAuth.getCurrentUser().getUid()).child("Number of Recipes").setValue((long)num_recipes);   /// do we need or can we get recipes list size?
@@ -275,5 +282,12 @@ public class DB {
             newrecipe.child(newrecipe.getKey());
 
         }
+
+        else if (obj instanceof Recipes){
+            List<Recipe> recipes=((Recipes) obj).recipes;
+
+
+
+    }
     }
 }

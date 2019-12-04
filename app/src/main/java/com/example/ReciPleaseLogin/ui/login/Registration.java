@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Registration extends AppCompatActivity {
@@ -59,6 +58,7 @@ public class Registration extends AppCompatActivity {
         occbox = findViewById(R.id.rOcc);
         expbox = findViewById(R.id.rExperience);
         age =findViewById(R.id.rAge);
+        newProfile = new UserProfile();
 
         bCreateUser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {

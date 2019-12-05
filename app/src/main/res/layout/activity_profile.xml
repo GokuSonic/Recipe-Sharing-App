@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/IGurl"
-            android:layout_width="260dp"
+            android:layout_width="350dp"
             android:layout_height="19dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
@@ -45,6 +45,7 @@
             android:layout_marginTop="5dp"
             android:fontFamily="sans-serif"
             android:minLines="1"
+            android:gravity="center"
             android:text="Likes\nFollowers\nNumber of Recipes"
             android:textColor="#FFFFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,8 +54,8 @@
             app:layout_constraintTop_toBottomOf="@+id/IGurl" />
 
         <TextView
-            android:id="@+id/FBurl2"
-            android:layout_width="260dp"
+            android:id="@+id/FBurl"
+            android:layout_width="350dp"
             android:layout_height="19dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
@@ -67,7 +68,7 @@
 
         <TextView
             android:id="@+id/YTurl"
-            android:layout_width="260dp"
+            android:layout_width="350dp"
             android:layout_height="19dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
@@ -75,7 +76,7 @@
             android:textColor="#FFFFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FBurl2" />
+            app:layout_constraintTop_toBottomOf="@+id/FBurl" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/menu_toolbar_layout"
@@ -94,23 +95,20 @@
             android:id="@+id/Premium_box"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:text="Premium User"
             android:textColor="#FFFFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
+            app:layout_constraintStart_toEndOf="@+id/profile_picture"
+            app:layout_constraintTop_toBottomOf="@+id/NameTextBox" />
 
         <ImageView
             android:id="@+id/profile_picture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="122dp"
+            android:layout_height="123dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="15dp"
             android:src="@mipmap/profile_pic5_round"
-            app:layout_constraintEnd_toStartOf="@+id/NameTextBox"
-            app:layout_constraintHorizontal_bias="0.007"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout"
             tools:srcCompat="@tools:sample/avatars" />
@@ -119,19 +117,20 @@
             android:id="@+id/NameTextBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="184dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:text="Name"
             android:textColor="#FFFFFFFF"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/profile_picture"
             app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
 
         <RatingBar
-            android:id="@+id/bakerStar4"
+            android:id="@+id/ratingStar"
             style="@android:style/Widget.Holo.Light.RatingBar"
             android:layout_width="142dp"
             android:layout_height="55dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="112dp"
             android:clickable="false"
             android:indeterminate="false"
             android:isIndicator="true"
@@ -154,14 +153,14 @@
             android:textColor="#FFFFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bakerStar4" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingStar" />
 
         <ImageView
             android:id="@+id/recipe_picture"
             android:layout_width="219dp"
             android:layout_height="91dp"
             android:layout_marginStart="76dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:clickable="true"
             android:focusable="auto"
             android:src="@mipmap/sample_recipe1_round"

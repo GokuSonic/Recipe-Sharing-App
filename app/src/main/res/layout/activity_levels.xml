@@ -16,8 +16,8 @@
             style="@android:style/Widget.Holo.Light.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="38dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
             android:clickable="false"
             android:indeterminate="false"
             android:isIndicator="true"
@@ -38,9 +38,9 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
-            android:id="@+id/baker_level_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/cook_level_text"
+            android:layout_width="92dp"
+            android:layout_height="51dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
             android:text="Cook"
@@ -53,11 +53,12 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="44dp"
             android:max="100"
             android:progress="5"
             app:layout_constraintEnd_toStartOf="@+id/cookStar"
-            app:layout_constraintStart_toEndOf="@+id/baker_level_text"
+            app:layout_constraintHorizontal_bias="0.513"
+            app:layout_constraintStart_toEndOf="@+id/cook_level_text"
             app:layout_constraintTop_toBottomOf="@+id/menu_toolbar_layout" />
 
         <androidx.appcompat.widget.Toolbar

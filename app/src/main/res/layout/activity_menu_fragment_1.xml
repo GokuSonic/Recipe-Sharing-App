@@ -43,10 +43,11 @@
 
     <TextView
         android:id="@+id/menu_fragment1_cook_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="132dp"
+        android:layout_width="190dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="108dp"
+        android:gravity="center"
         android:text="Cook"
         android:textColor="#FFFFFFFF"
         android:textSize="32sp"

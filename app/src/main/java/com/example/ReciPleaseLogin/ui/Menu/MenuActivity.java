@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.ReciPleaseLogin.R;
 import com.example.ReciPleaseLogin.data.DB;
+import com.example.ReciPleaseLogin.data.ImageLoadTask;
 import com.example.ReciPleaseLogin.data.Recipe;
 import com.example.ReciPleaseLogin.ui.Edit_Profile.EditProfile;
 import com.example.ReciPleaseLogin.ui.Levels.LevelsActivity;
@@ -32,6 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -116,13 +119,46 @@ public class MenuActivity extends AppCompatActivity {
 
         final List<Recipe> ReturnInsideOutside = new Vector<>();
 
-        //dref = DB.getInstance().database.getReference("Root").child("Recipes").child("Public");
+
         final DatabaseReference dref = DB.getInstance().database.getReference().child("Root").child("Recipes").child("Public");
-        //download eVeRyTHING and make massive object
         dref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                collecetionOfRecipes((Map<String, Recipe>) dataSnapshot.getValue());
+                Recipe[] top4 = collecetionOfRecipes((Map<String, Recipe>) dataSnapshot.getValue());
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t" + top4[0].description);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t" + top4[1].description);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t" + top4[2].description);
+                System.out.println("\t\t\t\t\t\t\t\t\t\t\t" + top4[3].description);
+
+                TextView post = findViewById(R.id.textView1);
+                ImageView image = findViewById(R.id.imageView1);
+
+                TextView post2 = findViewById(R.id.textView2);
+                ImageView image2 = findViewById(R.id.imageView2);
+
+                TextView post3 = findViewById(R.id.textView3);
+                ImageView image3 = findViewById(R.id.imageView3);
+
+                TextView post4 = findViewById(R.id.textView4);
+                ImageView image4 = findViewById(R.id.imageView4);
+
+                //Update all the images
+                new ImageLoadTask(top4[0].getInstruction_pics().get(0), image).execute();
+                post.setText("Name: " + top4[0].recipe_name
+                        + "\nDiet: " + top4[0].diet + "\nDescription: " + top4[0].description);
+
+                new ImageLoadTask(top4[1].getInstruction_pics().get(0), image2).execute();
+                post2.setText("Name: " + top4[1].recipe_name
+                        + "\nDiet: " + top4[1].diet + "\nDescription: " + top4[1].description);
+
+                new ImageLoadTask(top4[2].getInstruction_pics().get(0), image3).execute();
+                post3.setText("Name: " + top4[2].recipe_name
+                        + "\nDiet: " + top4[2].diet + "\nDescription: " + top4[2].description);
+
+                new ImageLoadTask(top4[3].getInstruction_pics().get(0), image4).execute();
+                post4.setText("Name: " + top4[3].recipe_name
+                        + "\nDiet: " + top4[3].diet + "\nDescription: " + top4[3].description);
+
             }
 
             @Override
@@ -132,53 +168,6 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
-      /*  DB.getInstance().pull(new IObjectListener() {
-            @Override
-            public void onRetrievalSuccess(Object InsideObject) {
-                Object OutsideObject = InsideObject;
-                Log.i("TEST", "" + InsideObject.toString());
-
-
-                Object recipes = ReturnInsideOutside;
-                //GET the public most updated recipes
-                List<Recipe> DBrecipes = ((List<Recipe>) recipes);
-                Recipe[] most_recent_recipies = new Recipe[3];
-
-                System.out.println("\n\n\nHERE size --" + DBrecipes.size());
-                for (int i = 0; i < DBrecipes.size(); i++) {
-                    System.out.println(DBrecipes.get(i).posted.toDate());
-                }
-
-
-                // update 'shell' objects
-                TextView post = findViewById(R.id.textView1);
-                ImageView image = findViewById(R.id.imageView1);
-
-                //takes the URL from the database and converts it so the phone can display it
-                new ImageLoadTask("https://2.bp.blogspot.com/_fogL-F6jDxo/S-hrZYJixBI/AAAAAAAABoQ/H2y1p4in8lk/s1600/steak.jpg", image).execute();
-
-                //grab recipe data
-                for (int i = 0; i < 1000; i++) {
-                    post.setText("Recipe: test \nDifficulty: Hard\nDirections:1) Add data 2) create test");
-                }
-
-            }
-
-            @Override
-            public void onRetrievalFailure() {
-                Log.i("TEST-INSIDE", "F");
-            }
-        }, ReturnInsideOutside, dref, new Recipe());
-        Log.i("TEST-OUTSIDE", "" + ReturnInsideOutside.toString());
-
-        Object recipes = ReturnInsideOutside;
-        recipes.toString();
-        Log.i("TEST", "" + recipes.toString());
-
-
-
-
-    }*/
 
 
     @Override
@@ -234,9 +223,9 @@ public class MenuActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void collecetionOfRecipes(Map<String, Recipe> recipes) {
+    private Recipe[] collecetionOfRecipes(Map<String, Recipe> recipes) {
 
-        ArrayList<String> recipeList = new ArrayList<>();
+        ArrayList<Recipe> recipeList = new ArrayList<>();
 
         //iterate through each recipe, ignoring their UID
         for (Map.Entry<String, Recipe> entry : recipes.entrySet()) {
@@ -244,10 +233,30 @@ public class MenuActivity extends AppCompatActivity {
             //Get recipe map
             Map singleRecipe = (Map) entry.getValue();
             //Get description field and append to list
-            recipeList.add((String) singleRecipe.get("description"));
+
+            Recipe temp = new Recipe(
+                    (String) singleRecipe.get("owner"), (String) singleRecipe.get("posted")
+                    , (String) singleRecipe.get("diet"), (String) singleRecipe.get("recipe_name")
+                    , (String) singleRecipe.get("description"), ((ArrayList) (singleRecipe.get("instruction_pics"))));
+
+            recipeList.add(temp);
         }
 
+        Collections.sort(recipeList, new Comparator<Recipe>() {
+            @Override
+            public int compare(Recipe recipe1, Recipe recipe2) {
+
+                return recipe1.posted.compareTo(recipe2.posted);
+            }
+        });
+
+        Recipe[] MenuRecipes = new Recipe[4];
+        MenuRecipes[0] = recipeList.get(0);
+        MenuRecipes[1] = recipeList.get(1);
+        MenuRecipes[2] = recipeList.get(2);
+        MenuRecipes[3] = recipeList.get(3);
         System.out.println("\t\t!!!!!!!!!!!!!!!!!!!!!!!Works=============" + recipeList.toString());
+        return MenuRecipes;
         }
 
 

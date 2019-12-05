@@ -32,13 +32,15 @@ public class Recipe {
     public Recipe()
     {}
 
-    public Recipe(String recipe_name, String description, List<String> ingredients, String timePosted, String userUid)
+    public Recipe(String userUid, String timePosted, String Diet, String recipe_name, String description, List<String> url)
     {
         this.recipe_name = recipe_name;
         this.description = description;
-        this.ingredients = ingredients;
+        //this.ingredients = ingredients;
         this.posted = timePosted;
         this.owner = userUid;
+        this.diet = Diet;
+        this.instruction_pics = url;
     }
 
 

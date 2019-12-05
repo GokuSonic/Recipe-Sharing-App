@@ -32,7 +32,7 @@
         android:layout_width="164dp"
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="100dp"
         android:max="100"
         android:progress="5"
@@ -45,14 +45,12 @@
         android:id="@+id/menu_fragment1_cook_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="132dp"
         android:text="Cook"
         android:textColor="#FFFFFFFF"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

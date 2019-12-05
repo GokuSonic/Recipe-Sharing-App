@@ -35,6 +35,7 @@ public class PremiumActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

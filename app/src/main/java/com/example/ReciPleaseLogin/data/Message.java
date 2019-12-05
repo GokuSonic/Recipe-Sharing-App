@@ -1,7 +1,5 @@
 package com.example.ReciPleaseLogin.data;
 
-import java.util.Date;
-
 public class Message {
     public String recipeUid;
     public String parentUid; //this is to structure messages
@@ -10,11 +8,18 @@ public class Message {
     public boolean premium;
     public String sender;
     public String recipient;
-    public Date timestamp;
+    public String timestamp;
     public String message;
+    public String picture;
 
 
     //constructor
+    public Message(String mess, String toUID, String time, String pic) {
+        recipeUid = toUID;
+        message = mess;
+        timestamp = time;
+        picture = pic;
+    }
     public Message(){
     }
 
@@ -32,7 +37,8 @@ public class Message {
     public String getRecipientUid(){
         return recipientUid;
     }
-    public Date getTimestamp(){
+
+    public String getTimestamp() {
         return timestamp;
     }
     public String getMessage(){

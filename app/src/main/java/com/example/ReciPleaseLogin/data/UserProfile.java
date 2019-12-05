@@ -36,6 +36,7 @@ public UserProfile(){}
         num_followers = 0;
         num_likers = 0;
         num_recipes = 0;
+
     }
 
 
